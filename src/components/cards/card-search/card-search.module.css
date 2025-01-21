@@ -1,0 +1,73 @@
+.card_search {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    transition: .4s all;
+    margin-bottom: 1.5rem;
+
+    .card_input_icon {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 1.7rem 1.1rem 1.6rem;
+        border-radius: 50px;
+        background-color: var(--body-color-light);
+        gap: 1.5rem;
+        border: 3px solid transparent;
+        transition: .3s all;
+
+
+        &:hover {
+            border-color: var(--first-color);
+
+            svg {
+                fill: var(--first-color);
+            }
+        }
+
+
+        input {
+            background-color: var(--body-color-light);
+            flex: 1;
+            color: var(--text-color);
+            font-weight: var(--font-semibold);
+
+            &::placeholder {
+                color: var(--text-color-light);
+            }
+        }
+    }
+
+    .nav_search {
+        display: flex;
+        gap: 1rem;
+        padding: 0 .45rem;
+
+        a {
+            font-size: var(--small-font-size);
+            color: var(--text-color);
+            font-weight: var(--font-semibold);
+            padding: .35rem .75rem;
+            border-radius: 50px;
+            background-color: var(--body-color-light);
+            transition: .3s all;
+
+
+
+            &.active {
+                background-color: var(--first-color);
+                color: #fff;
+                box-shadow: var(--box-shadow);
+            }
+
+            &:is(:hover, :focus), &:first-child {
+                transform: scale(1.01);
+                background-color: var(--first-color);
+                color: #fff;
+                box-shadow: var(--box-shadow);
+            }
+           
+        }
+    }
+}

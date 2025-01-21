@@ -1,0 +1,69 @@
+.card_profile {
+    padding-top: var(--padding-top-global);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.img_name_level {
+    display: flex;
+    align-items: end;
+    gap: .45rem;
+
+    .cicle_img{
+        width: 110px !important;
+        height: 110px !important;
+        border-radius: 50%;
+        padding: 3px;
+        border: 3px solid var(--first-color);
+    
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+    }
+    .name_level {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(-12px);
+    
+    
+        > a {
+            font-size: var(--h3-font-size);
+            color: var(--text-color);
+            font-weight: var(--font-semibold);
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    
+        small {
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+    
+            svg {
+                fill: var(--text-color-light);
+            }
+    
+            span {
+                font-size: var(--small-font-size);
+                color: var(--text-color-light);
+                font-weight: var(--font-semibold);
+            }
+        }
+    }
+
+}
+.about_me {
+    width: 100%;
+    text-indent: 6rem;
+}

@@ -1,0 +1,91 @@
+.card_horary {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
+    > strong {
+        font-weight: var(--font-bold) !important;
+        font-size: var(--h3-font-size) !important;
+    }
+
+    .card_body {
+        border-left: 5px solid var(--body-color-light);
+        padding-top: 2rem;
+    
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.9rem;
+            transform: translateX(-10px);
+    
+    
+            li {
+                display: flex;
+                align-items: start;
+                gap: .75rem;
+    
+                svg {
+                    transform: scale(3.5);
+                    transition: .3s all;
+                }
+    
+                svg.active {
+                    animation: anime-move-my-cart 2s infinite;
+                }
+    
+                &:nth-child(1) svg {
+                    fill: #b62a2a;
+                }
+    
+                &:nth-child(2) svg {
+                    fill: #1d1d8f96;
+                }
+    
+                &:nth-child(3) svg {
+                    fill: rgb(47, 129, 47);
+                }
+    
+                &:nth-child(4) svg {
+                    fill: #333333;
+                }
+    
+                &:nth-child(5) svg {
+                    fill: #386e70;
+                }
+    
+                &:nth-child(6) svg {
+                    color: rgb(97, 166, 206);
+                }
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+
+                    strong {
+                        font-weight: var(--font-semibold);
+                        font-size: var(--normal-font-size);
+                        color: var(--text-color);
+                    }
+
+                    span {
+                        font-size: var(--small-font-size);
+                        color: var(--text-color-light);
+                    }
+                }
+    
+    
+            }
+    
+    
+        }
+    }
+}
+
+
+
+
+@keyframes anime-move-my-cart {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
+}

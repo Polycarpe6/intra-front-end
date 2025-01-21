@@ -1,0 +1,21 @@
+.btn_login {
+    width: 360px;
+    padding: 1.45rem;
+    text-align: center;
+    font-weight: var(--font-semibold);
+    border-radius: 50px;
+    background-color: var(--first-color);
+    color: #fff;
+    transition: .2s all;
+
+    &:is(:hover, :focus) {
+        transform: scale(1.01);
+        box-shadow: var(--box-shadow);
+    }
+}
+
+@media screen and (max-width: 446px) {
+    .btn_login {
+        width: 100%;
+    }
+} 

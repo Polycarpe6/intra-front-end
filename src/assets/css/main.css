@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+@import url('./animation.css');
+
+
+:root {
+
+    --header-height: 3.8rem;
+    --aside-width: 4.2rem;
+
+    --first-color: #56b8e6;
+    --title-color: ; 
+    --text-color: #1b2f45;
+    --text-color-light: #8e8e8e;
+    --body-color: #fff;
+    --body-color-light: #f6f7f8;
+    
+
+    --body-font: "Poppins", Helvetica, sans-serif;
+    --biggest-font-size: 1.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .625rem;
+
+    --font-minium:400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold:700;
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+
+    --box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+
+    --border-radius: 1.5rem;
+
+    --background-linear-gradient: linear-gradient(rgba(27, 47, 69, 0.8), rgba(27, 47, 69, 0.8));
+
+    --padding-top-global: calc(var(--header-height) + 40px);
+
+}
+
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: .35rem;
+    transition:  all .5s;
+}
+::-webkit-scrollbar-thumb {
+    background: #8e8e8e;
+    border-radius: .5rem;
+}
+* {
+    box-sizing: border-box !important;
+    padding: 0px;
+    margin: 0px;
+    font-family: var(--body-font) !important;
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    transition: .3s all !important;
+}
+html {
+    scroll-behavior: smooth;
+}
+input, button, textarea {
+    border: 0;
+    outline: 0;
+    all: unset;
+}
+a {
+    text-decoration: none !important;
+}
+ul, ol, p {
+    list-style: none !important;
+    padding: 0 !important; 
+    margin: 0 !important;
+}
+body {
+    background-color: var(--body-color) !important;
+    overflow: hidden;
+}
+img {
+    object-fit: cover !important;
+}
+
+
+
+
+.container {
+    width: 1350px !important;
+    margin: 0 auto;
+    transition: .3s all;
+}
+
+
+@media screen and (max-width: 1306px) {
+    .container {
+        width: 95% !important;
+    }
+}

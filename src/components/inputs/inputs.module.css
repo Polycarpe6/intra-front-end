@@ -1,0 +1,69 @@
+.card_input_label_icon {
+    width: 360px;
+    padding: .60rem 1.5rem .75rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    background-color: var(--body-color-light);
+    border: 3px solid transparent;
+    transition: border-color 0.2s ease;
+    margin-bottom: .75rem;
+
+    &:is(:hover, :focus) {
+        border-color: var(--first-color);
+
+        > div {
+
+            label {
+                color: var(--first-color);
+            }
+        }
+
+        svg {
+            fill: var(--first-color);
+        }
+    }
+
+    svg {
+        transition: .3s;
+        fill: var(--text-color-light);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        flex: 1;
+
+        label {
+            font-weight: var(--font-semibold);
+            color: var(--text-color-light);
+            transition: .3s;
+        }
+
+        input {
+            width: 100%;
+            background-color: transparent;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-semibold);
+        }
+    }
+}
+
+.codProcess {
+    width: 220px !important;
+}
+
+
+@media screen and (max-width: 446px) {
+    .card_input_label_icon {
+        width: 100%;
+    }
+} 

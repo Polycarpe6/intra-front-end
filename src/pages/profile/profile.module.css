@@ -1,0 +1,129 @@
+.profile_page {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.content_profile {
+    padding-top: var(--padding-top-global);
+    height: 100dvh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius:.5rem;
+    }
+
+    > div {
+        padding: 2rem 1rem;
+    }
+}
+.nav_profile {
+    border: none !important;
+    background-color: var(--body-color-light);
+    border-radius: 50px;
+    width: fit-content;
+    transition: 0.3s all;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    padding:  .35rem !important;
+
+    li {
+        
+        button {
+            border: none !important;
+            border-radius: 50px !important;
+            font-weight: var(--font-medium);
+            font-size: var(--small-font-size);
+            color: var(--text-color);
+            transition: .2s all;
+
+            &.active {
+                background-color: #fff !important;
+                color: var(--first-color) !important;
+                box-shadow: var(--box-shadow);
+            }
+
+            &:is(:hover, :focus) {
+                color: var(--first-color) !important;
+                box-shadow: var(--box-shadow);
+            }
+        }
+    }
+}
+
+.home_profile_page {
+
+    .card_title_list_content_profile_home {
+        width: 100%;
+        border: 1px solid var(--body-color-light);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        padding: 0 1.5rem 3.5rem 1.5rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 3.5rem;
+
+        > strong {
+            background-color: #fff;
+            padding: .15rem 1rem;
+            border-radius: var(--border-radius);
+            transform: translateY(-12px);
+        }
+
+        ul {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            row-gap: 3.5rem;
+    
+            li {
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                gap: .45rem;
+    
+                > div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 1rem;
+                    border-bottom: 2px solid var(--body-color-light);
+
+                    &:hover {
+
+                        > button {
+                            display: flex;
+                        }
+                    }
+    
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: .45rem;
+
+                        small {
+                            font-size: var(--small-font-size);
+                            font-weight: var(--font-semibold);
+                            color: var(--text-color-light);
+                        }
+                    }
+
+                    button {
+                        display: none;
+                        transition: .5s all;
+                    }
+                }
+            }
+
+            li.desc {
+                width: 100%;
+            }
+        }
+    }
+}

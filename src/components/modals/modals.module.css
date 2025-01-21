@@ -1,0 +1,49 @@
+.modal_Container {
+    
+    > div {
+
+        > div {
+            all: unset;
+            width: 100%;
+            background-color: var(--body-color);
+            padding: 1.5rem 2.2rem;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+
+            .title_modal {
+                font-size: var(--h2-font-size);
+            }
+
+            .btn_group {
+                display: flex;
+                align-items: center;
+                margin-top: 1rem;
+                gap: 1rem;
+
+                button {
+                    padding: .75rem 1.5rem;
+                    border: none;
+                    background-color: var(--body-color-light);
+                    font-size: var(--normal-font-size);
+                    transition: 0.3s all;
+                    border-radius: 50px;
+                    font-weight: var(--font-semibold);
+
+                    &:first-child {
+                        background-color: #b62a2a;
+                        color: #fff;
+                    }
+
+                    &:last-child {
+                        background-color: var(--first-color);
+                        color: #fff;
+                    }
+
+                }
+            }
+        }
+
+    }
+}

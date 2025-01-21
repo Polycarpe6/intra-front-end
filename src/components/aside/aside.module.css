@@ -1,0 +1,102 @@
+.aside {
+    position: fixed;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;    
+        
+    ul {
+        width: var(--aside-width);
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .75rem;
+        background: var(--text-color);
+        padding: 1.5rem 0px 2rem 0px !important;
+        transition: 0.3s all;
+        border-radius: 50px;
+
+        li {
+
+            a, button {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: .45rem;
+                transition: .6s all;
+
+
+                svg {
+                    fill: #fff;
+                    transform: scale(1.4);
+                    transition: .4s all;
+                    position: relative;
+                    display: block;
+                    line-height: 75px;
+                    text-align: center;
+                }
+
+                small {
+                    color: #fff;
+                    font-size: var(--tiny-font-size);
+                    font-weight: var(--font-semibold);
+                    transition: .4s all;
+                    position: absolute;
+                    letter-spacing: 0.05em;
+                    transition: .5s all;
+                    opacity: 0 !important;
+                    transform: translateY(28px);
+
+
+                }
+
+                &:is(:hover, :focus, :active) {
+                    /* background-color: var(--first-color);                     */
+
+                    svg {
+                        fill: var(--first-color);
+                        transform: translateY(-6px);
+                    }
+
+                    small {
+                        color: var(--first-color);
+                        opacity: 1 !important;
+                        transform: translateY(10px) !important;
+                    }
+                }
+
+            }
+
+            /* button {
+                border-radius: 50%;
+                transition: .3s all;
+
+                svg {
+                    fill: #fff;
+                    transform: scale(1.4);
+                    transition: .4s all;
+                }
+
+            } */
+        }
+
+    
+    }
+}
+
+
+
+
+/* @media screen and (max-width: 1500px) {
+    .aside {
+        transform: translateX(-25dvh);
+    }
+} */
