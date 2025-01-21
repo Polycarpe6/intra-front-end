@@ -148,9 +148,9 @@ export function Home() {
             <Col_Xl_3>
                 <div className={stl.card_horary}>
                     <TitleDescLink
-                        title={"Horário"}
+                        title={"Horário de Hoje"}
                         desc={"Veja o horário do IPIL"}
-                        linkPath={"/horario"}
+                        linkPath={"/class"}
                     />
 
                     <Horary 

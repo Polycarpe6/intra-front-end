@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsSearch } from 'react-icons/bs'
+import { BsPlus, BsSearch } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
 
@@ -26,6 +26,10 @@ export function CardSearch({placeholder, sugest1, sugest2, sugest3}: ICardSearch
                 <NavLink to={""}>{sugest1}</NavLink>
                 <NavLink to={""}>{sugest2}</NavLink>
                 <NavLink to={""}>{sugest3}</NavLink>
+                <button>
+                    <BsPlus />
+                    <span>adicionar aluno</span>
+                </button>
             </nav>
         </article>
     )

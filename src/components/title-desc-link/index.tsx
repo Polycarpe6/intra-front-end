@@ -15,7 +15,7 @@ export function TitleDescLink({title, desc, linkPath}:ITitleDescLink) {
         <article className={`${style.card_title_desc_linkPath} anime-bottom`}>
             <div className={style.card_head}>
                 <strong>{title}</strong>
-                <Link to={"/"} style={{display: linkPath? "flex": "none"}}>Ver mais</Link>
+                <Link to={linkPath} style={{display: linkPath? "flex": "none"}}>Ver mais</Link>
             </div>
 
             <small className={style.card_desc}>

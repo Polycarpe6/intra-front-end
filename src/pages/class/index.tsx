@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './class.module.css'
-import { CardProfile, CardSearch, ChartBar, Col_Xl_9, Horary } from '../../components'
-import { BsAward, BsMortarboard } from 'react-icons/bs'
+import { CardProfile, CardSearch, ChartBar, Col_Xl_9, Horary, TitleAndDesc, TitleDescLink } from '../../components'
+import { BsAward, BsMortarboard, BsPencil } from 'react-icons/bs'
 import img_coord from '../../assets/img/default.jpg'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
@@ -289,7 +289,7 @@ export function Class() {
                 <section className={stl.section_content_class}>
                     <div className={stl.card_info_class}>
                         
-                        <div className={stl.card_info_class_left}>
+                        <div className={`${stl.card_info_class_left} anime-bottom`}>
                             <div className={stl.card_img_class}>
                                 <div>
                                     <BsMortarboard />
@@ -316,7 +316,7 @@ export function Class() {
                             </div>
                         </div>
 
-                        <div className={stl.card_info_class_right}>
+                        <div className={`${stl.card_info_class_right} anime-left`}>
 
                             <ul>
                                 <li className="anime-bottom">
@@ -378,6 +378,12 @@ export function Class() {
                                 className={`anime-bottom ${stl.home_profile_page}`}
                             >
 
+                                <TitleDescLink 
+                                    title={"Alunos"}
+                                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                    linkPath={""}
+                                />
+
                                 <CardSearch 
                                     placeholder={"Busca alunos..."}
                                     sugest1={"Todos"}
@@ -397,6 +403,39 @@ export function Class() {
                                 <p>
                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?
                                 </p>
+                            </Tab>
+
+                            <Tab 
+                                eventKey="Disciplinas" 
+                                title="Disciplinas" 
+                                className="anime-bottom"
+                            >
+                                <TitleDescLink 
+                                    title={"Disciplinas"}
+                                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                    linkPath={""}
+                                />
+
+                                <ul className={stl.disc}>
+                                    <li>
+                                        <strong>
+                                            Cod. - Mat
+                                        </strong>
+
+                                        <strong>
+                                            Nome. - Matematica
+                                        </strong>
+
+                                        <strong>
+                                            Professor. -
+                                        </strong>
+
+                                        <BsPencil />
+                                    </li>
+                                </ul>
+                                
+                                
+
                             </Tab>
 
                             <Tab 
