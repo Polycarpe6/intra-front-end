@@ -24,8 +24,20 @@
 }
 
 .card_info_class_left {
+    flex: 1;
     display: flex;
-    align-items: end;
+    align-items: start;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    > div {
+        display: flex;
+        align-items: end;        
+    }
+
+    > small {
+        color: var(--text-color-light);
+    }
 
     .card_img_class {
         border: 3px solid var(--first-color);
@@ -167,13 +179,6 @@
     gap: .75rem;
     padding-bottom: 2rem;
 
-    > strong {
-        font-size: var(--h2-font-size);
-    }
-
-    > p {
-        font-size: var(--small-font-size);
-    }
     .table_horary {
         display: flex;
         align-items: start;
@@ -218,6 +223,170 @@
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list_student {
+    padding: 3rem 1rem 30rem 1rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        transition: 0.3s ease-in-out;
+        border-radius: 1.5rem;
+        background-color: var(--body-color-light);
+        padding: .55rem 1.8rem;
+        border: 3px solid transparent;
+
+        &:is(:hover, :focus, :active) {
+            transform: scale(1.01);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            border-color: var(--first-color) !important;
+        }
+
+
+        .num {
+            width: 7%;            
+            font-weight: var(--font-bold);
+        }
+
+        .cod_proc {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+
+            span {
+                font-size: var(--small-font-size);
+                font-weight: var(--font-bold);
+            }
+        }
+
+        .img_and_name {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        
+        
+            .img {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                padding: 2px;
+                border: 2px solid var(--first-color);
+            
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+            .name_email {
+                display: flex;
+                flex-direction: column;
+                gap: 0rem;
+            
+                a.name {
+                    font-weight: var(--font-bold);
+                    color: var(--text-color);
+                    transition: 0.3s all;
+                }
+            
+                a.email {
+                    color: var(--first-color);
+            
+                    font-size: var(--small-font-size);
+                }
+            }
+        }
+
+        .usernameclass {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            gap: .05rem;
+
+
+            svg {
+                fill: var(--text-color);
+                width: 20px;
+                height: 20px;
+            }
+
+            span {
+                font-size: var(--small-font-size);
+                color: var(--text-color);
+                font-weight: var(--font-bold);
+            }
+        }
+
+        .media {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+
+            svg {
+                fill: var(--text-color);
+                width: 20px;
+                height: 20px;
+            }
+
+            strong {
+                font-size: var(--small-font-size);
+                color: var(--text-color);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @keyframes anime-move-my-cart {

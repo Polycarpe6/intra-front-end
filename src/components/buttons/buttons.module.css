@@ -1,12 +1,14 @@
-.btn_login {
+.btn {
     width: 360px;
-    padding: 1.45rem;
+    padding: 1.3rem;
     text-align: center;
     font-weight: var(--font-semibold);
     border-radius: 50px;
     background-color: var(--first-color);
+    font-size: var(--small-font-size);
     color: #fff;
     transition: .2s all;
+    cursor: pointer;
 
     &:is(:hover, :focus) {
         transform: scale(1.01);

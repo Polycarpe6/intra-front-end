@@ -1,0 +1,61 @@
+.main_window {
+    width: 100% !important;
+    height: 100dvh !important;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--background-linear-gradient) !important;
+    display: none;
+}
+
+.window_add_student {
+    width: 450px;
+    height: 100dvh;
+    background-color: #fff;
+    padding: 3rem;
+    position: relative;
+    z-index: var(--z-modal);
+    justify-self: flex-end;
+    transition: .3s all;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5rem;
+    transform: translateX(100%);
+
+
+    .btn_close {
+        border: 3px solid var(--first-color);
+        background-color: var(--body-color-light);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .7s all;
+
+        svg {
+            fill: var(--text-color);
+            width: 20px;
+            height: 20px;
+        }
+
+        &:is(:hover, :focus) {
+            transform: translateX(8px);
+            background-color: var(--first-color);
+
+            svg {
+                fill: #fff;
+            }
+        }
+    }
+
+    .card_input {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

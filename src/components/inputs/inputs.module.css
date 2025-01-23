@@ -1,6 +1,6 @@
 .card_input_label_icon {
     width: 360px;
-    padding: .60rem 1.5rem .75rem 1.5rem;
+    padding: .65rem 1.4rem;
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
@@ -29,6 +29,7 @@
     svg {
         transition: .3s;
         fill: var(--text-color-light);
+        width: var(--small-font-size);
 
         &:hover {
             cursor: pointer;
@@ -43,16 +44,18 @@
         flex: 1;
 
         label {
+            font-size: var(--small-font-size);
             font-weight: var(--font-semibold);
             color: var(--text-color-light);
             transition: .3s;
         }
 
-        input {
+        input, select {
             width: 100%;
             background-color: transparent;
-            font-size: var(--normal-font-size);
+            font-size: var(--small-font-size);
             font-weight: var(--font-semibold);
+            transform: translateY(-4px);
         }
     }
 }
@@ -64,6 +67,6 @@
 
 @media screen and (max-width: 446px) {
     .card_input_label_icon {
-        width: 100%;
+        width: 100% !important;
     }
 } 

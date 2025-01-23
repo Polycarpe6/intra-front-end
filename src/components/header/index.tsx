@@ -15,7 +15,7 @@ export function Header() {
 
                     <Link to={"/"} className={stl.logo}>
                         {/* <img src={logo} alt="" /> */}
-                        <span>IN</span>TRA
+                        <span>In</span>tra
                     </Link>
 
                     <BsList id="showAside" />

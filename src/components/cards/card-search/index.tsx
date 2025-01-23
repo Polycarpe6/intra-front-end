@@ -2,6 +2,7 @@ import React from 'react'
 import { BsPlus, BsSearch } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
+import { ModalToAddStudentClass } from '../../modals';
 
 
 interface ICardSearchProps {
@@ -11,6 +12,9 @@ interface ICardSearchProps {
     sugest3: string;
 }
 export function CardSearch({placeholder, sugest1, sugest2, sugest3}: ICardSearchProps) {
+
+    const [modalShow, setModalShow] = React.useState(false);
+
     return (
         <article className={`${stl.card_search} anime-bottom`}>
 
@@ -26,10 +30,15 @@ export function CardSearch({placeholder, sugest1, sugest2, sugest3}: ICardSearch
                 <NavLink to={""}>{sugest1}</NavLink>
                 <NavLink to={""}>{sugest2}</NavLink>
                 <NavLink to={""}>{sugest3}</NavLink>
-                <button>
+                <button onClick={() => setModalShow(true)}>
                     <BsPlus />
-                    <span>adicionar aluno</span>
+                    <span>Adicionar Aluno</span>
                 </button>
+
+                <ModalToAddStudentClass 
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
             </nav>
         </article>
     )

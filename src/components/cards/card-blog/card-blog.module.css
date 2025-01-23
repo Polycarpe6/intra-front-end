@@ -175,8 +175,6 @@
         padding: 0 1.5rem 1.5rem 1.5rem;
         overflow: hidden;
 
-
-
         button {
             color: var(--text-color);
             transition:.3s;
@@ -186,12 +184,12 @@
             transition: .3s;
 
             svg {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 transition: .3s;
             }
 
             span {
-                font-size: var(--normal-font-size);
+                font-size: var(--small-font-size);
                 font-weight: var(--font-semibold);
             }
 
@@ -202,7 +200,6 @@
                 }
             }
         }
-
        
     }
 

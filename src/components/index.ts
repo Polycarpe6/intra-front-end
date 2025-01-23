@@ -21,3 +21,4 @@ export * from "./col"
 export * from "./chart"
 
 export * from "./modals"
+export * from "./windows"

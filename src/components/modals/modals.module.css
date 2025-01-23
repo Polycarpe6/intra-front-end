@@ -23,10 +23,10 @@
                 gap: 1rem;
 
                 button {
-                    padding: .75rem 1.5rem;
+                    padding: .65rem 1.8rem;
                     border: none;
                     background-color: var(--body-color-light);
-                    font-size: var(--normal-font-size);
+                    font-size: var(--small-font-size);
                     transition: 0.3s all;
                     border-radius: 50px;
                     font-weight: var(--font-semibold);

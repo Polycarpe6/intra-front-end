@@ -150,3 +150,69 @@ export function ChartMain() {
         <ReactECharts option={option} />
     );
 }
+
+export function ChartCircle() {
+    const option = {
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          show: false // Oculta a legenda
+        },
+        series: [
+          // Série de fundo (background)
+          {
+            type: 'pie',
+            radius: ['46%', '50%'], // Mesmo tamanho que o círculo principal
+            center: ['50%', '60%'],
+            startAngle: 0, // Define o início do círculo completo
+            endAngle: 360,
+            silent: true, // Impede interatividade (apenas para visualização)
+            data: [
+              { value: 1, itemStyle: { color: '#f2f3f5' } } // Cor do background
+            ],
+            label: {
+              show: false // Oculta o rótulo do background
+            }
+          },
+          // Série principal (com os dados)
+          {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['46%', '50%'],
+            center: ['50%', '60%'],
+            startAngle: 0, // Agora é um círculo completo
+            endAngle: 360,
+            data: [
+              { value: 30, name: 'Desempenho', itemStyle: { color: '#1b2f45' } }
+            ],
+            label: {
+              position: 'center',
+              formatter: '{d}%', // Mostra a porcentagem no centro
+              fontSize: 18,
+              fontWeight: 'bold',
+              color: '#1b2f45'
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: '#56b8e6'
+              }
+            }
+          }
+        ]
+      };
+      
+      
+      
+      
+      
+
+    return (
+        <div id="chart" className={stl.chartCircle}>
+            <ReactECharts option={option} />
+        </div>
+    );
+}

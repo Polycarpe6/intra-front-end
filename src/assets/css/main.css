@@ -66,7 +66,7 @@
 html {
     scroll-behavior: smooth;
 }
-input, button, textarea {
+input, button, textarea, select {
     border: 0;
     outline: 0;
     all: unset;

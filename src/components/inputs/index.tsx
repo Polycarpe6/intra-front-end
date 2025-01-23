@@ -1,6 +1,6 @@
 import React from 'react'
 import stl from './inputs.module.css'
-import { BsEnvelope, BsEye, BsEyeSlash, BsFolder, BsPerson } from 'react-icons/bs'
+import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFolder, BsPerson } from 'react-icons/bs'
 
 interface IInputProps {
 
@@ -21,6 +21,31 @@ export function InputName({value, onChange}: IInputProps) {
                 />
             </div>
             <BsPerson />
+        </div>
+    )
+}
+
+interface ISelectProps {
+
+    values: string[];
+    // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function SelectClassT({values}: ISelectProps) {
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Seleciona Uma Turma</label>
+                <select name="" id="">
+                    <option value="#" selected>nenhuma turma selecionada</option>
+                    {values?.map((value, index) => (
+                        <option key={index} value={value}>{value}</option>
+                    ))}
+                    
+                </select>
+            </div>
+            <BsAward />
         </div>
     )
 }

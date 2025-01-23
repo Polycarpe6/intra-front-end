@@ -1,6 +1,6 @@
 import React from 'react'
 import { Class, Classes, Home, Login, Profile } from '../pages'
-import { Aside, Header, Processes } from '../components'
+import { Aside, Header, Processes, WindowAddStudentInClass } from '../components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export function AppRoute() {
@@ -31,6 +31,7 @@ export function AppRoute() {
                 <Route path="/profile" element={<Profile />} />
             </Routes>
             <Processes />
+            <WindowAddStudentInClass />
         </BrowserRouter>
     )
 

@@ -1,6 +1,8 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import stl from './modals.module.css'
+import { TitleDescLink } from '../title-desc-link';
+import { InputCodProcess, InputEmail } from '../inputs';
 
 export function ModalToCommentBlog(props: any) {
     
@@ -40,10 +42,13 @@ export function ModalToEndSession(props: any) {
         centered
         className={stl.modal_Container}
       >
-        <strong className={stl.title_modal}>Terminar a sessão</strong>
-        <p>
-            Deseja realmente terminar sua sessão?
-        </p>
+        <Modal.Body>
+          <TitleDescLink
+            title={"Terminar a sessão"}
+            desc={"Deseja realmente terminar sua sessão?"}
+            linkPath={""}
+          />
+        </Modal.Body>
         
         <div className={stl.btn_group}>
             <button className={stl.btn_cancelar}>Cancelar</button>
@@ -53,4 +58,34 @@ export function ModalToEndSession(props: any) {
           {/* <Button onClick={props.onHide}>Close</Button> */}
       </Modal>
     );
+}
+
+export function ModalToAddStudentClass(props: any) {
+    
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      className={stl.modal_Container}
+    >
+      
+      <TitleDescLink
+        title={"Adicionar Aluno"}
+        desc={"Para adicionar um aluno, basta inserir o número de processo e o e-mail. Certifique-se de que as informações estejam corretas antes de prosseguir."}
+        linkPath={""}
+      />
+
+      <InputCodProcess />
+      <InputEmail />
+
+      
+      <div className={stl.btn_group}>
+          <button className={stl.btn_cancelar}>Cancelar</button>
+          <button className={stl.btn_confirmar} onClick={props.onHide}>Adicionar</button>
+      </div>
+     
+    </Modal>
+  );
 }

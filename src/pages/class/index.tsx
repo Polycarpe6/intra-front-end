@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './class.module.css'
-import { CardProfile, CardSearch, ChartBar, Col_Xl_9, Horary, TitleAndDesc, TitleDescLink } from '../../components'
-import { BsAward, BsMortarboard, BsPencil } from 'react-icons/bs'
+import { CardProfile, CardSearch, ChartBar, Col_Xl_9, Horary, TitleDescLink } from '../../components'
+import { BsAt, BsAward, BsFolder, BsMortarboard, BsPencil } from 'react-icons/bs'
 import img_coord from '../../assets/img/default.jpg'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
@@ -290,30 +290,37 @@ export function Class() {
                     <div className={stl.card_info_class}>
                         
                         <div className={`${stl.card_info_class_left} anime-bottom`}>
-                            <div className={stl.card_img_class}>
-                                <div>
-                                    <BsMortarboard />
-                                    <span>IG13A</span>
+                            <div>
+                                <div className={stl.card_img_class}>
+                                    <div>
+                                        <BsMortarboard />
+                                        <span>IG13A</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={stl.card_img_and_name_coord_class}>
-                                <div className={stl.card_img_coord}>
-                                    <Link to={"/profile"}>
-                                        <img src={img_coord} alt="" />
-                                    </Link>
-                                </div>
-                                <div className={stl.name_and_icon_coord_class}>
-                                    <strong>
+                                <div className={stl.card_img_and_name_coord_class}>
+                                    <div className={stl.card_img_coord}>
                                         <Link to={"/profile"}>
-                                            <span>Lucas Pazito</span>
+                                            <img src={img_coord} alt="" />
                                         </Link>
-                                    </strong>
-                                    <small>
-                                        <BsAward />
-                                        <span>Coordenador da turma</span>
-                                    </small>
+                                    </div>
+                                    <div className={stl.name_and_icon_coord_class}>
+                                        <strong>
+                                            <Link to={"/profile"}>
+                                                <span>Lucas Pazito</span>
+                                            </Link>
+                                        </strong>
+                                        <small>
+                                            <BsAward />
+                                            <span>Coordenador da turma</span>
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
+
+                            <small className="anime-left">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque nobis officiis molestiae eos eligendi explicabo repudiandae minus saepe aut enim totam, quos dolores id incidunt possimus, corporis alias modi sequi!
+                            </small>
+
                         </div>
 
                         <div className={`${stl.card_info_class_right} anime-left`}>
@@ -343,11 +350,11 @@ export function Class() {
                     </div>
 
                     <div className={stl.horary_class}>
-                        <strong>Horário</strong>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore rem iusto debitis illo praesentium nulla, laudantium et asperiores similique doloribus eligendi doloremque. Fugiat provident rerum qui rem eos! Cumque, inventore?
-                        </p>
+                        <TitleDescLink
+                            title={"Horário"}
+                            desc={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore rem iusto debitis illo praesentium nulla, laudantium et asperiores similique doloribus eligendi doloremque. Fugiat provident rerum qui rem eos! Cumque, inventore?"}
+                            linkPath={""}
+                        />
 
                         <div className={stl.table_horary}>
                             {
@@ -390,7 +397,235 @@ export function Class() {
                                     sugest2={"Com Melhor desempenho"}
                                     sugest3={"Sem Melhor desempenho"}
                                 />
+
                                 
+                                <ul className={stl.list_student}>
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    <li className="anime-left">
+
+                                        <p className={stl.num}>
+                                            Nº 01
+                                        </p>
+
+                                        <div className={stl.cod_proc}>
+                                            <BsFolder />
+                                            <span>Nº Proc 61789</span>
+                                        </div>
+
+                                        <div className={stl.img_and_name}>
+                                            <div className={stl.img}>
+                                                <Link to={"/profile"}>
+                                                    <img src={img_coord} alt="" />
+                                                </Link>
+                                            </div>
+                                            <div className={stl.name_email}>
+                                                <Link to={"/profile"} className={stl.name}>Gerson Ndombasi Paulo</Link>
+                                                <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
+                                                    gersonnpaulo@gmail.com
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                        <div className={stl.usernameclass}>
+                                            <BsAt />
+                                            <span>gerson.intra@ipil</span>
+                                        </div>
+
+                                        <div className={stl.media}>
+                                            <BsAward />
+                                            <strong>16 Valores</strong>
+                                        </div>
+
+                                    </li>
+
+                                    
+
+                                    
+                                </ul>
 
                             </Tab>
 
@@ -439,15 +674,14 @@ export function Class() {
                             </Tab>
 
                             <Tab 
-                                eventKey="Estatistica" 
-                                title="Estatistica" 
+                                eventKey="Pauta" 
+                                title="Pauta" 
                                 className="anime-bottom"
                             >
-                                
-                                <ChartBar
-                                    title={"Desempenho da turma geral"}
-                                />
-
+                                <h2>Pauta</h2>
+                                <p>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?
+                                </p>
                             </Tab>
 
                             <Tab 
