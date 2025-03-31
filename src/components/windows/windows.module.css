@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     background: var(--background-linear-gradient) !important;
-    display: none;
+    display: grid;
 }
 
 .window_add_student {
@@ -17,17 +17,16 @@
     position: relative;
     z-index: var(--z-modal);
     justify-self: flex-end;
-    transition: .3s all;
     box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 1.5rem;
-    transform: translateX(100%);
+    transition: .6s all;
+    transform: translateX(0%);
 
 
     .btn_close {
-        border: 3px solid var(--first-color);
         background-color: var(--body-color-light);
         width: 48px;
         height: 48px;
@@ -44,8 +43,7 @@
         }
 
         &:is(:hover, :focus) {
-            transform: translateX(8px);
-            background-color: var(--first-color);
+            transform: rotateZ(360deg);
 
             svg {
                 fill: #fff;

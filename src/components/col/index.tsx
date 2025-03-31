@@ -1,8 +1,13 @@
 import React from 'react';
 
-export function Col_Xl_3({ children }:any) {
+interface IColXl3 {
+    children: React.ReactNode;
+    className?: string;
+}
+
+export function Col_Xl_3({ children, className }:IColXl3) {
     return (
-        <div className='col-xl-3'>
+        <div className={`${className} col-xl-3`}>
             {children}
         </div>
     );
@@ -16,9 +21,9 @@ export function Col_Xl_8({ children }:any) {
     );
 }
 
-export function Col_Xl_9({ children }:any) {
+export function Col_Xl_9({ children, className }:IColXl3) {
     return (
-        <div className='col-xl-9'>
+        <div className={`${className} col-xl-9`}>
             {children}
         </div>
     );

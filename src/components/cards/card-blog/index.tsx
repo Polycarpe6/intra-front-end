@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import stl from './card-blog.module.css'
-import { ListPeople } from '../../list-people'
+import { PeopleGroup } from '../../people'
 import img_use_post_blog from '../../../assets/img/default.jpg'
 import { BsDownload, BsHeart, BsMortarboard, BsPinAngle, BsQuote, BsSend } from 'react-icons/bs'
 import { ModalToCommentBlog } from '../../modals'
@@ -78,15 +78,12 @@ export function CardBlog({category, disc, author, date, level, title, desc, like
                     <span>{likes}</span>
                 </button>
 
-                <button className="anime-bottom" onClick={() => setModalShow(true)}>
+                <button className="anime-bottom">
                     <BsSend />
                     <span>{comments}</span>
                 </button>
 
-                <ModalToCommentBlog
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
+                
 
 
                 <button className="anime-bottom" style={{display: category == "topic" ? "flex" : "none"}}>
@@ -94,7 +91,7 @@ export function CardBlog({category, disc, author, date, level, title, desc, like
                     <span>{downloads}</span>
                 </button>
 
-                <ListPeople
+                <PeopleGroup
                     desc={views}
                     linkPath={"/blog/id"}
                 />

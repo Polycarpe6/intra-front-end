@@ -1,0 +1,15 @@
+.card_title {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    margin-bottom: 1.4rem;
+
+    strong {
+        font-size: var(--h2-font-size);
+    }
+
+    small {
+        font-size: var(--small-font-size);
+        color: var(--text-color-light);
+    }
+}

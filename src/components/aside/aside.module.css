@@ -6,7 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;    
+    padding: 1rem; 
+    transition: 2s all;
         
     ul {
         width: var(--aside-width);
@@ -17,10 +18,11 @@
         gap: .75rem;
         background: var(--text-color);
         padding: 1.5rem 0px 2rem 0px !important;
-        transition: 0.3s all;
+        transition: 6s all;
         border-radius: 50px;
 
         li {
+        transition: 6s all;
 
             a, button {
                 width: 48px;
@@ -54,7 +56,11 @@
                     transition: .5s all;
                     opacity: 0 !important;
                     transform: translateY(28px);
-
+                    text-align: center;
+                    width: 40px;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
 
                 }
 
@@ -95,8 +101,8 @@
 
 
 
-/* @media screen and (max-width: 1500px) {
+@media screen and (max-width: 1200px) {
     .aside {
-        transform: translateX(-25dvh);
+        transform: translateX(-100%);
     }
-} */
+}

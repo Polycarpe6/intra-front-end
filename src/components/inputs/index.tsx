@@ -1,14 +1,16 @@
 import React from 'react'
 import stl from './inputs.module.css'
+import { Placeholder } from 'react-bootstrap';
 import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFolder, BsPerson } from 'react-icons/bs'
 
 interface IInputProps {
 
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
 }
 
-export function InputName({value, onChange}: IInputProps) {
+export function InputName({value, onChange, disabled = false}: IInputProps) {
 
     return (
         <div className={stl.card_input_label_icon}>
@@ -18,6 +20,7 @@ export function InputName({value, onChange}: IInputProps) {
                     type="text" 
                     value={value}
                     onChange={onChange}
+                    disabled={disabled}
                 />
             </div>
             <BsPerson />
@@ -26,19 +29,20 @@ export function InputName({value, onChange}: IInputProps) {
 }
 
 interface ISelectProps {
-
+    label: string;
+    placeholder: string;
     values: string[];
     // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function SelectClassT({values}: ISelectProps) {
+export function Select({label, placeholder, values}: ISelectProps) {
 
     return (
         <div className={stl.card_input_label_icon}>
             <div className={stl.card_input_label}>
-                <label>Seleciona Uma Turma</label>
+                <label>{label}</label>
                 <select name="" id="">
-                    <option value="#" selected>nenhuma turma selecionada</option>
+                    <option value="#" selected>{placeholder}</option>
                     {values?.map((value, index) => (
                         <option key={index} value={value}>{value}</option>
                     ))}
@@ -67,7 +71,6 @@ export function InputCodProcess({value, onChange}: IInputProps) {
     )
 }
 
-
 export function InputEmail({value, onChange}: IInputProps) {
 
     return (
@@ -85,6 +88,22 @@ export function InputEmail({value, onChange}: IInputProps) {
     )
 }
 
+export function InputClassNameT({value, onChange}: IInputProps) {
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Nome da Turma</label>
+                <input 
+                    type="text" 
+                    value={value}
+                    onChange={onChange}
+                />
+            </div>
+            <BsEnvelope />
+        </div>
+    )
+}
 
 export function InputPassword({value, onChange}: IInputProps) {
 

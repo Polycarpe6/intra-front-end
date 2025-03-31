@@ -18,7 +18,7 @@ export function Header() {
                         <span>In</span>tra
                     </Link>
 
-                    <BsList id="showAside" />
+                    <BsList id="showAside" className={stl.show_aside} />
                     
                 </div>
 

@@ -1,0 +1,139 @@
+.card_horary {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+
+    
+    > strong {
+        font-weight: var(--font-bold) !important;
+        font-size: var(--h3-font-size) !important;
+    }
+
+    .card_body {
+        border-left: 5px solid var(--body-color-light);
+        padding-top: 2rem;
+    
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.9rem;
+            transform: translateX(-10px);
+    
+            li {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                gap: .45rem;
+
+                .card_button {
+                    width: 16px;
+                    height: 16px;
+                    overflow: hidden;
+                    
+                    > button {
+                        cursor: pointer;
+                        transition: 0.3s all;
+                        display: none;
+    
+                        svg {
+                            fill: var(--text-color) !important;
+                            transition: .3s all;
+                            width: 12px;
+                            height: 12px;
+                        }
+    
+                        
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    align-items: start;
+                    gap: .30rem;
+        
+                    svg {
+                        transform: scale(3.5);
+                        transition: .3s all;
+                    }
+        
+                    svg.active {
+                        animation: anime-move-my-cart 2s infinite;
+                    }
+    
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+    
+                        strong {
+                            font-weight: var(--font-semibold);
+                            font-size: var(--normal-font-size);
+                            color: var(--text-color);
+                            width: 117px;
+                            text-wrap: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+    
+                        span {
+                            font-size: var(--small-font-size);
+                            color: var(--text-color-light);
+                            width: 119px;
+                            text-wrap: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+
+                        }
+                    }
+                }
+
+                &:hover {
+
+                    > .card_button {
+
+                        button {
+                            display: flex;
+                        }
+                    }
+                }
+
+                &:nth-child(1) svg {
+                    fill: #b62a2a;
+                }
+    
+                &:nth-child(2) svg {
+                    fill: #1d1d8f96;
+                }
+    
+                &:nth-child(3) svg {
+                    fill: #2f812f;
+                }
+    
+                &:nth-child(4) svg {
+                    fill: #333333;
+                }
+    
+                &:nth-child(5) svg {
+                    fill: #386e70;
+                }
+    
+                &:nth-child(6) svg {
+                    color: #61a6ce;
+                }
+    
+    
+            }
+    
+    
+        }
+    }
+}
+
+
+
+
+@keyframes anime-move-my-cart {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
+}

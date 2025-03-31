@@ -21,3 +21,24 @@
         width: 100%;
     }
 } 
+
+.btnAdd {
+    background-color: var(--body-color-light);
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--first-color);
+    padding: .55rem 1rem;
+    border-radius: var(--border-radius);
+
+
+    svg {
+        fill: var(--text-color);
+        width: 20px;
+        height: 20px;
+        transform: translateY(-1px);
+    }
+
+    span {
+        font-size: var(--small-font-size);
+    }
+}

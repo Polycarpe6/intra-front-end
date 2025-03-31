@@ -111,12 +111,58 @@
                             font-size: var(--small-font-size);
                             font-weight: var(--font-semibold);
                             color: var(--text-color-light);
+                            width: 135px;
+                            text-wrap: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                     }
 
                     button {
                         display: none;
-                        transition: .5s all;
+                        transition: .5s all !important;
+                    }
+                }
+
+                .card_update_photo_profile_user {
+                    all: unset;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    .card_img_update_photo {
+                        border: 3px solid var(--first-color);
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 50%;
+                        padding: 4px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .btn_update_picture_profile {
+                        all: unset;
+                        width: 30px;
+                        height: 30px;
+                        display: grid;
+                        place-content: center;
+                        border-radius: 50%;
+                        background-color: var(--text-color);
+                        box-shadow: var(--box-shadow);
+                        transform: translateY(-40px) translateX(45px);
+                        cursor: pointer;
+
+                        svg {
+                            fill: #fff;
+                            font-size: var(--smaller-font-size);
+                        }
                     }
                 }
             }

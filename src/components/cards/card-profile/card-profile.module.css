@@ -1,15 +1,16 @@
 .card_profile {
     padding-top: var(--padding-top-global);
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 .content {
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 .img_name_level {
     display: flex;
@@ -17,10 +18,10 @@
     gap: .45rem;
 
     .cicle_img{
-        width: 110px !important;
-        height: 110px !important;
+        width: 100px !important;
+        height: 100px !important;
         border-radius: 50%;
-        padding: 3px;
+        padding: 4px;
         border: 3px solid var(--first-color);
     
         img {

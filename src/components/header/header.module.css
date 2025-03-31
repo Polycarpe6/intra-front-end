@@ -159,3 +159,10 @@
     color: var(--first-color);
     border-color: var(--first-color);
 }
+
+
+@media screen and (max-width: 1200px) {
+    .show_aside {
+        display: flex !important;
+    }
+}

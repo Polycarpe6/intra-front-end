@@ -1,9 +1,12 @@
 import React from 'react'
-import { Class, Classes, Home, Login, Profile } from '../pages'
-import { Aside, Header, Processes, WindowAddStudentInClass } from '../components'
+import { UserStorage, UserContext } from '../context'
+import { Aside, Header, Processes } from '../components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search } from '../pages'
 
 export function AppRoute() {
+
+    const user = React.useContext(UserContext)
 
     const [data, setData] = React.useState({
         isLoggedIn: false,
@@ -14,24 +17,31 @@ export function AppRoute() {
     if (!data.token)
         return (
             <BrowserRouter>
-                <Routes>
-                    <Route path="/*" element={<Login />} />
-                </Routes>
+                <UserStorage>
+                    <Routes>
+                        <Route path="/*" element={<Login />} />
+                    </Routes>
+                </UserStorage>
             </BrowserRouter>
         )
 
     return (
         <BrowserRouter>
-            <Header />
-            <Aside />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/class" element={<Class />} />
-                <Route path="/classes" element={<Classes />} />
-                <Route path="/profile" element={<Profile />} />
-            </Routes>
-            <Processes />
-            <WindowAddStudentInClass />
+            <UserStorage>
+                <Header />
+                <Aside />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/classe/:id" element={<ClasseID />} />
+                    <Route path="/classe" element={<Classe />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/people" element={<People />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/notification" element={<Notification />} />
+                    <Route path="/discipline" element={<Discipline />} />
+                </Routes>
+                <Processes />
+            </UserStorage>
         </BrowserRouter>
     )
 

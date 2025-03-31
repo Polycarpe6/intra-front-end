@@ -35,6 +35,7 @@ export function Student() {
             <InputName
                 value={student.fullName}
                 onChange={(e) => setStudent({...student, fullName: e.target.value })}
+                disabled={true}
             />
             
             <InputEmail 

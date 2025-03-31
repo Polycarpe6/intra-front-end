@@ -1,10 +1,13 @@
 import React from 'react'
 import stl from './profile.module.css'
-import { CardProfile, Col_Xl_8, InputName } from '../../components'
-import { Accordion, Tab, Tabs } from 'react-bootstrap'
-import { BsAt, BsAward, BsBezier2, BsBookmark, BsBookmarks, BsCalendar4Week, BsEnvelope, BsFolder, BsGenderNeuter, BsGeo, BsHash, BsHouse, BsMortarboard, BsPencil, BsPerson, BsPhone, BsPinAngle, BsThreads } from 'react-icons/bs'
+import { Tab, Tabs } from 'react-bootstrap'
+import img_user from '../../assets/img/default.jpg'
+import { CardProfile, Col_Xl_8, ModalUpdateDataUserProfile } from '../../components'
+import { BsAt, BsAward, BsBezier2, BsBookmark, BsBookmarks, BsCalendar4Week, BsEnvelope, BsFolder, BsGenderNeuter, BsGeo, BsHash, BsHouse, BsMortarboard, BsPencil, BsPerson, BsPhone, BsPinAngle, BsThreads, BsTrash } from 'react-icons/bs'
 
 export function Profile() {
+
+    const [modalUpdateDate, setModalUpdateDate] = React.useState(false)
 
     return (
         <main className={`container d-flex ${stl.profile_page}`}>
@@ -28,58 +31,87 @@ export function Profile() {
                                 <div className={stl.card_title_list_content_profile_home}>
                                     <strong>Informações do Usuário</strong>
                                     <ul>
+
                                         <li>
-                                            <strong>Nome do Usuário</strong>
+                                            <strong>Nº BI</strong>
                                             <div>
                                                 <span>
                                                     <BsAt />
-                                                    <small>osvaldo.intra@ipil</small>
+                                                    <small>009169417LA046</small>
                                                 </span>
                                                 {/* <button><BsPencil /></button> */}
                                             </div>
                                         </li>
 
                                         <li>
-                                            <strong>Endereço Email</strong>
-                                            <div>
-                                                <span>
-                                                    <BsEnvelope />
-                                                    <small>osvaldo@gmail.com</small>
-                                                </span>
-                                                <button><BsPencil /></button>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <strong>Primeiro Nome</strong>
+                                            <strong>Nome Completo</strong>
                                             <div>
                                                 <span>
                                                     <BsPerson />
-                                                    <small>Osvaldo</small>
+                                                    <small>Osvaldo Pascual</small>
                                                 </span>
-                                                <button><BsPencil /></button>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
                                             </div>
                                         </li>
 
                                         <li>
-                                            <strong>Ultimo Nome</strong>
+                                            <strong>Residência</strong>
                                             <div>
                                                 <span>
-                                                    <BsPerson />
-                                                    <small>Pascual</small>
+                                                    <BsGeo />
+                                                    <small>CASA SNº BAIRRO BARRA DO DANDE</small>
                                                 </span>
-                                                <button><BsPencil /></button>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
                                             </div>
                                         </li>
 
                                         <li>
-                                            <strong>Gênero</strong>
+                                            <strong>Natural De:</strong>
                                             <div>
                                                 <span>
-                                                    <BsGenderNeuter />
-                                                    <small>Masculino</small>
+                                                    <BsHouse />
+                                                    <small>Cazenga, Cazenga</small>
                                                 </span>
-                                                <button><BsPencil /></button>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Provincia De:</strong>
+                                            <div>
+                                                <span>
+                                                    <BsHash />
+                                                    <small>Luanda</small>
+                                                </span>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
                                             </div>
                                         </li>
 
@@ -90,8 +122,69 @@ export function Profile() {
                                                     <BsCalendar4Week />
                                                     <small>24 / 12 / 2006</small>
                                                 </span>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Gênero</strong>
+                                            <div>
+                                                <span>
+                                                    <BsGenderNeuter />
+                                                    <small>Masculino</small>
+                                                </span>
+                                                <button onClick={() => setModalUpdateDate(true)}>
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Estado Civil</strong>
+                                            <div>
+                                                <span>
+                                                    <BsPerson />
+                                                    <small>Solteiro</small>
+                                                </span>
                                                 <button><BsPencil /></button>
                                             </div>
+                                        </li>
+
+                                        <li>
+
+                                            <div className={stl.card_update_photo_profile_user}>
+
+                                                <div className={stl.card_img_update_photo}>
+                                                    <img src={img_user} alt="" />
+                                                </div>
+
+                                                <button 
+                                                    className={stl.btn_update_picture_profile}
+                                                    onClick={() => setModalUpdateDate(true)}
+                                                >
+                                                    <BsPencil />
+                                                </button>
+
+                                                <ModalUpdateDataUserProfile
+                                                    show={modalUpdateDate}
+                                                    onHide={() => setModalUpdateDate(false)}
+                                                />
+
+                                            </div>
+
+                                            
                                         </li>
 
                                     </ul>
@@ -175,6 +268,7 @@ export function Profile() {
                                 <div className={stl.card_title_list_content_profile_home}>
                                     <strong>Contacto & Localização</strong>
                                     <ul>
+
                                         <li>
                                             <strong>Telefone</strong>
                                             <div>
@@ -229,9 +323,9 @@ export function Profile() {
 
                             </Tab>
 
-                            <Tab eventKey="profile" title="Desempenho" className="anime-bottom">
+                            {/* <Tab eventKey="profile" title="M" className="anime-bottom">
                                 Tab content for Profile
-                            </Tab>
+                            </Tab> */}
 
                             <Tab eventKey="Configurações" title="Configurações" className="anime-bottom">
                                 Tab content for Profile

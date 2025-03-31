@@ -1,5 +1,8 @@
 .class_page {
     display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2.5rem;
 }
 
 .section_content_class {
@@ -19,8 +22,7 @@
 .card_info_class {
     display: flex;
     align-items: start;
-    gap: 2.5rem;
-
+    gap: 3.5rem;
 }
 
 .card_info_class_left {
@@ -166,27 +168,22 @@
     }
 }
 
-.content_classe {
-    
-    > div {
-        padding: 2.5rem 0;
-    }
-}
 
 .horary_class {
     display: flex;
     flex-direction: column;
     gap: .75rem;
-    padding-bottom: 2rem;
+    margin: 2rem 0;
 
-    .table_horary {
+    .body {
         display: flex;
         align-items: start;
         justify-content: space-between;
+        flex-wrap: wrap;
+        row-gap: 4.5rem;
         padding: 1rem .75rem 0 .75rem;
     }
 }
-
 
 .nav_classe {
     border: none !important;
@@ -224,154 +221,75 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.list_student {
-    padding: 3rem 1rem 30rem 1rem !important;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    li {
-        display: flex;
-        align-items: center;
-        /* justify-content: space-between; */
-        transition: 0.3s ease-in-out;
-        border-radius: 1.5rem;
-        background-color: var(--body-color-light);
-        padding: .55rem 1.8rem;
-        border: 3px solid transparent;
-
-        &:is(:hover, :focus, :active) {
-            transform: scale(1.01);
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            border-color: var(--first-color) !important;
-        }
-
-
-        .num {
-            width: 7%;            
-            font-weight: var(--font-bold);
-        }
-
-        .cod_proc {
-            width: 20%;
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-
-            span {
-                font-size: var(--small-font-size);
-                font-weight: var(--font-bold);
-            }
-        }
-
-        .img_and_name {
-            width: 35%;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        
-        
-            .img {
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                padding: 2px;
-                border: 2px solid var(--first-color);
-            
-                img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                }
-            }
-            .name_email {
-                display: flex;
-                flex-direction: column;
-                gap: 0rem;
-            
-                a.name {
-                    font-weight: var(--font-bold);
-                    color: var(--text-color);
-                    transition: 0.3s all;
-                }
-            
-                a.email {
-                    color: var(--first-color);
-            
-                    font-size: var(--small-font-size);
-                }
-            }
-        }
-
-        .usernameclass {
-            width: 25%;
-            display: flex;
-            align-items: center;
-            gap: .05rem;
-
-
-            svg {
-                fill: var(--text-color);
-                width: 20px;
-                height: 20px;
-            }
-
-            span {
-                font-size: var(--small-font-size);
-                color: var(--text-color);
-                font-weight: var(--font-bold);
-            }
-        }
-
-        .media {
-            width: fit-content;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-
-            svg {
-                fill: var(--text-color);
-                width: 20px;
-                height: 20px;
-            }
-
-            strong {
-                font-size: var(--small-font-size);
-                color: var(--text-color);
-            }
-        }
+.containr_tab {
+    
+    > div {
+        padding: 2.6rem 0;        
     }
 }
+
+.tab_nav_student_class {
+    
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 3.5rem;
+    }
+}
+
+.tab_nav_teacher_class {
+
+    .head {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+
+        > article {
+            width: 60%;
+        }
+        
+    }
+}
+
+.tab_nav_discipline_class {
+    
+    .head {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+
+        > article {
+            width: 60%;
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

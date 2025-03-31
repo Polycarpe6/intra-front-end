@@ -7,5 +7,10 @@ export * from "./login/signup/student"
 
 export * from "./home"
 export * from "./profile"
-export * from "./classes"
-export * from "./class"
+export * from "./people"
+export * from "./search"
+export * from "./notification"
+export * from "./discipline"
+
+export * from "./classe"
+export * from "./classe/[ID]"

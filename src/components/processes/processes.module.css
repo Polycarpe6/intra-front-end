@@ -7,13 +7,21 @@
     background-color: var(--text-color);
     z-index: 100;
     border-radius: 50px;
-    display: grid;
-    place-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
     box-shadow: var(--box-shadow);
 
     > svg {
         fill: #fff;
         transform: scale(1.4);
         transition: .4s all;
+    }
+
+    small {
+        color: #fff;
+        font-size: var(--tiny-font-size);
     }
 }

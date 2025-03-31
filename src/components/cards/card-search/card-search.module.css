@@ -1,4 +1,5 @@
 .card_search {
+    height: auto !important;
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
@@ -43,12 +44,13 @@
         display: flex;
         gap: 1rem;
         padding: 0 .45rem;
+        overflow: hidden;
 
         a, button{
             font-size: var(--small-font-size);
             color: var(--text-color);
             font-weight: var(--font-semibold);
-            padding: .35rem .75rem;
+            padding: .35rem .80rem;
             border-radius: 50px;
             background-color: var(--body-color-light);
             transition: .3s all;
@@ -61,8 +63,6 @@
                 color: var(--text-color);
                 font-weight: var(--font-semibold)
             }
-
-
 
             &.active, &.active span {
                 background-color: var(--first-color);
