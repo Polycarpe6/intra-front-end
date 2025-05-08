@@ -13,3 +13,23 @@
         color: var(--text-color-light);
     }
 }
+
+.title_description_loginfrom {
+    display: flex;
+    flex-direction: column;
+
+
+    p {
+        font-weight: var(--font-semibold);
+
+        span {
+            color: var(--first-color);
+        }
+    }
+
+    strong {
+        font-size: var(--h1-font-size);
+        font-weight: var(--font-bold);
+        color: #1b2f45;
+    }
+}

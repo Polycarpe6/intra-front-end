@@ -1,0 +1,52 @@
+.modal_Container {
+    background-color: transparent !important;
+    backdrop-filter: blur(30px);
+    
+    > div {
+        
+        > div {
+            border: none;
+            overflow: hidden;
+            padding: 2.6rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            background-color: #fff;
+            transition: .5s all;
+
+            .head {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                gap: 5rem;
+            }
+
+            
+
+            .foot {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+
+                button {
+                    padding: .9rem 1.8rem;
+                    border: none;
+                    background-color: var(--body-color-light);
+                    font-size: var(--small-font-size);
+                    transition: 0.3s all;
+                    border-radius: 50px;
+                    font-weight: var(--font-semibold);
+
+                    &:hover {
+                        background-color: var(--first-color);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+    }
+}

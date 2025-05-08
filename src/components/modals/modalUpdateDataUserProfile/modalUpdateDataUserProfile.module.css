@@ -1,0 +1,31 @@
+.modal_Container {
+    background-color: transparent !important;
+    backdrop-filter: blur(30px);
+    border: 1px soid red !important;
+    
+    > div {
+        
+        > div {
+            border: none;
+            overflow: hidden;
+            padding: 2.6rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            background-color: #fff;
+            transition: .5s all;
+
+            .head {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                gap: 5rem;
+            }
+
+            
+        }
+
+    }
+}

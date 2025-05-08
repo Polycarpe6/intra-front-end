@@ -1,38 +1,10 @@
-import React from 'react'
 import stl from './modals.module.css'
 import Modal from 'react-bootstrap/Modal';
-import { Accordion } from 'react-bootstrap';
 import { TitleAndDescription } from '../titles';
-import { TitleDescLink } from '../title-desc-link';
 import { InputClassNameT, InputCodProcess, InputEmail, Select } from '../inputs';
-import { BsCheck2All, BsCloudArrowUp, BsEggFried, BsFile, BsMarkdown, BsXLg } from 'react-icons/bs';
+import { BsCheck2All, BsCloudArrowUp, BsXLg } from 'react-icons/bs';
 
-// export function ModalToCommentBlog(props: any) {
-    
-//     return (
-//       <Modal
-//         {...props}
-//         size="lg"
-//         aria-labelledby="contained-modal-title-vcenter"
-//         centered
-//       >
-//         <Modal.Header closeButton>
-//           <Modal.Title id="contained-modal-title-vcenter">
-            
-//           </Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           <h4>Modal dos comentarios</h4>
-//           <p>
-            
-//           </p>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button onClick={props.onHide}>Close</Button>
-//         </Modal.Footer>
-//       </Modal>
-//     );
-// }
+
 
 export function ModalAddStudent(props: any) {
     
@@ -59,11 +31,11 @@ export function ModalAddStudent(props: any) {
       <div className={`${stl.body} anime-bottom`}>
         <InputCodProcess />
         <InputEmail />  
-        <Select
+        {/* <Select
           label={"Seleccione Uma Turma"}
           placeholder={"Nenhuma Turma Seleccionada"}
           values={["II10A", "II10B", "II10C"]}
-        />      
+        />       */}
       </div>
 
      <div className={stl.foot}>
@@ -217,120 +189,10 @@ export function ModalAddClassT(props: any) {
   );
 }
 
-export function ModalToEndSession(props: any) {
-    
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        className={stl.modal_Container}
-      >
-          <div className={stl.head}>
-            <TitleAndDescription
-              title={"Terminar a sessão"}
-              desc={"Deseja realmente terminar sua sessão?"}
-            />
 
-            <button onClick={props.onHide}>
-              <BsXLg />
-            </button>
-          </div>
-        
-        <div className={stl.btn_group}>
-            {/* <button className="anime-bottom" onClick={props.onHide}>Cancelar</button> */}
-            <button className="anime-bottom">Terminar Sessão</button>
-        </div>
-       
-          {/* <Button onClick={props.onHide}>Close</Button> */}
-      </Modal>
-    );
-}
 
-export function ModalUpdateDataUserProfile(props: any) {
+// all export 
 
-  return (
-    <Modal
-      {...props}
-      size="md"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      className={stl.modal_Container}
-    >
-        <div className={stl.head}>
-          <TitleAndDescription
-            title={"Terminar a sessão"}
-            desc={"Deseja realmente terminar sua sessão?"}
-          />
-
-          <button onClick={props.onHide}>
-            <BsXLg />
-          </button>
-        </div>
-      
-      <div className={stl.btn_group}>
-          {/* <button className="anime-bottom" onClick={props.onHide}>Cancelar</button> */}
-          <button className="anime-bottom">Terminar Sessão</button>
-      </div>
-     
-        {/* <Button onClick={props.onHide}>Close</Button> */}
-    </Modal>
-  );
-    
-  // return (
-  //   <Modal
-  //     {...props}
-  //     size="md"
-  //     aria-labelledby="contained-modal-title-vcenter"
-  //     centered
-  //     // className={stl.modal_Container}
-  //   >
-  //       {/* <div className={stl.head}>
-  //         <TitleAndDescription
-  //           title={"Terminar a sessão"}
-  //           desc={"Deseja realmente terminar sua sessão?"}
-  //         />
-
-  //         <button onClick={props.onHide}>
-  //           <BsXLg />
-  //         </button>
-  //       </div> */}
-      
-  //     <div className={stl.btn_group}>
-  //         {/* <button className="anime-bottom" onClick={props.onHide}>Cancelar</button> */}
-  //         <button className="anime-bottom">Terminar Sessão</button>
-  //     </div>
-     
-  //       {/* <Button onClick={props.onHide}>Close</Button> */}
-  //   </Modal>
-  // );
-}
-
-// export function ModalUpdateDataUserProfile(props: any) {
-    
-//   return (
-//     <Modal
-//       {...props}
-//       size="md"
-//       aria-labelledby="contained-modal-title-vcenter"
-//       righted
-//       className={stl.modal_Container}
-//     >
-      
-//       <div className={stl.head}>
-//         <TitleAndDescription
-//           title={"Atualize o seu perfil"}
-//           desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. "}
-//         />
-
-//         <button onClick={props.onHide}>
-//           <BsXLg />
-//         </button>
-//       </div>
-
-      
-      
-//     </Modal>
-//   );
-// }
+export * from './modalBlog';
+export * from './modalToEndSession'
+export * from './modalUpdateDataUserProfile'

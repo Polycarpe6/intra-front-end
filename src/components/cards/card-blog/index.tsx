@@ -78,12 +78,19 @@ export function CardBlog({category, disc, author, date, level, title, desc, like
                     <span>{likes}</span>
                 </button>
 
-                <button className="anime-bottom">
+                <button 
+                    className="anime-bottom"
+                    onClick={() => setModalShow(true)}
+                >
                     <BsSend />
                     <span>{comments}</span>
                 </button>
 
-                
+                <ModalToCommentBlog
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
+
 
 
                 <button className="anime-bottom" style={{display: category == "topic" ? "flex" : "none"}}>

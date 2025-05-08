@@ -1,6 +1,5 @@
 export * from "./login"
 export * from "./login/signin"
-export * from "./login/signup"
 
 export * from "./login/signup/teacher"
 export * from "./login/signup/student"
@@ -14,3 +13,5 @@ export * from "./discipline"
 
 export * from "./classe"
 export * from "./classe/[ID]"
+
+export * from "./404"

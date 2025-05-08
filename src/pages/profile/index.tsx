@@ -24,7 +24,7 @@ export function Profile() {
                         >
                             <Tab 
                                 eventKey="home" 
-                                title="Início" 
+                                title="Meu Perfil" 
                                 className={`anime-bottom ${stl.home_profile_page}`}
                             >
 
@@ -50,14 +50,6 @@ export function Profile() {
                                                     <BsPerson />
                                                     <small>Osvaldo Pascual</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -68,14 +60,6 @@ export function Profile() {
                                                     <BsGeo />
                                                     <small>CASA SNº BAIRRO BARRA DO DANDE</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -86,14 +70,6 @@ export function Profile() {
                                                     <BsHouse />
                                                     <small>Cazenga, Cazenga</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -104,14 +80,6 @@ export function Profile() {
                                                     <BsHash />
                                                     <small>Luanda</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -122,14 +90,6 @@ export function Profile() {
                                                     <BsCalendar4Week />
                                                     <small>24 / 12 / 2006</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -140,14 +100,6 @@ export function Profile() {
                                                     <BsGenderNeuter />
                                                     <small>Masculino</small>
                                                 </span>
-                                                <button onClick={() => setModalUpdateDate(true)}>
-                                                    <BsPencil />
-                                                </button>
-
-                                                <ModalUpdateDataUserProfile
-                                                    show={modalUpdateDate}
-                                                    onHide={() => setModalUpdateDate(false)}
-                                                />
                                             </div>
                                         </li>
 
@@ -158,7 +110,7 @@ export function Profile() {
                                                     <BsPerson />
                                                     <small>Solteiro</small>
                                                 </span>
-                                                <button><BsPencil /></button>
+                                                {/* <button><BsPencil /></button> */}
                                             </div>
                                         </li>
 
@@ -327,9 +279,9 @@ export function Profile() {
                                 Tab content for Profile
                             </Tab> */}
 
-                            <Tab eventKey="Configurações" title="Configurações" className="anime-bottom">
+                            {/* <Tab eventKey="Configurações" title="Configurações" className="anime-bottom">
                                 Tab content for Profile
-                            </Tab>
+                            </Tab> */}
                             
                         </Tabs>
                     </div>

@@ -9,10 +9,10 @@ import { BsArrowsAngleExpand, BsAt, BsChevronDown, BsFolder, BsMortarboard } fro
 
 interface IPeopleGroup {
     desc?: string
-    linkPath: string 
+    linkPath?: string | undefined
 }
 
-export function PeopleGroup( {desc, linkPath}:IPeopleGroup ) {
+export function PeopleGroup( {desc, linkPath = "#"}:IPeopleGroup ) {
 
     return (
         <div className={style.card_list_people}>

@@ -1,6 +1,4 @@
-import React from 'react'
 import stl from './login.module.css'
-import logo from '../../assets/img/logo.png'
 import { LoginRoute } from '../../routes'
 
 
@@ -16,7 +14,6 @@ export function Login() {
             <section className={`${stl.section_img_login} anime-bottom`}>
                 
                 <article className={stl.card_content_img}>
-                    {/* <img src={logo} alt="" className='anime-bottom'/> */}
                     <div className='anime-bottom'>
                         <strong>
                             Software de gerenciamento de notas

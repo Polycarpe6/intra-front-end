@@ -1,5 +1,5 @@
 .card_input_label_icon {
-    width: 360px;
+    width: min(100%, 380px);
     padding: .65rem 1.4rem;
     border-radius: var(--border-radius);
     display: flex;
@@ -65,8 +65,8 @@
 }
 
 
-@media screen and (max-width: 446px) {
+/* @media screen and (max-width: 446px) {
     .card_input_label_icon {
         width: 100% !important;
     }
-} 
+}  */

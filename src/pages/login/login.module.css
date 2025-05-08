@@ -20,11 +20,11 @@
 }
 
 .card_content_login {
-    width: 400px;
+    width: min(100%, 380px);
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-
+    /* border: 1px solid red; */
 }
 
 .link_signin_signup {
@@ -47,37 +47,19 @@
     }
 }
 
-.list_type_user {
-    width: 360px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    li {
-        width: 100%;
-        display: flex;
-
-        a {
-            flex: 1;
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 50px;
-            font-weight: var(--font-semibold);
-            background-color: var(--first-color);
-            color: #fff;
-            transition: .3s all;
-
-            &:hover {
-                transform: scale(1.04);
-            }
-        }
-    }
-}
 
 .card_input_codProcess_password {
-    width: 360px;
+    width: min(100%, 380px);
     display: flex;
     gap: 1.7rem;
+    /* border: 1px solid red; */
+    transition: .2s all;
+}
+
+@media screen and (max-width: 370px) {
+    .card_input_codProcess_password {
+        flex-wrap: wrap;
+    }
 }
 
 
@@ -144,9 +126,3 @@
     }
 
 }
-
-@media screen and (max-width: 446px) {
-    .list_type_user {
-        width: 100%;
-    }
-} 

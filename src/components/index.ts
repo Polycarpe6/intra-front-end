@@ -1,6 +1,5 @@
 export * from "./inputs"
 export * from "./buttons"
-export * from "./title-and-desc"
 export * from "./title-desc-link"
 
 export * from "./header"
@@ -24,4 +23,6 @@ export * from "./chart"
 export * from "./discipline"
 
 export * from "./modals"
-export * from "./windows"
+
+export * from "./logo"
+

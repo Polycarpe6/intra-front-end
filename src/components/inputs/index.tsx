@@ -3,30 +3,8 @@ import stl from './inputs.module.css'
 import { Placeholder } from 'react-bootstrap';
 import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFolder, BsPerson } from 'react-icons/bs'
 
-interface IInputProps {
 
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled?: boolean;
-}
 
-export function InputName({value, onChange, disabled = false}: IInputProps) {
-
-    return (
-        <div className={stl.card_input_label_icon}>
-            <div className={stl.card_input_label}>
-                <label>Nome completo</label>
-                <input 
-                    type="text" 
-                    value={value}
-                    onChange={onChange}
-                    disabled={disabled}
-                />
-            </div>
-            <BsPerson />
-        </div>
-    )
-}
 
 interface ISelectProps {
     label: string;
@@ -50,6 +28,48 @@ export function Select({label, placeholder, values}: ISelectProps) {
                 </select>
             </div>
             <BsAward />
+        </div>
+    )
+}
+
+interface IInputProps {
+
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+}
+
+export function InputBI({value, onChange}: IInputProps) {
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Nº Bilhete de Identidade</label>
+                <input 
+                    type="text" 
+                    value={value}
+                    onChange={onChange}
+                />
+            </div>
+            <BsPerson />
+        </div>
+    )
+}
+
+export function InputName({value, onChange, disabled = true}: IInputProps) {
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Nome completo</label>
+                <input 
+                    type="text" 
+                    value={value}
+                    onChange={onChange}
+                    disabled={disabled}
+                />
+            </div>
+            <BsPerson />
         </div>
     )
 }

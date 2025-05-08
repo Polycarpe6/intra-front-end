@@ -4,6 +4,7 @@ import React from 'react'
 export const UserContext = React.createContext(
     {
         user: {},
+        setUser: {}
     }
 )
 
@@ -13,14 +14,14 @@ export function UserStorage({ children }: any) {
         {
             name: "Lucas",
             email: "lucas@example.com",
-            role: "teacher",
+            role: "student",
             id: 1,
-            token: false,
+            token: true,
         }
     )
 
     return (
-        <UserContext.Provider value={{ user }}>
+        <UserContext.Provider value={{ user, setUser }}>
             {children}
         </UserContext.Provider>
     )

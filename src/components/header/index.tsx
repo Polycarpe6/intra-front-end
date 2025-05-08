@@ -1,11 +1,13 @@
-import React from 'react'
+// import React from 'react'
 import stl from './header.module.css'
 import { Link } from 'react-router-dom'
-// import logo from '../../assets/images/logo.png'
-import {BsBell, BsCaretDownFill, BsList, BsMortarboard} from 'react-icons/bs'
 import img_profile from '../../assets/img/default.jpg'
+import { BsCaretDownFill, BsChevronBarLeft, BsFeather, BsList, BsMortarboard} from 'react-icons/bs'
+import { HookShowAside } from '../../hooks'
 
 export function Header() {
+
+    const { showAside, setshowAside } = HookShowAside()
 
     return (
         <header className={stl.header} id="header">
@@ -14,11 +16,30 @@ export function Header() {
                 <div className={stl.card_logo_button_aside}>
 
                     <Link to={"/"} className={stl.logo}>
-                        {/* <img src={logo} alt="" /> */}
-                        <span>In</span>tra
+                        <BsFeather />
+                        <div>
+                            <span>n</span>tra
+                        </div>
                     </Link>
 
-                    <BsList id="showAside" className={stl.show_aside} />
+                    <BsList 
+                        id="showAside" 
+                        className={stl.show_aside} 
+                        onClick={() => {setshowAside(!showAside)}} 
+                        style={{
+                            transform: showAside ? "rotateZ(-90deg)" : "rotateZ(0deg)",
+                            transition: "transform 0.3s ease",
+                        }}
+                    />
+
+                    {/* {
+                        showAside && <BsList id="showAside" className={stl.show_aside} onClick={handleShowAside} />
+                    }
+
+
+                    { 
+                        !showAside && <BsChevronBarLeft className={stl.show_aside} onClick={handleShowAside}/>
+                    } */}
                     
                 </div>
 

@@ -2,13 +2,15 @@ import React from 'react';
 import stl from './aside.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../context';
-import { ModalToEndSession } from '../modals';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { adminRoutes, teacherRoutes, studentRoutes } from './routes';
+import { ModalToEndSession } from '../modals';
+import { HookShowAside } from '../../hooks';
 
 export function Aside() {
     const { user } = React.useContext(UserContext);
     const [modalShow, setModalShow] = React.useState(false);
+    const { showAside } = HookShowAside()
 
     const getRoutes = () => {
         switch (user?.role) {
@@ -23,8 +25,15 @@ export function Aside() {
         }
     };
 
+
     return (
-        <aside className={stl.aside}>
+        <aside 
+            className={stl.aside}
+            style={{
+                display: showAside ? "flex" : "none",
+                transition: "display 0.3s ease",
+            }}
+        >
             <ul>
                 {getRoutes().map((route) => (
                     <li key={route.path}>

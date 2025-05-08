@@ -2,15 +2,13 @@ import React from 'react'
 import { UserStorage, UserContext } from '../context'
 import { Aside, Header, Processes } from '../components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search } from '../pages'
+import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search, PageNotFound } from '../pages'
 
 export function AppRoute() {
 
     const user = React.useContext(UserContext)
 
     const [data, setData] = React.useState({
-        isLoggedIn: false,
-        user: "student",
         token: true,
     })
 
@@ -20,6 +18,7 @@ export function AppRoute() {
                 <UserStorage>
                     <Routes>
                         <Route path="/*" element={<Login />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </UserStorage>
             </BrowserRouter>
@@ -39,6 +38,7 @@ export function AppRoute() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/notification" element={<Notification />} />
                     <Route path="/discipline" element={<Discipline />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
                 <Processes />
             </UserStorage>

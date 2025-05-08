@@ -1,0 +1,21 @@
+.logo {
+    color: var(--text-color);
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-semibold);
+    display: flex;
+    
+    > div, > div span{
+        font-size: var(--h1-font-size);
+
+        span {
+            color: var(--first-color);
+        }
+    }
+
+    > svg {
+        width: var(--biggest-font-size);
+        height: var(--biggest-font-size);
+        transform: translateX(8px) rotateZ(-15deg);
+        fill: var(--first-color);
+    }
+}

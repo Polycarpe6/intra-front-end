@@ -16,7 +16,7 @@
     
 
     --body-font: "Poppins", Helvetica, sans-serif;
-    --biggest-font-size: 1.75rem;
+    --biggest-font-size: 1.95rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1rem;
@@ -34,7 +34,7 @@
     --z-fixed: 100;
     --z-modal: 1000;
 
-    --box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    --box-shadow: 0px 0px 15px rgba(1, 29, 56, 0.123);
 
     --border-radius: 1.5rem;
 
@@ -91,14 +91,16 @@ img {
 
 
 .container {
-    width: 1350px !important;
+    /* width: 1350px !important; */
+    width: min(95%, 1350px) !important;
+    /* border: 1px solid red; */
     margin: 0 auto;
     transition: .3s all;
 }
 
 
-@media screen and (max-width: 1306px) {
+/* @media screen and (max-width: 1306px) {
     .container {
         width: 95% !important;
     }
-}
+} */

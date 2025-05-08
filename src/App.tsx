@@ -6,3 +6,5 @@ export default function App() {
         <AppRoute />
     )
 }
+
+// https://consulta.edgarsingui.ao/consultar/

@@ -1,4 +1,3 @@
-import React from 'react'
 import stl from './titles.module.css'
 
 
@@ -17,5 +16,24 @@ export function TitleAndDescription({title, desc}:ITitleAndDescription) {
                 {desc}
             </small>
         </article>
+    )
+}
+
+interface ITitleDescriptionLoginFrom {
+    title: string;
+    desc: string;
+}
+
+export function TitleDescriptionLoginFrom({title, desc}:ITitleDescriptionLoginFrom) {
+
+    return (
+        <div className={stl.title_description_loginfrom}>
+            <p>
+                {title} <span>INTRA</span>
+            </p>
+            <strong>
+                {desc}
+            </strong>
+        </div>
     )
 }

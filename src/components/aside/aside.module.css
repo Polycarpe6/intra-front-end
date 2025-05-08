@@ -100,8 +100,7 @@
 
 
 
-
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1496px) {
     .aside {
         transform: translateX(-100%);
     }

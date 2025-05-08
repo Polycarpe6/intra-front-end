@@ -1,21 +1,19 @@
 import React from 'react'
-import stl from '../../login.module.css'
-import { BtnLogin, InputCodProcess, InputEmail, InputName, InputPassword, TitleAndDesc } from '../../../../components'
 import { Link } from 'react-router-dom'
+import stl from '../../login.module.css'
+import { BtnLogin, InputBI, InputCodProcess, InputEmail, InputPassword, TitleDescriptionLoginFrom } from '../../../../components'
 
 export function Student() {
 
     const [student, setStudent] = React.useState({
         process: '',
-        fullName: '',
+        n_BI: '',
         email: '',
         password: ''
     })
 
     const handleSubmit = () => {
-        // e.preventDefault()
-        // Implementar a chamada para a API de registrar aluno
-
+        
         console.log(student);
         
     }
@@ -23,7 +21,7 @@ export function Student() {
     return (
         <article className={`${stl.card_content_login} anime-bottom`}>
 
-            <TitleAndDesc 
+            <TitleDescriptionLoginFrom 
                 title={"Junta-se a"}
                 desc={"Envie seus dados para ser registrado do sistema!"}
             />
@@ -32,10 +30,9 @@ export function Student() {
                 Já estou <span>registrado!</span>
             </Link>
 
-            <InputName
-                value={student.fullName}
-                onChange={(e) => setStudent({...student, fullName: e.target.value })}
-                disabled={true}
+            <InputBI
+                value={student.n_BI}
+                onChange={(e) => setStudent({...student, n_BI: e.target.value })}
             />
             
             <InputEmail 
