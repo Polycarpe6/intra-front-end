@@ -3,9 +3,9 @@ import stl from './classeID.module.css'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_coord from '../../../assets/img/default.jpg'
+import { BsAward, BsMortarboard } from 'react-icons/bs'
 import { ListStudentClassT, WeeklySchedule } from '../../../api/mock'
-import { BsAward, BsBookmarks, BsMortarboard, BsPencil, BsPlus, BsStopwatch, BsThreeDotsVertical } from 'react-icons/bs'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, Schedules, TitleAndDesc, TitleAndDescription, BtnAdd, LispDisciplineClass } from '../../../components'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, Schedules, TitleAndDescription, BtnAdd, LispDisciplineClass } from '../../../components'
 import { UserContext } from '../../../context'
 
 
@@ -117,59 +117,41 @@ export function ClasseID() {
                         className={`${stl.nav_classe} anime-bottom`}
                     >
 
-                        {user.role !== "student" && (
+                        {
+                            user.role !== "student" && (
+                                <Tab 
+                                    eventKey="alunos" 
+                                    title="Alunos" 
+                                    className={`anime-bottom ${stl.tab_nav_student_class}`}
+                                >
+                                    <TitleDescLink 
+                                        title={"Lista da Turma IG13A"}
+                                        desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                        linkPath={""}
+                                    />
 
-                            <Tab 
-                                eventKey="alunos" 
-                                title="Alunos" 
-                                className={`anime-bottom ${stl.tab_nav_student_class}`}
-                            >
-                                <TitleDescLink 
-                                    title={"Lista da Turma IG13A"}
-                                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
-                                    linkPath={""}
-                                />
+                                    <CardSearch 
+                                        placeholder={"Busca alunos..."}
+                                        sugest1={"Todos"}
+                                        sugest2={"Com Melhor desempenho"}
+                                        sugest3={"Sem Melhor desempenho"}
+                                        btnAddStudent={true}
+                                    />
 
-                                <CardSearch 
-                                    placeholder={"Busca alunos..."}
-                                    sugest1={"Todos"}
-                                    sugest2={"Com Melhor desempenho"}
-                                    sugest3={"Sem Melhor desempenho"}
-                                    btnAddStudent={true}
-                                />
-
-                                <div>
-                                    {/* {listStudentT.map(student => (
-                                        <PeopleItem 
-                                            key={student.n_processo} 
-                                            n_process={student.n_processo}
-                                            name={student.nome}
-                                            email={student.email}
-                                            username={student.username}
-                                        />
-                                    ))} */}
-                                </div>
-                            </Tab>
-                        )}
-
-                        {/* <Tab 
-                            eventKey="Professores" 
-                            title="Professores" 
-                            className={`anime-bottom ${stl.tab_nav_teacher_class}`}
-                        >
-
-                            <div className={stl.head}>
-                                <TitleAndDescription
-                                    title={"Professores"}
-                                    desc={"Aqui você encontra a lista de professores, suas disciplinas e informações de contato. Conecte-se com seus professores para tirar dúvidas e acompanhar o andamento das aulas."}
-                                />
-
-                                {user.role !== "student" && <BtnAdd text={"Adicionar Professor"}/>}
-                            </div>
-
-
-
-                        </Tab> */}
+                                    <div>
+                                        {/* {listStudentT.map(student => (
+                                            <PeopleItem 
+                                                key={student.n_processo} 
+                                                n_process={student.n_processo}
+                                                name={student.nome}
+                                                email={student.email}
+                                                username={student.username}
+                                            />
+                                        ))} */}
+                                    </div>
+                                </Tab>
+                            )
+                        }
 
                         <Tab 
                             eventKey="Disciplinas" 
@@ -218,16 +200,40 @@ export function ClasseID() {
                         }
 
                         {
-                            user.role !== "student" && (
+                            ((user.role !== "student") && (user.role !== "teacher")) && (
+
                                 <Tab 
                                     eventKey="Atualizar" 
                                     title="Atualizar" 
                                     className={`anime-bottom ${stl.tab_nav_update_data_class}`}
                                 >
-                                    <h2>Atualizar dados</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?
-                                    </p>
+                                    
+                                    <TitleAndDescription
+                                        title={"Atualizar Dados da Turma"}
+                                        desc={"Aqui você pode atualizar os dados da turma, como coordenador, nome da turma, etc. Certifique-se de que as informações estejam corretas e atualizadas para melhor organização."}
+                                    />
+
+
+
+                                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 </Tab>
 
                             )

@@ -1,21 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import stl from '../../login.module.css'
+import { signupStudent } from '../../../../api/endpoints'
 import { BtnLogin, InputBI, InputCodProcess, InputEmail, InputPassword, TitleDescriptionLoginFrom } from '../../../../components'
 
 export function Student() {
 
+
     const [student, setStudent] = React.useState({
-        process: '',
-        n_BI: '',
         email: '',
-        password: ''
+        password: '',
+
+        // process: '',
+        // n_BI: '',
+        // email: '',
+        // password: ''
     })
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+
+        console.log(student)
         
-        console.log(student);
-        
+        try {
+            const newStudent = await signupStudent(student);
+            console.log('Aluno registrado:', newStudent);
+            // Aqui você pode redirecionar ou mostrar uma mensagem de sucesso
+        } catch (error) {
+            console.error('Erro ao registrar aluno:', error);
+            // Aqui você pode mostrar uma mensagem de erro para o usuário
+        }
     }
     
     return (

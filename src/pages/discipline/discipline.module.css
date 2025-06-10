@@ -16,3 +16,13 @@
         border-radius:.5rem;
     }
 }
+
+
+.list_discipline {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: .4rem;
+}
+
+
+

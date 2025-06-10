@@ -53,6 +53,7 @@ export function PeopleGroup( {desc, linkPath = "#"}:IPeopleGroup ) {
 
 
 interface IPeopleItem {
+    id: number
     n_process?: string
     name: string
     email: string
@@ -60,7 +61,7 @@ interface IPeopleItem {
     classOrDiscipline: string | undefined
 }
 
-export function PeopleItem({n_process, name, email, username, classOrDiscipline}:IPeopleItem) {
+export function PeopleItem({id, n_process, name, email, username, classOrDiscipline}:IPeopleItem) {
 
     return (
         <article className={`${style.people_item} anime-bottom`}>
@@ -72,22 +73,29 @@ export function PeopleItem({n_process, name, email, username, classOrDiscipline}
 
             <div className={style.img_and_name}>
                 <div className={style.img}>
-                    <Link to={"/profile"}>
+                    <Link to={`/profile/${id}`}>
                         <img src={people3} alt="" />
                     </Link>
                 </div>
                 <div className={style.name_email}>
-                    <Link to={"/profile"} className={style.name}>{name}</Link>
-                    <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={style.email}>
+                    <Link to={`/profile/${id}`} className={style.name}>{name}</Link>
+                    <Link 
+                        target='_blank' 
+                        to={"https://mail.google.com/mail/u/0/"} 
+                        className={style.email}
+                    >
                         {email}
                     </Link>
                 </div>
             </div>
 
-            <div className={style.usernameclass}>
+            <Link 
+                className={style.usernameclass}
+                to={`/profile/${id}`}
+            >
                 <BsAt />
                 <span>{username}</span>
-            </div>
+            </Link>
 
             <div className={style.class_or_discipline}>
                 <BsMortarboard />

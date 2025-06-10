@@ -11,6 +11,7 @@ export * from "./titles"
 export * from "./cards/card-profile"
 export * from "./cards/card-search"
 export * from "./cards/card-blog"
+export * from "./cards/card-discipline"
 
 export * from "./processes" 
 

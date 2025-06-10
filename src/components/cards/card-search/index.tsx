@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
 import { BsPlus, BsSearch } from 'react-icons/bs'
-import { ModalAddClassT, ModalAddStudent, ModalAddTeacher } from '../../modals';
+import { ModalAddDiscipline, ModalAddStudent, ModalAddTeacher, ModalClass, ModalCreateBlog } from '../../modals';
 import { UserContext } from '../../../context';
 import { useContext } from 'react';
 
@@ -15,12 +15,24 @@ interface ICardSearchProps {
     btnAddStudent?: boolean;
     btnAddTeacher?: boolean;
     btnAddClassT?: boolean;
+    btnAddDiscipline?: boolean;
+    btnCreateBlog?: boolean;
 }
-export function CardSearch({placeholder, sugest1, sugest2, sugest3, btnAddStudent = false, btnAddTeacher = false, btnAddClassT = false }: ICardSearchProps) {
+export function CardSearch({
+    placeholder, sugest1, sugest2, sugest3, 
+    btnAddStudent = false, 
+    btnAddTeacher = false, 
+    btnAddClassT = false, 
+    btnCreateBlog = false, 
+    btnAddDiscipline = false 
+
+    }: ICardSearchProps) {
 
     const [showModalAddStudent, setShowModalAddStudent] = React.useState(false);
     const [showModalAddTeacher, setShowModalAddTeacher] = React.useState(false);
     const [showModalAddClassT, setShowModalAddClassT] = React.useState(false);
+    const [showModalCreateBlog, setShowModalCreateBlog] = React.useState(false);
+    const [showModalAddDiscipline, setShowModalAddDiscipline] = React.useState(false);
 
     const { user } = useContext(UserContext);    
 
@@ -52,33 +64,40 @@ export function CardSearch({placeholder, sugest1, sugest2, sugest3, btnAddStuden
                     {sugest3}
                 </NavLink>
             
-                <button 
-                    onClick={() => setShowModalAddStudent(true)}
-                    style={{display: user.role === 'admin' ? "flex" : "none"}}
-                    className='anime-bottom'
-                >
-                    <BsPlus />
-                    <span>Registrar Aluno</span>
-                </button>
+                {user.role === 'admin' && btnAddStudent && (
+                    <>
+                        <button 
+                            onClick={() => setShowModalAddStudent(true)}
+                            className='anime-bottom'
+                        >
+                            <BsPlus />
+                            <span>Registrar Aluno</span>
+                        </button>
 
-                <ModalAddStudent
-                    show={showModalAddStudent}
-                    onHide={() => setShowModalAddStudent(false)}
-                />
+                        <ModalAddStudent
+                            show={showModalAddStudent}
+                            onHide={() => setShowModalAddStudent(false)}
+                        />
+                    </>
+                )}
 
-                <button 
-                    onClick={() => setShowModalAddTeacher(true)}
-                    style={{display: user.role === 'admin' ? "flex" : "none"}}
-                    className='anime-bottom'
-                >
-                    <BsPlus />
-                    <span>Registrar Professor</span>
-                </button>
+                {user.role === 'admin' && btnAddTeacher && (
+                    <>
+                        <button 
+                            onClick={() => setShowModalAddTeacher(true)}
+                            className='anime-bottom'
+                        >
+                            <BsPlus />
+                            <span>Registrar Professor</span>
+                        </button>
 
-                <ModalAddTeacher
-                    show={showModalAddTeacher}
-                    onHide={() => setShowModalAddTeacher(false)}
-                />
+                        <ModalAddTeacher
+                            show={showModalAddTeacher}
+                            onHide={() => setShowModalAddTeacher(false)}
+                        />
+                    </>
+                )}
+                
 
                 <button 
                     onClick={() => setShowModalAddClassT(true)}
@@ -89,13 +108,49 @@ export function CardSearch({placeholder, sugest1, sugest2, sugest3, btnAddStuden
                     <span>Adicionar Turma</span>
                 </button>
 
-                <ModalAddClassT
+                <ModalClass
                     show={showModalAddClassT}
                     onHide={() => setShowModalAddClassT(false)}
                 />
+
+                {(user.role === 'admin' || user.role === 'teacher') && btnCreateBlog && (
+                    <>
+                        <button 
+                            onClick={() => setShowModalCreateBlog(true)}
+                            className='anime-bottom'
+                        >
+                            <BsPlus />
+                            <span>Crie um Blog</span>
+                        </button>
+
+                        <ModalCreateBlog
+                            show={showModalCreateBlog}
+                            onHide={() => setShowModalCreateBlog(false)}
+                        />
+                    </>
+                )}
+
+                {
+                    user.role === 'admin' && btnAddDiscipline && (
+                        <>
+                            <button 
+                                onClick={() => setShowModalAddDiscipline(true)}
+                                className='anime-bottom'
+                            >
+                                <BsPlus />
+                                <span>Registrar Disciplinas</span>
+                            </button>
+
+                            <ModalAddDiscipline
+                                show={showModalAddDiscipline}
+                                onHide={() => setShowModalAddDiscipline(false)}
+                            />
+                        </>
+                    )
+                }
+
 
             </nav>
         </article>
     )
 }
-

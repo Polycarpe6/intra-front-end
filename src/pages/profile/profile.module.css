@@ -173,3 +173,77 @@
         }
     }
 }
+
+.nav_profile_my_notes {
+
+    .card_note_student {
+        width: 100%;
+        border: 1px solid var(--body-color-light);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        padding: 0 1.5rem 3.5rem 1.5rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 3.5rem;
+
+        > strong {
+            background-color: #fff;
+            padding: .15rem 1rem;
+            border-radius: var(--border-radius);
+            transform: translateY(-12px);
+        }
+
+        ul {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            row-gap: 3.5rem;
+
+            li {
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                gap: .45rem;
+
+                > div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 1rem;
+                    border-bottom: 2px solid var(--body-color-light);
+
+                    &:hover {
+
+                        > button {
+                            display: flex;
+                        }
+                    }
+
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: .45rem;
+
+                        small {
+                            font-size: var(--small-font-size);
+                            font-weight: var(--font-semibold);
+                            color: var(--text-color-light);
+                            width: 135px;
+                            text-wrap: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+
+                    button {
+                        display: none;
+                        transition: .5s all !important;
+                    }
+                }
+            }
+        }
+    }
+}

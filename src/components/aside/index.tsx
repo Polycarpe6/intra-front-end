@@ -2,10 +2,10 @@ import React from 'react';
 import stl from './aside.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../context';
+import { HookShowAside } from '../../hooks';
+import { ModalToEndSession } from '../modals';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { adminRoutes, teacherRoutes, studentRoutes } from './routes';
-import { ModalToEndSession } from '../modals';
-import { HookShowAside } from '../../hooks';
 
 export function Aside() {
     const { user } = React.useContext(UserContext);
@@ -30,8 +30,7 @@ export function Aside() {
         <aside 
             className={stl.aside}
             style={{
-                display: showAside ? "flex" : "none",
-                transition: "display 0.3s ease",
+                display: !showAside ? "flex" : "none"
             }}
         >
             <ul>

@@ -1,4 +1,3 @@
-import { dataTool } from 'echarts'
 import React from 'react'
 
 export const UserContext = React.createContext(
@@ -14,7 +13,7 @@ export function UserStorage({ children }: any) {
         {
             name: "Lucas",
             email: "lucas@example.com",
-            role: "student",
+            role: "admin",
             id: 1,
             token: true,
         }

@@ -1,0 +1,50 @@
+.modal_Container {
+    background-color: transparent !important;
+    backdrop-filter: blur(30px);
+    
+    > div {
+        
+        > div {
+            border: none;
+            outline: none;
+            overflow: hidden;
+            padding: 2.6rem;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            background-color: #fff;
+            transition: .5s all;
+
+            .head {
+                width: 100%;
+                display: flex;
+                align-self: start;
+                justify-content: space-between;
+                transition: .3s all;
+                
+            
+                
+                > svg {
+                    fill: var(--text-color-light);
+                    transition:.3s;
+        
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.1);
+                        fill: var(--first-color);
+                    }
+                }
+            
+            }
+
+           
+            
+        }
+
+    }
+}
+
+
+

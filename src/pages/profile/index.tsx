@@ -3,7 +3,7 @@ import stl from './profile.module.css'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_user from '../../assets/img/default.jpg'
 import { CardProfile, Col_Xl_8, ModalUpdateDataUserProfile } from '../../components'
-import { BsAt, BsAward, BsBezier2, BsBookmark, BsBookmarks, BsCalendar4Week, BsEnvelope, BsFolder, BsGenderNeuter, BsGeo, BsHash, BsHouse, BsMortarboard, BsPencil, BsPerson, BsPhone, BsPinAngle, BsThreads, BsTrash } from 'react-icons/bs'
+import { BsAt, BsAward, BsBezier2, BsBookmark, BsBookmarks, BsCalendar4Week, BsDot, BsEnvelope, BsFolder, BsGenderNeuter, BsGeo, BsHash, BsHouse, BsMortarboard, BsPencil, BsPerson, BsPhone, BsPinAngle, BsThreads, BsTrash } from 'react-icons/bs'
 
 export function Profile() {
 
@@ -275,13 +275,100 @@ export function Profile() {
 
                             </Tab>
 
-                            {/* <Tab eventKey="profile" title="M" className="anime-bottom">
-                                Tab content for Profile
-                            </Tab> */}
+                            <Tab 
+                                eventKey="profile" 
+                                title="Minhas Notas" 
+                                className={`anime-bottom ${stl.nav_profile_my_notes}`}
+                            >
+                                
+                                
 
-                            {/* <Tab eventKey="Configurações" title="Configurações" className="anime-bottom">
-                                Tab content for Profile
-                            </Tab> */}
+
+                                <div className={stl.card_note_student}>
+
+                                    <strong>1º Trimestre</strong>
+
+                                    <ul>
+
+                                        <li>
+                                            <strong>Matematica</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>14 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Inglês</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>16 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Física</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>12 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Química</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>15 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Tic</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>18 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>Programação</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>20 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <strong>TD</strong>
+                                            <div>
+                                                <span>
+                                                    <BsDot />
+                                                    <small>16 Valores</small>
+                                                </span>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+
+
+
+
+                            </Tab>
                             
                         </Tabs>
                     </div>
