@@ -4,7 +4,7 @@ import { TitleAndDescription } from '../../titles';
 import { InputCodProcess, InputEmail } from '../../inputs';
 import { BsCheck2All, BsCloudArrowUp, BsXLg } from 'react-icons/bs';
 import React from 'react';
-import { postAluno } from '../../../api/endpoints';
+import { postStudent } from '../../../api/endpoints';
 
 
 
@@ -22,7 +22,7 @@ export function ModalAddStudent(props: any) {
 
     const handleSubmit = async () => {
 
-        const response = await postAluno(student);
+        const response = await postStudent(student);
 
         if (response) {
             console.log("Student registered successfully:", response);

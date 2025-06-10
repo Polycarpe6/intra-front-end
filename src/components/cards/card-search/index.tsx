@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
 import { BsPlus, BsSearch } from 'react-icons/bs'
-import { ModalAddDiscipline, ModalAddStudent, ModalAddTeacher, ModalClass, ModalCreateBlog } from '../../modals';
+import { ModalAddDiscipline, ModalAddStudent, ModalTeacher, ModalClass, ModalCreateBlog } from '../../modals';
 import { UserContext } from '../../../context';
 import { useContext } from 'react';
 
@@ -17,25 +17,35 @@ interface ICardSearchProps {
     btnAddClassT?: boolean;
     btnAddDiscipline?: boolean;
     btnCreateBlog?: boolean;
+
+    bntFilterAllStudent?: () => void;
+    bntFilterAllTeacher?: () => void;
 }
+
+
+
+
+
 export function CardSearch({
     placeholder, sugest1, sugest2, sugest3, 
     btnAddStudent = false, 
     btnAddTeacher = false, 
     btnAddClassT = false, 
     btnCreateBlog = false, 
-    btnAddDiscipline = false 
+    btnAddDiscipline = false,
+    bntFilterAllStudent,
+    bntFilterAllTeacher
 
     }: ICardSearchProps) {
 
     const [showModalAddStudent, setShowModalAddStudent] = React.useState(false);
-    const [showModalAddTeacher, setShowModalAddTeacher] = React.useState(false);
+    const [showModalTeacher, setShowModalTeacher] = React.useState(false);
     const [showModalAddClassT, setShowModalAddClassT] = React.useState(false);
     const [showModalCreateBlog, setShowModalCreateBlog] = React.useState(false);
     const [showModalAddDiscipline, setShowModalAddDiscipline] = React.useState(false);
 
-    const { user } = useContext(UserContext);    
-
+    const { user } = useContext(UserContext); 
+    
     return (
         <article className={`${stl.card_search} anime-bottom`}>
 
@@ -48,21 +58,36 @@ export function CardSearch({
             </div>
 
             <nav className={stl.nav_search}>
-                <NavLink to={""}>{sugest1}</NavLink>
-                <NavLink 
-                    to={""}
-                    style={{display: sugest2 ? "flex" : "none"}}
+                <NavLink to={""}
+                    style={{display: sugest1 ? "flex" : "none"}}
                     className='anime-bottom'
                 >
-                    {sugest2}
+                    {sugest1}
                 </NavLink>
-                <NavLink 
+
+                <button 
+                    id='bntFilterAllStudent'
+                    className='anime-bottom'
+                    onClick={bntFilterAllStudent}
+                >
+                    Alunos
+                </button>
+
+                <button 
+                    id='bntFilterAllStudent'
+                    className='anime-bottom'
+                    onClick={bntFilterAllTeacher}
+                >
+                    Professor
+                </button>
+
+                {/* <NavLink 
                     to={""}
                     style={{display: sugest3 ? "flex" : "none"}}
                     className='anime-bottom'
                 >
                     {sugest3}
-                </NavLink>
+                </NavLink> */}
             
                 {user.role === 'admin' && btnAddStudent && (
                     <>
@@ -84,16 +109,16 @@ export function CardSearch({
                 {user.role === 'admin' && btnAddTeacher && (
                     <>
                         <button 
-                            onClick={() => setShowModalAddTeacher(true)}
+                            onClick={() => setShowModalTeacher(true)}
                             className='anime-bottom'
                         >
                             <BsPlus />
                             <span>Registrar Professor</span>
                         </button>
 
-                        <ModalAddTeacher
-                            show={showModalAddTeacher}
-                            onHide={() => setShowModalAddTeacher(false)}
+                        <ModalTeacher
+                            show={showModalTeacher}
+                            onHide={() => setShowModalTeacher(false)}
                         />
                     </>
                 )}

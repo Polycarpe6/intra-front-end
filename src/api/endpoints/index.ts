@@ -18,3 +18,13 @@ export * from './discipline/put';
 
 
 export * from './cursos/get';
+
+
+
+export * from './classe/post';
+
+
+
+
+export * from './teacher/get'
+export * from './teacher/post'

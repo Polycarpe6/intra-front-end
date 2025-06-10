@@ -8,10 +8,12 @@ export * from "./aside"
 export * from "./schedules"
 export * from "./titles"
 
-export * from "./cards/card-profile"
-export * from "./cards/card-search"
 export * from "./cards/card-blog"
+export *from "./cards/card-people"
+export * from "./cards/card-search"
+export * from "./cards/card-profile"
 export * from "./cards/card-discipline"
+export * from "./cards/card-classe"
 
 export * from "./processes" 
 

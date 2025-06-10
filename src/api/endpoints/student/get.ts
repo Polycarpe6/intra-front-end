@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
 
-export async function getAlunos() {
+export async function getStudent() {
     try {
         const response = await axios.get(`${URLAPI}alunos`);
         if (!response.data) {

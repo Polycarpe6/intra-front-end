@@ -4,6 +4,7 @@ import { BsXLg } from "react-icons/bs";
 import { TitleAndDescription } from "../../titles";
 import { InputClasseName, InputClasseYear, SelectCursos } from "../../inputs";
 import React from "react";
+import { postTurma } from "../../../api/endpoints";
 
 
 
@@ -11,12 +12,31 @@ export function ModalClass(props: any) {
 
   const [dataClass, setDataClass] = React.useState({
     nome: "",
-    ano: "2024/2025",
-    cursoId: undefined,
+    ano: "",
+    cursoId: 0,
   });
 
   async function handleCreateClass() {
-    console.log(dataClass)
+    if (!dataClass.nome || !dataClass.ano || dataClass.cursoId === 0) 
+      return alert("Preencha todos os campos corretamente!");
+
+    // Remove "/" e converte para inteiro
+    const anoFormatado = parseInt(dataClass.ano.replace(/\D/g, ""), 10);
+
+    const dataToSend = {
+      nome: dataClass.nome,
+      cursoId: dataClass.cursoId,
+      ano: anoFormatado,
+    };
+
+    const response = await postTurma(dataToSend);
+    if (response) {
+      alert("Turma criada com sucesso!");
+      props.onHide();
+      setDataClass({ nome: "", ano: "", cursoId: 0 });
+    } else {
+      alert("Erro ao criar turma. Tente novamente.");
+    }
   }
     
   return (
@@ -43,8 +63,8 @@ export function ModalClass(props: any) {
 
 
         <SelectCursos
-          value={dataClass.cursoId}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setDataClass({ ...dataClass, cursoId: parseInt(e.target.value) })}
+            value={dataClass.cursoId}
+            onChange={cursoId => setDataClass({ ...dataClass, cursoId: Number(cursoId) })}
         />
 
         <InputClasseName
@@ -54,7 +74,7 @@ export function ModalClass(props: any) {
 
         <InputClasseYear
           value={dataClass.ano}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataClass({ ...dataClass, ano: parseInt(e.target.value) })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataClass({ ...dataClass, ano: e.target.value })}
         />
 
 

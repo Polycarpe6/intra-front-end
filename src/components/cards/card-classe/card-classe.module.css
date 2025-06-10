@@ -1,0 +1,131 @@
+.card_classe {
+    margin-bottom: 1.8rem;
+    width: min(100%, 295px);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    transition: 0.3s ease-in-out;
+    border-radius: var(--border-radius);
+
+    &:is(:hover, :focus, :active) {
+        transform: scale(1.01);
+        box-shadow: var(--box-shadow);
+    }
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .75rem 1.5rem;
+        background-color: var(--body-color-light);
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+    
+        > div {
+            display: flex;
+            align-items: center;
+            gap:.25rem;
+    
+            span {
+                font-size: var(--small-font-size);
+                font-weight: var(--font-bold);
+            }
+        }
+    
+        strong {
+            font-size: var(--smaller-font-size);
+            font-weight: var(--font-bold);
+            text-transform: uppercase;
+        }
+    }
+
+    .body {
+        padding: 0 1.7rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            svg {
+                width: 6rem;
+                height: 6rem;
+            }
+    
+            strong {
+                font-size: var(--biggest-font-size);
+                text-transform: uppercase;
+            }
+
+        }
+
+    }
+
+    .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        margin-top: .7rem;
+        
+
+        button {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .75rem 1rem;
+            background-color: var(--body-color-light);
+            border: 1px solid #f6f7f8;
+            transition: 0.3s ease-in-out;
+
+            svg {
+                width: 1rem;
+                height: 1rem;
+                fill: var(--text-color-light);
+            }
+
+            span {
+                font-size: var(--small-font-size);
+                color: var(--text-color-light);
+            }
+
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: var(--box-shadow);
+
+                svg {
+                    fill: #fff;
+                }
+
+                span {
+                    color: #fff;
+                }
+            }
+        }
+
+        & button:first-child {
+            border-bottom-left-radius: 1.4rem;
+
+            &:hover {
+                background-color: rgba(6, 155, 6, 0.61);
+            }
+        }
+
+        & button:last-child {
+            
+            border-bottom-right-radius: 1.4rem;
+
+            &:hover {
+                background-color: rgba(255, 0, 0, 0.623);
+            }
+        }
+
+    }
+
+}

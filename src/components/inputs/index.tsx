@@ -9,11 +9,16 @@ import { getCursos } from '../../api/endpoints';
 interface ISelectProps {
     label: string;
     placeholder: string;
-    values: string[];
-    // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    values: number;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function SelectCursos({ value, onChange }: { value: string, onChange: (val: string) => void }) {
+interface ISelectCursosProps {
+    value: string | number;
+    onChange: (value: string | number) => void;
+}
+
+export function SelectCursos({ value, onChange }: ISelectCursosProps) {
     const [cursos, setCursos] = React.useState<any[]>([]);
 
     React.useEffect(() => {
@@ -37,7 +42,7 @@ export function SelectCursos({ value, onChange }: { value: string, onChange: (va
                     value={value}
                     onChange={e => onChange(e.target.value)}
                 >
-                    <option value="">Nenhum curso Selecionado</option>
+                    <option value={0}>Nenhum curso Selecionado</option>
                     {cursos.map((curso, idx) => (
                         <option key={curso.id || idx} value={curso.id || curso.nome}>
                             {curso.nome}
@@ -79,7 +84,7 @@ interface IInputProps {
 export function InputBI({value, onChange}: IInputProps) {
 
     return (
-        <div className={stl.card_input_label_icon}>
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Nº Bilhete de Identidade</label>
                 <input 
@@ -148,7 +153,7 @@ export function InputCodProcess({value, onChange}: IInputProps) {
 export function InputEmail({value, onChange}: IInputProps) {
 
     return (
-        <div className={stl.card_input_label_icon}>
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Email</label>
                 <input 
@@ -179,7 +184,14 @@ export function InputClasseName({value, onChange}: IInputProps) {
     )
 }
 
-export function InputClasseYear({value, onChange}: IInputProps) {
+interface IInputClassYearProps {
+
+    value: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+}
+
+export function InputClasseYear({value, onChange}: IInputClassYearProps) {
 
     return (
         <div className={stl.card_input_label_icon}>
@@ -187,6 +199,7 @@ export function InputClasseYear({value, onChange}: IInputProps) {
                 <label>Ano letivo</label>
                 <input 
                     type="text" 
+                    placeholder='2024/2025'
                     value={value}
                     onChange={onChange}
                 />

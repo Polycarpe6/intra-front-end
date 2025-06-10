@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import style from './people.module.css'
+import stl from './people.module.css'
 import people1 from '../../assets/img/people/people1.jpg'
 import people2 from '../../assets/img/people/people2.jpg'
 import people3 from '../../assets/img/people/people3.jpg'
-import { BsArrowsAngleExpand, BsAt, BsChevronDown, BsFolder, BsMortarboard } from 'react-icons/bs'
+import imgUser from '../../assets/img/default.jpg'
+import { BsArrowsAngleExpand, BsAt, BsChevronDown, BsFolder, BsMortarboard, BsPencil, BsTrash } from 'react-icons/bs'
 
 
 interface IPeopleGroup {
@@ -15,7 +16,7 @@ interface IPeopleGroup {
 export function PeopleGroup( {desc, linkPath = "#"}:IPeopleGroup ) {
 
     return (
-        <div className={style.card_list_people}>
+        <div className={stl.card_list_people}>
 
             <ul>
                 <li>
@@ -64,50 +65,67 @@ interface IPeopleItem {
 export function PeopleItem({id, n_process, name, email, username, classOrDiscipline}:IPeopleItem) {
 
     return (
-        <article className={`${style.people_item} anime-bottom`}>
+        <article className={`${stl.people_item} anime-bottom`}>
 
-            <div className={style.cod_proc}>
-                <BsFolder />
-                <span>Nº Proc {n_process}</span>
-            </div>
+            <div className={stl.body}>
 
-            <div className={style.img_and_name}>
-                <div className={style.img}>
-                    <Link to={`/profile/${id}`}>
-                        <img src={people3} alt="" />
-                    </Link>
+                {/* <div className={stl.cod_proc}>
+                    <BsFolder />
+                    <span>Nº Proc {n_process}</span>
+                </div> */}
+
+                <div className={stl.img_and_name}>
+                    <div className={stl.img}>
+                        <Link to={`/profile/${id}`}>
+                            <img src={imgUser} alt="" />
+                        </Link>
+                    </div>
+                    <div className={stl.name_email}>
+                        <Link to={`/profile/${id}`} className={stl.name}>{name}</Link>
+                        <Link 
+                            target='_blank' 
+                            to={"https://mail.google.com/mail/u/0/"} 
+                            className={stl.email}
+                        >
+                            {email}
+                        </Link>
+                    </div>
                 </div>
-                <div className={style.name_email}>
-                    <Link to={`/profile/${id}`} className={style.name}>{name}</Link>
-                    <Link 
-                        target='_blank' 
-                        to={"https://mail.google.com/mail/u/0/"} 
-                        className={style.email}
-                    >
-                        {email}
-                    </Link>
+
+
+                <div className={stl.n_process_or_discipline}>
+                    <BsFolder />
+                    <strong>{n_process}</strong>
                 </div>
+
+                <Link 
+                    className={stl.usernameclass}
+                    to={`/profile/${id}`}
+                >
+                    <BsAt />
+                    <span>{username}</span>
+                </Link>
+                
+
             </div>
 
-            <Link 
-                className={style.usernameclass}
-                to={`/profile/${id}`}
-            >
-                <BsAt />
-                <span>{username}</span>
-            </Link>
+            <div className={stl.foot}>
 
-            <div className={style.class_or_discipline}>
-                <BsMortarboard />
-                <strong>{classOrDiscipline}</strong>
+                <button
+
+                >
+                    <BsPencil />
+                    <span>Editar</span>
+                </button>
+
+                <button
+
+                >
+                    <BsTrash />
+                    <span>Remover</span>
+                </button>
+
             </div>
-
-            <button 
-                className={style.status}
-                onClick={() => {alert("Deve aparecer um modal com mais informacoes do aluno!!")}}
-            >
-                <BsChevronDown />
-            </button>
 
         </article>
     )

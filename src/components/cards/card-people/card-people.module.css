@@ -1,0 +1,187 @@
+.card_people {
+    width: min(100%, 295px);
+    transition: 0.3s ease-in-out;
+    border-radius: 1.5rem;
+    background-color: var(--body-color-light);
+    border: 3px solid transparent;
+    overflow: hidden;
+
+    &:is(:hover, :focus, :active) {
+        transform: scale(1.01);
+        box-shadow: var(--box-shadow);
+        border-color: var(--first-color) !important;
+
+        button {
+
+            svg {
+                fill: var(--first-color);
+            }
+        }
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        padding: 1.8rem 1.8rem 0 1.8rem;
+    
+        .img_and_name {
+            display: flex;
+            align-items: end;
+            gap: .5rem;
+        
+            .img {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 50%;
+                padding: 2px;
+                border: 2px solid var(--first-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            .name_email {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 0rem;
+            
+                a.name {
+                    font-weight: var(--font-bold);
+                    color: var(--text-color);
+                    transition: 0.3s all;
+                }
+            
+                a.email {
+                    width: 95%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: var(--first-color);
+                    font-size: var(--small-font-size);
+                }
+            }
+
+        }
+    
+        .usernameclass {
+            display: flex;
+            align-items: center;
+            gap: .05rem;
+            margin: .05rem 0;
+    
+    
+            svg {
+                fill: var(--first-color);
+                width: 17px;
+                height: 17px;
+            }
+    
+            span {
+                width: 95%;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: var(--small-font-size);
+                color: var(--text-color);
+                font-weight: var(--font-bold);
+            }
+        }
+    
+        .n_process_or_discipline {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin: .2rem 0 0 0;
+
+    
+            svg {
+                fill: var(--first-color);
+                width: 17px;
+                height: 17px;
+            }
+    
+            strong {
+                width: 90%;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: var(--small-font-size);
+                color: var(--text-color);
+            }
+        }
+
+    }
+
+    .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        margin-top: .7rem;
+        
+
+        button {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .75rem 1rem;
+            background-color: var(--body-color-light);
+            border: 1px solid #f6f7f8;
+            transition: 0.3s ease-in-out;
+
+            svg {
+                width: 1rem;
+                height: 1rem;
+                fill: var(--text-color-light);
+            }
+
+            span {
+                font-size: var(--small-font-size);
+                color: var(--text-color-light);
+            }
+
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: var(--box-shadow);
+
+                svg {
+                    fill: #fff;
+                }
+
+                span {
+                    color: #fff;
+                }
+            }
+        }
+
+        & button:first-child {
+            border-bottom-left-radius: 1.4rem;
+
+            &:hover {
+                background-color: rgba(6, 155, 6, 0.61);
+            }
+        }
+
+        & button:last-child {
+            
+            border-bottom-right-radius: 1.4rem;
+
+            &:hover {
+                background-color: rgba(255, 0, 0, 0.623);
+            }
+        }
+
+    }
+    
+}

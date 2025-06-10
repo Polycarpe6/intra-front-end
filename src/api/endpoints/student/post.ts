@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
 
-interface DTOAluno {
+interface DTOStudent {
     nome: string;
     email: string;
 
@@ -11,7 +11,7 @@ interface DTOAluno {
     // password: ''
 }
 
-export async function postAluno(alunoData: DTOAluno) {
+export async function postStudent(alunoData: DTOStudent) {
 
     if (!alunoData || !alunoData.nome || !alunoData.email) {
         throw new Error('Dados do aluno inválidos: nome e email são obrigatórios');
