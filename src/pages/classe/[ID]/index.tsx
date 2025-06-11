@@ -3,19 +3,17 @@ import stl from './classeID.module.css'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_coord from '../../../assets/img/default.jpg'
-import { BsAward, BsMortarboard } from 'react-icons/bs'
+import { BsAward, BsMortarboard, BsPlus } from 'react-icons/bs'
 import { ListStudentClassT, WeeklySchedule } from '../../../api/mock'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, Schedules, TitleAndDescription, BtnAdd, LispDisciplineClass } from '../../../components'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, Schedules, TitleAndDescription, BtnAdd, LispDisciplineClass, CardDisciplineTeacher, ModalDisciplineTeacher } from '../../../components'
 import { UserContext } from '../../../context'
 
 
 export function ClasseID() {
 
     const { user } = React.useContext(UserContext);
-
-    const { listStudentT } = ListStudentClassT()
-
-    const { weeklySchedule } = WeeklySchedule()    
+  
+    const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
 
     return (
         <main className={`container ${stl.class_page}`}>
@@ -84,30 +82,6 @@ export function ClasseID() {
 
                 </div>
 
-                <div className={stl.horary_class}>
-
-                    <TitleAndDescription
-                        title={"Horário"}
-                        desc={"Veja o horário da sua Turma quais disciplinas terás hoje!"}
-                    />
-                    
-                    <div className={stl.body}>
-                        {
-                            weeklySchedule.map((element) => {
-
-                                return (
-                                    <Schedules
-                                        day={element.day}
-                                        times={element.times}
-                                        role={user.role}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
-
-                </div>
-
                 <div className={stl.containr_tab}>
 
                     <Tabs
@@ -117,59 +91,86 @@ export function ClasseID() {
                         className={`${stl.nav_classe} anime-bottom`}
                     >
 
-                        {
-                            user.role !== "student" && (
-                                <Tab 
-                                    eventKey="alunos" 
-                                    title="Alunos" 
-                                    className={`anime-bottom ${stl.tab_nav_student_class}`}
-                                >
-                                    <TitleDescLink 
-                                        title={"Lista da Turma IG13A"}
-                                        desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
-                                        linkPath={""}
-                                    />
+                     
+                        <Tab 
+                            eventKey="alunos" 
+                            title="Alunos" 
+                            className={`anime-bottom ${stl.tab_nav_student_class}`}
+                        >
+                            <TitleDescLink 
+                                title={"Lista da Turma IG13A"}
+                                desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                linkPath={""}
+                            />
 
-                                    <CardSearch 
-                                        placeholder={"Busca alunos..."}
-                                        sugest1={"Todos"}
-                                        sugest2={"Com Melhor desempenho"}
-                                        sugest3={"Sem Melhor desempenho"}
-                                        btnAddStudent={true}
-                                    />
+                            <CardSearch 
+                                placeholder={"Busca alunos..."}
+                                sugest1={"Todos"}
+                                sugest2={"Com Melhor desempenho"}
+                                sugest3={"Sem Melhor desempenho"}
+                                btnAddStudent={true}
+                            />
 
-                                    <div>
-                                        {/* {listStudentT.map(student => (
-                                            <PeopleItem 
-                                                key={student.n_processo} 
-                                                n_process={student.n_processo}
-                                                name={student.nome}
-                                                email={student.email}
-                                                username={student.username}
-                                            />
-                                        ))} */}
-                                    </div>
-                                </Tab>
-                            )
-                        }
-
+                            
+                        </Tab>
+    
                         <Tab 
                             eventKey="Disciplinas" 
                             title="Disciplinas e Professores" 
-                            className={`anime-bottom ${stl.tab_nav_discipline_class}`}
+                            className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
                         >
                             <div className={stl.head}>
 
                                 <TitleAndDescription
-                                    title={"Disciplinas"}
+                                    title={"Disciplinas & Professores"}
                                     desc={"Nesta seção, você encontrará todas as disciplinas disponíveis, com detalhes sobre cada uma delas. Explore o conteúdo, acompanhe seu progresso e acesse materiais exclusivos para aprimorar seus estudos."}
                                 />
 
-                                {user.role !== "student" && <BtnAdd text={"Adicionar Disciplina"} />}
+                                {
+                                    user.role !== "student" && (
+                                        <>
+                                            <button
+                                                className={stl.btn_add_discipline_teacher}
+                                                onClick={() => setModalDisciplineTeacher(true)}
+                                            >
+                                                <BsPlus />
+                                                <span>
+                                                    Adicione Disciplina e seu Professor
+                                                </span>
+                                            </button>
+
+                                            <ModalDisciplineTeacher
+                                                show={modalDisciplineTeacher}
+                                                onHide={() => setModalDisciplineTeacher(false)}
+                                            />
+                                        </>
+                                    )
+                                }
 
                             </div>
 
-                            <LispDisciplineClass />
+                            <div
+                                className={`anime-bottom ${stl.list_discipline_teacher}`}
+                            >
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                                <CardDisciplineTeacher/>
+
+                            </div>
+
                             
                             
 
@@ -199,45 +200,6 @@ export function ClasseID() {
                             )
                         }
 
-                        {
-                            ((user.role !== "student") && (user.role !== "teacher")) && (
-
-                                <Tab 
-                                    eventKey="Atualizar" 
-                                    title="Atualizar" 
-                                    className={`anime-bottom ${stl.tab_nav_update_data_class}`}
-                                >
-                                    
-                                    <TitleAndDescription
-                                        title={"Atualizar Dados da Turma"}
-                                        desc={"Aqui você pode atualizar os dados da turma, como coordenador, nome da turma, etc. Certifique-se de que as informações estejam corretas e atualizadas para melhor organização."}
-                                    />
-
-
-
-                                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                </Tab>
-
-                            )
-                        }
 
 
                     </Tabs>

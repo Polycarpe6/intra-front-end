@@ -40,7 +40,10 @@ interface IBtnAdd {
 export function BtnAdd({text, onClick}:IBtnAdd) {
 
     return (
-        <button className={`${stl.btnAdd} anime-bottom`} onClick={onClick}>
+        <button 
+            className={`${stl.btnAdd} anime-bottom`} 
+            onClick={onClick}
+        >
             <BsPlus />
             <span>{text}</span>
         </button>

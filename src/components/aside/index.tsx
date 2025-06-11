@@ -44,7 +44,9 @@ export function Aside() {
                 ))}
 
                 <li>
-                    <button onClick={() => setModalShow(true)}>
+                    <button 
+                        onClick={() => setModalShow(true)}
+                    >
                         <BsArrowBarRight />
                         <small>Terminar sessão</small>
                     </button>

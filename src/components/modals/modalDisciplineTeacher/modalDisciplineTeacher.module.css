@@ -1,0 +1,81 @@
+.modal_discipline_teacher {
+    background-color: transparent !important;
+    backdrop-filter: blur(30px);
+
+    > div {
+
+
+        > div {
+            border: none;
+            overflow: hidden;
+            padding: 2.6rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            background-color: #fff;
+            transition: .5s all;
+
+            .head {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                gap: 5rem;
+            }
+
+            .body {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .foot {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 1.9rem;
+                margin-top: 1rem;
+
+                
+
+                button {
+                    /* border: 1px solid red; */
+                    display: flex;
+                    align-items: center;
+                    gap: .35rem;
+                    padding: 1.2rem 2rem;
+                    border: none;
+                    background-color: var(--body-color-light);
+                    transition: 0.3s all;
+                    border-radius: 50px;
+                    
+                    span {
+                        font-weight: var(--font-semibold);
+                        font-size: var(--small-font-size);
+                    }
+
+                    svg {
+                        transition: .3s all;
+                    }
+
+
+                    &:hover {
+                        background-color: var(--first-color);
+                        
+                        span {
+                            color: #fff;
+                        }
+
+                        svg {
+                            fill: #fff;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

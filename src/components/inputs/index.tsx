@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './inputs.module.css'
 import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFillBookmarkFill, BsFolder, BsPerson } from 'react-icons/bs'
-import { getCursos } from '../../api/endpoints';
+import { getCursos, getDiscipline, getTeacher } from '../../api/endpoints';
 
 
 
@@ -55,6 +55,8 @@ export function SelectCursos({ value, onChange }: ISelectCursosProps) {
     );
 }
 
+
+
 export function Select({label, placeholder, values}: ISelectProps) {
 
     return (
@@ -74,6 +76,112 @@ export function Select({label, placeholder, values}: ISelectProps) {
     )
 }
 
+
+export function SelectTeacher({ value, onChange }: ISelectCursosProps) {
+    const [teacher, setTeacher] = React.useState<any[]>([]);
+
+    React.useEffect(() => {
+        async function fetchTeacher() {
+            try {
+                const response = await getTeacher();
+                setTeacher(response);
+            } catch (error) {
+                console.error('Error fetching teacher:', error);
+                setTeacher([]);
+            }
+        }
+        fetchTeacher();
+    }, []);
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Seleciona Um Professor</label>
+                <select
+                    value={value}
+                    onChange={e => onChange(e.target.value)}
+                >
+                    <option value={0}>Nenhum Professor Selecionado</option>
+                    {teacher.map((teacher, idx) => (
+                        <option key={teacher.id || idx} value={teacher.id || teacher.nome}>
+                            {teacher.nome}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <BsAward />
+        </div>
+    );
+}
+
+export function SelectDiscipline({ value, onChange }: ISelectCursosProps) {
+    const [discipline, setDiscipline] = React.useState<any[]>([]);
+
+    React.useEffect(() => {
+        async function fetchDiscipline() {
+            try {
+                const response = await getDiscipline();
+                setDiscipline(response);
+            } catch (error) {
+                console.error('Error fetching discipline:', error);
+                setDiscipline([]);
+            }
+        }
+        fetchDiscipline();
+    }, []);
+
+    return (
+        <div className={stl.card_input_label_icon}>
+            <div className={stl.card_input_label}>
+                <label>Seleciona Uma Disciplina</label>
+                <select
+                    value={value}
+                    onChange={e => onChange(e.target.value)}
+                >
+                    <option value={0}>Nenhuma Disciplina Selecionada</option>
+                    {discipline.map((discipline, idx) => (
+                        <option key={discipline.id || idx} value={discipline.id || discipline.nome}>
+                            {discipline.nome}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <BsAward />
+        </div>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+
+
 interface IInputProps {
 
     value?: string | number;
@@ -88,7 +196,7 @@ export function InputBI({value, onChange}: IInputProps) {
             <div className={stl.card_input_label}>
                 <label>Nº Bilhete de Identidade</label>
                 <input 
-                    type="text" 
+                 md   type="text" 
                     value={value}
                     onChange={onChange}
                 />
@@ -132,6 +240,9 @@ export function InputDiscipline({value, onChange}: IInputProps) {
         </div>
     )
 }
+
+
+
 
 export function InputCodProcess({value, onChange}: IInputProps) {
 

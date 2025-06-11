@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './discipline.module.css'
 import { CardDiscipline, CardProfile, CardSearch, Col_Xl_9, TitleDescLink } from '../../components'
-import { getDisciplinas } from '../../api/endpoints'
+import { getDiscipline } from '../../api/endpoints'
 import { ModalAddDiscipline } from '../../components/modals/modalDiscipline'
 import { BsBookmarkCheck, BsCheck2All, BsPen, BsPencil, BsTrash } from 'react-icons/bs'
 
@@ -10,7 +10,7 @@ export function Discipline() {
     const [showModal, setShowModal] = React.useState(false);
 
     const getAllDiscipline = async () => {
-        const disciplinas: any = await getDisciplinas();
+        const disciplinas: any = await getDiscipline();
         setListDiscipline(disciplinas);
         console.log(disciplinas);
 

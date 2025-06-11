@@ -10,10 +10,11 @@ export * from "./titles"
 
 export * from "./cards/card-blog"
 export *from "./cards/card-people"
+export * from "./cards/card-classe"
 export * from "./cards/card-search"
 export * from "./cards/card-profile"
 export * from "./cards/card-discipline"
-export * from "./cards/card-classe"
+export * from "./cards/card-discipline-teacher"
 
 export * from "./processes" 
 
@@ -22,8 +23,6 @@ export * from "./people"
 export * from "./col"
 
 export * from "./chart"
-
-export * from "./discipline"
 
 export * from "./modals"
 

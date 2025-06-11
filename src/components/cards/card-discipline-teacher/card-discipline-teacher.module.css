@@ -1,69 +1,78 @@
-.card_classe {
-    margin-bottom: 1.8rem;
+.card_discipline_teacher {
     width: min(100%, 295px);
     display: flex;
     flex-direction: column;
-    gap: .75rem;
     transition: 0.3s ease-in-out;
-    border-radius: var(--border-radius);
+    border-radius: 1.5rem;
     background-color: var(--body-color-light);
+    border: 3px solid transparent;
+    gap: 1rem;
+    margin: .7rem;
+    overflow: hidden;
 
-    &:is(:hover, :focus, :active) {
-        transform: scale(1.01);
+    &:hover {
+        border-color: var(--first-color);
         box-shadow: var(--box-shadow);
+        transform: scale(1.05);
     }
 
     .head {
+        padding: 1.8rem 1.8rem 0 1.8rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: .75rem 1.5rem;
-        background-color: var(--body-color-light);
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-    
-        > div {
-            display: flex;
-            align-items: center;
-            gap:.25rem;
-    
-            span {
-                font-size: var(--small-font-size);
-                font-weight: var(--font-bold);
-            }
+
+        svg {
+            width: 1.6rem;
+            height: 1.6rem;
+            fill: var(--first-color);
         }
-    
-        strong {
-            font-size: var(--smaller-font-size);
-            font-weight: var(--font-bold);
-            text-transform: uppercase;
+
+        span {
+            color: var(--text-color);
+            font-weight: var(--font-semibold);
         }
     }
 
     .body {
-        padding: 0 1.7rem;
+        padding: 0 1.8rem;
         display: flex;
         align-items: center;
-        gap: 1rem;
-        
+        gap: .35rem;
 
-        a {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
 
-            svg {
-                width: 6rem;
-                height: 6rem;
+        .img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50px;
+            padding: 3px;
+            border: 2px solid var(--first-color);
+
+            a {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                }
             }
-    
-            strong {
-                font-size: var(--biggest-font-size);
-                text-transform: uppercase;
-            }
-
         }
 
+        .name_email {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .name {
+                color: var(--text-color);
+                font-weight: var(--font-medium);
+            }
+
+            .email {
+                font-size: var(--small-font-size);
+                font-weight: var(--font-minium);
+                color: var(--first-color);
+            }
+        }
     }
 
     .foot {
@@ -72,7 +81,7 @@
         align-items: center;
         border-bottom-left-radius: 1.5rem;
         border-bottom-right-radius: 1.5rem;
-        margin-top: .7rem;
+
         
 
         button {
@@ -129,5 +138,4 @@
         }
 
     }
-
 }

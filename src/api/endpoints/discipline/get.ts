@@ -2,7 +2,7 @@ import axios from 'axios';
 import { URLAPI } from '../index';
 
 
-export async function getDisciplinas() {
+export async function getDiscipline() {
     try {
         const response = await axios.get(`${URLAPI}disciplinas`);
         if (!response.data) {
