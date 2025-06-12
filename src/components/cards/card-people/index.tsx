@@ -1,8 +1,11 @@
-import stl from './card-people.module.css'
-import imgUser from '../../../assets/img/default.jpg'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BsAt, BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
+import stl from './card-people.module.css'
+import { UserContext } from '../../../context'
+import imgUser from '../../../assets/img/default.jpg'
 import { deleteStudent } from '../../../api/endpoints'
+import { BsAt, BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
+
 
 
 interface ICardPeopleItem {
@@ -16,6 +19,7 @@ interface ICardPeopleItem {
 
 export function CardPeople({id, n_process, name, email, username, discipline}:ICardPeopleItem) {
 
+    const { user } = React.useContext(UserContext);
 
     async function handleDelete(id: number) {
 
@@ -32,9 +36,13 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
         }
     }
 
-
     return (
-        <article className={`${stl.card_people} anime-bottom`}>
+        <article 
+            className={`${stl.card_people} anime-bottom`}
+            style={{
+                paddingBottom: user.role !== "admin" ? "1.8rem" : "0"
+            }}
+        >
 
             <div className={stl.body}>
 
@@ -59,7 +67,6 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
 
                 </div>
 
-
                 <div 
                     className={`${stl.n_process_or_discipline} anime-bottom`}
                 >
@@ -76,25 +83,28 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
                 </Link>
 
             </div>
+            {
+                (user.role === "admin") && (
+                    <div className={stl.foot}>
 
-            <div className={stl.foot}>
+                        <button
+                            className="anime-bottom"
+                        >
+                            <BsPencil />
+                            <span>Editar</span>
+                        </button>
 
-                <button
-                    className="anime-bottom"
-                >
-                    <BsPencil />
-                    <span>Editar</span>
-                </button>
+                        <button
+                            onClick={() => handleDelete(id)}
+                            className="anime-bottom"
+                        >
+                            <BsTrash />
+                            <span>Remover</span>
+                        </button>
 
-                <button
-                    onClick={() => handleDelete(id)}
-                    className="anime-bottom"
-                >
-                    <BsTrash />
-                    <span>Remover</span>
-                </button>
-
-            </div>
+                    </div>
+                )
+            }
 
         </article>
     )

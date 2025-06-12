@@ -11,7 +11,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 5rem;
 
     &::-webkit-scrollbar-thumb {
         background: transparent;
@@ -86,7 +86,6 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            /* background-color: var(--first-color); */
             border: 2px solid var(--first-color);
             padding: 3px;
             margin-left: -45px;
@@ -124,41 +123,41 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    
-    .card_btn_class {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-
-        button {
-            background-color: var(--first-color);
-            color: var(--body-color-light);
-            padding: .75rem 1.9rem;
-            border-radius: var(--border-radius);
-            font-size: var(--small-font-size);
-            font-weight: var(--font-medium);
-            cursor: pointer;
-            transition: 0.3s all;
-        }
-
-    }
+    padding-right: .5rem; 
 
     ul {
         display: flex;
         flex-direction: column;
-        gap: .75rem;
+        gap: 1.3rem;
 
         li {
             display: flex;
             flex-direction: column;
             gap:.25rem;
             border-radius: var(--border-radius);
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             background-color: var(--body-color-light);
+            border: 3px solid transparent;
+
+            &:hover {
+                border-color: var(--first-color);
+                cursor: pointer;
+            }
 
             strong {
-                font-size: var(--h3-font-size);
-                text-transform: uppercase;                
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                svg {
+                    transform: scale(1.4);
+                    fill: var(--first-color)
+                }
+                
+                span {
+                    font-size: var(--normal-font-size);
+                    text-transform: uppercase;
+                }
             }
 
             > span {
@@ -184,6 +183,7 @@
         padding: 1rem .75rem 0 .75rem;
     }
 }
+
 
 .nav_classe {
     border: none !important;
@@ -221,16 +221,26 @@
     }
 }
 
+
 .containr_tab {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
     
-    > div {
-        padding: 2.6rem 0;        
+    .head {
+        padding: 0;
+        margin-bottom: 2.5rem;       
     }
 }
 
 
+.tab_nav_student_class {
 
-
+    .head {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 
 .tab_nav_discipline_teacher {
@@ -240,7 +250,6 @@
         align-items: start;
         justify-content: space-between;
         gap: 10rem;
-        margin-top: 3.5rem;
 
         .btn_add_discipline_teacher {
             border: 2px solid var(--first-color);
@@ -272,7 +281,6 @@
 
     }
 
-
     .list_discipline_teacher {
         display: flex;
         flex-wrap: wrap;
@@ -282,27 +290,17 @@
 }
 
 
+.tab_nav_mini_note_class {
 
-
-
-
-
-
-
-
-.tab_nav_discipline_class {
-    
     .head {
-        display: flex;
-        align-items: start;
-        justify-content: space-between;
+        
+    }
 
-        > article {
-            width: 60%;
-        }
+    .body {
         
     }
 }
+
 
 
 

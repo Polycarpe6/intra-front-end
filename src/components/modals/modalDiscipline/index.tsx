@@ -6,7 +6,7 @@ import { TitleAndDescription } from '../../titles';
 import { BsCheck2All, BsXLg } from 'react-icons/bs';
 import { postDisciplinas, putDisciplinas } from '../../../api/endpoints';
 
-export function ModalAddDiscipline(props: any) {
+export function ModalDiscipline(props: any) {
     const [discipline, setDiscipline] = React.useState(
         props.disciplineToEdit || { id: "", nome: "" }
     );

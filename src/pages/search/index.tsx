@@ -17,7 +17,6 @@ export function Search() {
 
                 <CardSearch
                     placeholder={"Faz uma busca geral"}
-                    sugest1={"Todos"}
                 />
 
             </Col_Xl_9>

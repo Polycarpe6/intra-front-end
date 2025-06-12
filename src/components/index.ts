@@ -10,6 +10,7 @@ export * from "./titles"
 
 export * from "./cards/card-blog"
 export *from "./cards/card-people"
+export *from "./cards/card-curso"
 export * from "./cards/card-classe"
 export * from "./cards/card-search"
 export * from "./cards/card-profile"

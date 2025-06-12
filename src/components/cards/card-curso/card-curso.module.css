@@ -1,5 +1,5 @@
-.card_discipline {
-    width: min(100%, 295px);
+.card_curso {
+    width: 100%;
     display: flex;
     flex-direction: column;
     transition: 0.3s ease-in-out;
@@ -23,49 +23,57 @@
         }
     }
 
-    .id_counter {
+    .body {
         display: flex;
-        align-items: center;
-        gap: .75rem;
+        align-items: start;
+        gap: 2rem;
         padding: 1.8rem 1.8rem 0 1.8rem;
 
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: var(--text-color-light);
+
+        .id_counter {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+    
+            svg {
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: var(--text-color-light);
+            }
+    
+            span {
+                width: 90%;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+    
+                font-size: var(--normal-font-size);
+                font-weight: var(--font-bold);
+            }
+        }
+    
+        .name {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            /* padding: 0 1.8rem; */
+            /* margin-bottom: .25rem; */
+    
+            strong {
+                font-weight: var(--font-bold);
+                color: var(--text-color);
+                text-transform: uppercase;
+            }
+    
+            p {
+                font-size: var(--small-font-size);
+                color: var(--text-color-light);
+            }
         }
 
-        span {
-            width: 90%;
-            text-wrap: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            font-size: var(--small-font-size);
-            font-weight: var(--font-bold);
-        }
     }
 
-    .name {
-        display: flex;
-        flex-direction: column;
-        gap: .25rem;
-        padding: 0 1.8rem;
-        margin-bottom: .25rem;
-
-        strong {
-            font-weight: var(--font-bold);
-            color: var(--text-color);
-            text-transform: uppercase;
-        }
-
-        p {
-            font-size: var(--small-font-size);
-            color: var(--text-color-light);
-        }
-    }
-
-    .btns {
+    .foot {
         display: flex;
         justify-content: space-between;
         align-items: center;

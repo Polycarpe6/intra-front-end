@@ -3,10 +3,10 @@ import stl from './classeID.module.css'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_coord from '../../../assets/img/default.jpg'
-import { BsAward, BsMortarboard, BsPlus } from 'react-icons/bs'
-import { ListStudentClassT, WeeklySchedule } from '../../../api/mock'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, Schedules, TitleAndDescription, BtnAdd, LispDisciplineClass, CardDisciplineTeacher, ModalDisciplineTeacher } from '../../../components'
+import { BsAward, BsBook, BsBookmark, BsMortarboard, BsPlus } from 'react-icons/bs'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, CardDisciplineTeacher, ModalDisciplineTeacher, CardPeople } from '../../../components'
 import { UserContext } from '../../../context'
+import { getStudent } from '../../../api/endpoints'
 
 
 export function ClasseID() {
@@ -14,6 +14,20 @@ export function ClasseID() {
     const { user } = React.useContext(UserContext);
   
     const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
+
+    const [listStudent, setListStudent] = React.useState([])
+
+    const getAllStudents = async () => {
+    
+            const students: any = await getStudent();
+            setListStudent(students);
+    }
+
+    React.useEffect(() => {
+            getAllStudents();
+    }, []);
+
+
 
     return (
         <main className={`container ${stl.class_page}`}>
@@ -59,21 +73,43 @@ export function ClasseID() {
                     <div className={`${stl.card_info_class_right} anime-left`}>
 
                         <ul>
+
                             <li className="anime-bottom">
-                                <strong>Area de formação</strong>
-                                <span>Informáticos</span>
+                                <strong>
+                                    <BsAward />
+                                    <span>Area de formação</span>
+                                </strong>
+                                <span>- Informáticos</span>
                             </li> 
+
                             <li className="anime-bottom">
-                                <strong>Curso</strong>
-                                <span>Gestão de sistemas informáticos</span>
+
+                                <strong>
+                                    <BsMortarboard />
+                                    <span>Curso</span>
+                                </strong>
+                                <span>- Gestão de sistemas informáticos</span>
+
                             </li>
+
                             <li className="anime-bottom">
-                                <strong>Classe</strong>
-                                <span># 13ª</span>
+
+                                <strong>
+                                    <BsBookmark />
+                                    <span>Classe</span>
+                                </strong>
+                                <span>- 13ª</span>
+
                             </li>
+
                             <li className="anime-bottom">
-                                <strong>Turma</strong>
-                                <span>IG13A</span>
+
+                                <strong>
+                                    <BsBook />
+                                    <span>Turma</span>
+                                </strong>
+                                <span>- IG13A</span>
+
                             </li>
                                                  
                         </ul>
@@ -97,20 +133,41 @@ export function ClasseID() {
                             title="Alunos" 
                             className={`anime-bottom ${stl.tab_nav_student_class}`}
                         >
-                            <TitleDescLink 
-                                title={"Lista da Turma IG13A"}
-                                desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
-                                linkPath={""}
-                            />
 
-                            <CardSearch 
-                                placeholder={"Busca alunos..."}
-                                sugest1={"Todos"}
-                                sugest2={"Com Melhor desempenho"}
-                                sugest3={"Sem Melhor desempenho"}
-                                btnAddStudent={true}
-                            />
+                            <div className={stl.head}>
 
+                                <TitleDescLink 
+                                    title={"Lista da Turma IG13A"}
+                                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                    linkPath={""}
+                                />
+
+                                <CardSearch 
+                                    placeholder={"Busca alunos..."}
+                                    sugest1={"Todos"}
+                                    sugest2={"Com Melhor desempenho"}
+                                    sugest3={"Sem Melhor desempenho"}
+                                    btnAddStudent={true}
+                                />
+
+                            </div>
+
+                            <div className={stl.list_student_class}>
+                                
+                                {
+                                    listStudent.map((student) => (
+                                        <CardPeople 
+                                            key={student.id}
+                                            id={student.id}
+                                            n_process={"0000"}
+                                            name={student.nome}
+                                            email={student.email}
+                                            username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
+                                        />
+                                    ))
+                                }
+
+                            </div>
                             
                         </Tab>
     
@@ -177,18 +234,24 @@ export function ClasseID() {
                         </Tab>
 
                         {
-                            user.role !== "student" && (
+                            (user.role !== "student") && (
+
                                 <Tab 
-                                    eventKey="Pauta" 
+                                    eventKey="Mini-Pauta" 
                                     title="Mini-Pauta" 
-                                    className={`anime-bottom ${stl.tab_nav_note_class}`}
+                                    className={`anime-bottom ${stl.tab_nav_mini_note_class}`}
                                 >
+
+                                    <div className={stl.head}>
+
+                                        <TitleDescLink
+                                            title={"Mini Pauta"}
+                                            desc={"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?"}
+                                            linkPath={""}
+                                        />
+                                        
+                                    </div>
                                     
-                                    <TitleDescLink
-                                        title={"Mini Pauta"}
-                                        desc={"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?"}
-                                        linkPath={""}
-                                    />
 
                                     <div className={stl.card_pauta_classT}>
 
@@ -197,6 +260,7 @@ export function ClasseID() {
 
 
                                 </Tab>
+
                             )
                         }
 
@@ -205,6 +269,7 @@ export function ClasseID() {
                     </Tabs>
 
                 </div>
+
             </Col_Xl_9>
             
         

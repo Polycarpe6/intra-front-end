@@ -1,5 +1,6 @@
 import { 
     BsBarChart, BsBell, BsBookHalf, 
+    BsBookmark, 
     BsHouse, BsMortarboard, BsPeople, BsSearch 
 } from 'react-icons/bs';
 
@@ -16,7 +17,8 @@ export const adminRoutes: IRoutes[] = [
     { path: "/classe", icon: <BsMortarboard />, label: "Turmas" },
     { path: "/notification", icon: <BsBell />, label: "Novidades" },
     { path: "/discipline", icon: <BsBookHalf />, label: "Disciplinas" },
-    { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" }
+    // { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" },
+    { path: "/cursos", icon: <BsBookmark />, label: "Cursos" }
 ];
 
 export const teacherRoutes: IRoutes[] = [
@@ -26,7 +28,9 @@ export const teacherRoutes: IRoutes[] = [
     { path: "/classe", icon: <BsMortarboard />, label: "Turmas" },
     { path: "/notification", icon: <BsBell />, label: "Novidades" },
     { path: "/discipline", icon: <BsBookHalf />, label: "Disciplinas" },
-    { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" }
+    // { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" },
+    { path: "/cursos", icon: <BsBookmark />, label: "Cursos" }
+
 ];
 
 export const studentRoutes: IRoutes[] = [

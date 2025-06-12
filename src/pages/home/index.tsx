@@ -122,7 +122,6 @@ export function Home() {
 
                 <CardSearch
                     placeholder={"Pesquisar blog..."}
-                    sugest1={"Todos"}
                     btnCreateBlog={true}
                 />
 

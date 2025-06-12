@@ -1,0 +1,31 @@
+.cursos_page {
+    display: flex;
+    gap: 2rem;
+
+    
+    .section_cursos {
+        padding-top: var(--padding-top-global);
+        height: 100dvh;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    
+    
+        
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius:.5rem;
+        }
+    }
+}
+
+.cursos_list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+}
+
+
+

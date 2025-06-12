@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './people.module.css'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, PeopleItem, CardPeople } from '../../components'
 import { getStudent, getTeacher } from '../../api/endpoints'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, CardPeople } from '../../components'
 
 export function People() {
 
@@ -55,7 +55,6 @@ export function People() {
                         placeholder={"Busca usuarios"}
                         bntFilterAllStudent={handleFilterAllStudent}
                         bntFilterAllTeacher={handleFilterTeacher}
-                        sugest3={"Profesores"}
                         btnAddStudent={true}
                         btnAddTeacher={true}
                     />
@@ -64,7 +63,7 @@ export function People() {
                         className={stl.people_list}
                     >
 
-                         {
+                        {
                             allStudent.map((student) => (
                                 <CardPeople 
                                     key={student.id}
@@ -75,13 +74,9 @@ export function People() {
                                     username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
                                 />
                             ))
-
                         }
 
-
                     </div>
-
-
                     
             </Col_Xl_9>
 

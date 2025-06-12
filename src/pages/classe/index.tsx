@@ -1,10 +1,6 @@
 import React from 'react'
 import stl from './classe.module.css'
-import { Link } from 'react-router-dom'
-import { CardClasse, TitleAndDescription, TitleDescLink } from '../../components'
-import img_user from '../../assets/img/default.jpg'
-import { BsAward, BsMortarboard, BsPencil, BsPinAngle, BsTrash } from 'react-icons/bs'
-import { CardProfile, CardSearch, PeopleGroup } from '../../components'
+import { CardProfile, CardSearch, CardClasse, TitleAndDescription } from '../../components'
 
 export function Classe() {
 

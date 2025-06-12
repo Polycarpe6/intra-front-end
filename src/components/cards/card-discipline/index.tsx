@@ -1,8 +1,9 @@
 import React from 'react';
 import stl from './card-discipline.module.css';
-import { BsBookmarkCheck, BsPencil, BsTrash } from 'react-icons/bs';
-import { deleteDisciplinas } from '../../../api/endpoints';
-import { ModalAddDiscipline } from '../../modals';
+import { BsBookHalf, BsBookmarkCheck, BsPencil, BsTrash } from 'react-icons/bs';
+import { deleteDiscipline } from '../../../api/endpoints';
+import { ModalDiscipline } from '../../modals';
+import { UserContext } from '../../../context';
 
 
 interface DIODiscipline {
@@ -14,14 +15,14 @@ interface DIODiscipline {
 
 export function CardDiscipline({ id, counter, name }: DIODiscipline) {
 
+    const { user } = React.useContext(UserContext);
+
     const [showModal, setShowModal] = React.useState(false);
 
     async function handelClickDelete(id: number) {
-
-        console.log( typeof(id) )
        
         try {
-            const response = await deleteDisciplinas(id);
+            const response = await deleteDiscipline(id);
             console.log('Disciplina removida com sucesso:', response);
             // Atualize a interface aqui se necessário
         } catch (error) {
@@ -30,40 +31,57 @@ export function CardDiscipline({ id, counter, name }: DIODiscipline) {
     }
 
     return (
-        <article className={`${stl.card_discipline} anime-bottom`}>
+        <article 
+            className={`${stl.card_discipline} anime-bottom`}
+            style={{
+                paddingBottom: user.role !== "admin" ? "1.9rem" : "0"
+            }}
+        >
+
             <div className={`${stl.id_counter} anime-bottom`}>
-                <BsBookmarkCheck />
+                <BsBookHalf />
                 <span>{counter}</span>
             </div>
+
             <div className={`${stl.name} anime-bottom`}>
                 <strong>{name}</strong>
-                <p>Disciplina registrado na plataforma INTRA</p>
+                <p>Disciplina registrada na plataforma INTRA</p>
             </div>
-            <div className={stl.btns}>
-                
-                <button 
-                    className='anime-bottom'
-                    onClick={() => setShowModal(true)}
-                >
-                    <BsPencil />
-                    <span>Editar</span>
-                </button>
 
-                <ModalAddDiscipline
-                    show={showModal}
-                    onHide={() => setShowModal(false)}
-                    disciplineToEdit={{ id, nome: name }}
-                    onDisciplineRegistered={() => setShowModal(false)}
-                />
+            {
+                (user.role === "admin") && (
 
-                <button 
-                    className='anime-bottom'
-                    onClick={() => handelClickDelete(id)}
-                >
-                    <BsTrash />
-                    <span>Remover</span>
-                </button>
-            </div>
+                    <div className={stl.btns}>
+                        
+                        <button 
+                            className='anime-bottom'
+                            onClick={() => setShowModal(true)}
+                        >
+                            <BsPencil />
+                            <span>Editar</span>
+                        </button>
+
+                        <ModalDiscipline
+                            show={showModal}
+                            onHide={() => setShowModal(false)}
+                            disciplineToEdit={{ id, nome: name }}
+                            onDisciplineRegistered={() => setShowModal(false)}
+                        />
+
+                        <button 
+                            className='anime-bottom'
+                            onClick={() => handelClickDelete(Number(id))}
+                        >
+                            <BsTrash />
+                            <span>Remover</span>
+                        </button>
+                    </div>
+
+                )
+            }
+
+
         </article>
     );
+
 }

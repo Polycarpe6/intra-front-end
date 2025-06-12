@@ -1,19 +1,17 @@
 import React from 'react'
 import stl from './discipline.module.css'
-import { CardDiscipline, CardProfile, CardSearch, Col_Xl_9, TitleDescLink } from '../../components'
 import { getDiscipline } from '../../api/endpoints'
-import { ModalAddDiscipline } from '../../components/modals/modalDiscipline'
-import { BsBookmarkCheck, BsCheck2All, BsPen, BsPencil, BsTrash } from 'react-icons/bs'
+import { ModalDiscipline } from '../../components/modals/modalDiscipline'
+import { CardDiscipline, CardProfile, CardSearch, Col_Xl_9, TitleDescLink } from '../../components'
 
 export function Discipline() {
+
     const [listDiscipline, setListDiscipline] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
 
     const getAllDiscipline = async () => {
         const disciplinas: any = await getDiscipline();
         setListDiscipline(disciplinas);
-        console.log(disciplinas);
-
     }
 
     React.useEffect(() => {
@@ -33,26 +31,26 @@ export function Discipline() {
 
                 <CardSearch
                     placeholder={"Busca disciplinas"}
-                    sugest1={"Todas"}
                     btnAddDiscipline={true}
                 />
 
                 <div className={stl.list_discipline}>
 
 
-                    {listDiscipline.map((disciplina, key) => (
-                        <CardDiscipline
-                            id={disciplina.id}
-                            counter={`0${key + 1}`}
-                            name={disciplina.nome}
-                        />
-                    ))}
-
+                    {
+                        listDiscipline.map((disciplina, key) => (
+                            <CardDiscipline
+                                id={disciplina.id}
+                                counter={`0${key + 1}`}
+                                name={disciplina.nome}
+                            />
+                        ))
+                    }
                     
 
                 </div>
 
-                <ModalAddDiscipline
+                <ModalDiscipline
                     show={showModal}
                     onHide={() => setShowModal(false)}
                     onDisciplineRegistered={getAllDiscipline}

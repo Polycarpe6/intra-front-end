@@ -7,10 +7,13 @@
     transition: 0.3s ease-in-out;
     border-radius: var(--border-radius);
     background-color: var(--body-color-light);
+    border: 3px solid transparent;
+
 
     &:is(:hover, :focus, :active) {
         transform: scale(1.01);
         box-shadow: var(--box-shadow);
+        border-color: var(--first-color);
     }
 
     .head {

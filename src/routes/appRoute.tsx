@@ -2,7 +2,7 @@ import React from 'react'
 import { UserStorage, UserContext } from '../context'
 import { Aside, Header, Processes } from '../components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search, PageNotFound } from '../pages'
+import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search, PageNotFound, Cursos } from '../pages'
 
 export function AppRoute() {
 
@@ -38,6 +38,7 @@ export function AppRoute() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/notification" element={<Notification />} />
                     <Route path="/discipline" element={<Discipline />} />
+                    <Route path="/cursos" element={<Cursos />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
                 <Processes />
