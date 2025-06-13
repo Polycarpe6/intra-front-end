@@ -12,12 +12,12 @@ export function Cursos() {
         const curso: any = await getCursos();
         setlistCursos(curso);
 
-        console.log(listCursos)
     }
     
     React.useEffect(() => {
         getAllCurso();
     }, [])
+
     
     return (
         <main className={`container ${stl.cursos_page}`}>

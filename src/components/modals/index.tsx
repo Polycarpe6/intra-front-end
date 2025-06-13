@@ -1,5 +1,6 @@
 export * from './modalBlog';
 export * from './modalClass';
+export * from './modalCurso';
 export * from './modalTeacher';
 export * from './modalAddStudent'
 export * from './modalDiscipline'

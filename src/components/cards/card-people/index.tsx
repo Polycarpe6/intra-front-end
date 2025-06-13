@@ -5,6 +5,7 @@ import { UserContext } from '../../../context'
 import imgUser from '../../../assets/img/default.jpg'
 import { deleteStudent } from '../../../api/endpoints'
 import { BsAt, BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
+import { SuccessAlert } from '../../overview'
 
 
 
@@ -28,8 +29,11 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
 
         const response = await deleteStudent(id);
 
-        if (response) {
-            console.log("Usuário deletado com sucesso");
+        if (!response) {
+            <SuccessAlert 
+                message='Usuário deletado com sucesso'
+            />
+            console.log("");
             
         } else {
             console.error("Erro ao deletar usuário");

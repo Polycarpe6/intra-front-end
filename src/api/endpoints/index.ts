@@ -19,6 +19,8 @@ export * from './discipline/put';
 
 export * from './cursos/get';
 export * from './cursos/delete';
+export * from './cursos/post';
+export * from './cursos/put';
 
 
 

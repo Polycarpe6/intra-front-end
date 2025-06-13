@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
 import { BsPlus, BsSearch } from 'react-icons/bs'
-import { ModalDiscipline, ModalAddStudent, ModalTeacher, ModalClass, ModalCreateBlog } from '../../modals';
+import { ModalDiscipline, ModalAddStudent, ModalTeacher, ModalClass, ModalCreateBlog, ModalCurso } from '../../modals';
 import { UserContext } from '../../../context';
 import { useContext } from 'react';
 
@@ -40,6 +40,7 @@ export function CardSearch({
     const [showModalAddClassT, setShowModalAddClassT] = React.useState(false);
     const [showModalCreateBlog, setShowModalCreateBlog] = React.useState(false);
     const [showModalAddDiscipline, setShowModalAddDiscipline] = React.useState(false);
+    const [showModalCurso, setShowModalCurso] = React.useState(false);
 
     const { user } = useContext(UserContext); 
     
@@ -176,11 +177,17 @@ export function CardSearch({
                 }
 
                 <button 
+                    onClick={() => setShowModalCurso(true)}
                     className='anime-bottom'
                 >
                     <BsPlus />
                     <span>Registrar Cursos</span>
                 </button>
+
+                <ModalCurso 
+                    show={showModalCurso}
+                    onHide={() => setShowModalCurso(false)}
+                />
 
             </nav>
             

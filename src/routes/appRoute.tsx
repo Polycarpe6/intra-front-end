@@ -40,6 +40,7 @@ export function AppRoute() {
                     <Route path="/discipline" element={<Discipline />} />
                     <Route path="/cursos" element={<Cursos />} />
                     <Route path="*" element={<PageNotFound />} />
+
                 </Routes>
                 <Processes />
             </UserStorage>

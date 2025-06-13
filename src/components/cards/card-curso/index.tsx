@@ -3,6 +3,7 @@ import stl from './card-curso.module.css'
 import { BsBookmark, BsPencil, BsTrash } from 'react-icons/bs'
 import { UserContext } from '../../../context';
 import { deleteCurso } from '../../../api/endpoints';
+import { ModalCurso } from '../../modals';
 
 
 interface ICurso {
@@ -14,6 +15,8 @@ interface ICurso {
 export function CardCurso({id, key, nome}:ICurso) {
 
     const { user } = React.useContext(UserContext);
+
+    const [showModal, setShowModal] = React.useState(false)
 
     async function handelClickDelete(id: number) {
 
@@ -60,18 +63,25 @@ export function CardCurso({id, key, nome}:ICurso) {
                         
                         <button 
                             className='anime-bottom'
-                            // onClick={() => setShowModal(true)}
+                            onClick={() => setShowModal(true)}
                         >
                             <BsPencil />
                             <span>Editar</span>
                         </button>
 
-                        {/* <ModalDiscipline
+                        {/* <ModalCurso
+                                show={showModal}
+                                onHide={() => setShowModal(false)}
+                                disciplineToEdit={{ id, nome: nome }}
+                                onDisciplineRegistered={() => setShowModal(false)}
+                        /> */}
+
+                        <ModalCurso
                             show={showModal}
                             onHide={() => setShowModal(false)}
-                            disciplineToEdit={{ id, nome: name }}
+                            cursoToEdit={{ id, nome: nome }}
                             onDisciplineRegistered={() => setShowModal(false)}
-                        /> */}
+                        />
 
                         <button 
                             className='anime-bottom'

@@ -76,7 +76,6 @@ export function Select({label, placeholder, values}: ISelectProps) {
     )
 }
 
-
 export function SelectTeacher({ value, onChange }: ISelectCursosProps) {
     const [teacher, setTeacher] = React.useState<any[]>([]);
 
@@ -196,7 +195,7 @@ export function InputBI({value, onChange}: IInputProps) {
             <div className={stl.card_input_label}>
                 <label>Nº Bilhete de Identidade</label>
                 <input 
-                 md   type="text" 
+                    type="text" 
                     value={value}
                     onChange={onChange}
                 />
@@ -241,8 +240,22 @@ export function InputDiscipline({value, onChange}: IInputProps) {
     )
 }
 
+export function InputCurso({value, onChange}: IInputProps) {
 
-
+    return (
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>Nome do Curso</label>
+                <input 
+                    type="text" 
+                    value={value}
+                    onChange={onChange}
+                />
+            </div>
+            <BsPerson />
+        </div>
+    )
+}
 
 export function InputCodProcess({value, onChange}: IInputProps) {
 

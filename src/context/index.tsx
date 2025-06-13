@@ -13,7 +13,7 @@ export function UserStorage({ children }: any) {
         {
             name: "Lucas",
             email: "lucas@example.com",
-            role: "teacher",
+            role: "admin",
             id: 1,
             token: true,
         }

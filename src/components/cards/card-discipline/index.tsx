@@ -4,6 +4,7 @@ import { BsBookHalf, BsBookmarkCheck, BsPencil, BsTrash } from 'react-icons/bs';
 import { deleteDiscipline } from '../../../api/endpoints';
 import { ModalDiscipline } from '../../modals';
 import { UserContext } from '../../../context';
+import { SuccessAlert } from '../../overview';
 
 
 interface DIODiscipline {
@@ -19,11 +20,15 @@ export function CardDiscipline({ id, counter, name }: DIODiscipline) {
 
     const [showModal, setShowModal] = React.useState(false);
 
+    
+
     async function handelClickDelete(id: number) {
        
         try {
             const response = await deleteDiscipline(id);
-            console.log('Disciplina removida com sucesso:', response);
+            <SuccessAlert 
+                message='Disciplina removida com sucesso'
+            />
             // Atualize a interface aqui se necessário
         } catch (error) {
             console.error('Erro ao remover disciplina:', error);
