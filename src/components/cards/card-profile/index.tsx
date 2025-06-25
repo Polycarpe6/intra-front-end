@@ -2,7 +2,7 @@ import React from 'react'
 import { Col_Xl_3 } from '../../col'
 import { Link } from 'react-router-dom'
 import stl from './card-profile.module.css'
-import { BsMortarboard } from 'react-icons/bs'
+import { BsAward, BsFolder, BsMortarboard } from 'react-icons/bs'
 import { PeopleGroup } from '../../people'
 import img_profile from '../../../assets/img/default.jpg'
 import { ChartMain } from '../../chart'
@@ -33,6 +33,7 @@ export function CardProfile() {
                     desc={"+35 colegas de turma"}
                     linkPath={"/people"}
                 />
+
 
                 <p className={stl.about_me}>
                     Olá, seja bem-vindo no meu perfil!!

@@ -1,14 +1,15 @@
-.modal_curso {
+.modal_trimestre {
     background-color: transparent !important;
-    backdrop-filter: blur(30px); 
-    
+    backdrop-filter: blur(30px);
+
     > div {
-        
+
+
         > div {
             border: none;
             overflow: hidden;
             padding: 2.6rem;
-            border-radius: 1rem;
+            border-radius: var(--border-radius);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -25,31 +26,56 @@
 
             .body {
                 display: flex;
-                gap: 1.2rem;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 2.5rem;
             }
 
             .foot {
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
-                gap: 1rem;
+                justify-content: space-between;
+                gap: 1.9rem;
+                margin-top: 1rem;
+
+                
 
                 button {
-                    padding: .9rem 3rem;
+                    /* border: 1px solid red; */
+                    display: flex;
+                    align-items: center;
+                    gap: .35rem;
+                    padding: 1.2rem 2.5rem;
                     border: none;
                     background-color: var(--body-color-light);
-                    font-size: var(--small-font-size);
                     transition: 0.3s all;
                     border-radius: 50px;
-                    font-weight: var(--font-semibold);
+                    
+                    span {
+                        font-weight: var(--font-semibold);
+                        font-size: var(--small-font-size);
+                    }
+
+                    svg {
+                        transition: .3s all;
+                    }
+
 
                     &:hover {
                         background-color: var(--first-color);
-                        color: #fff;
+                        
+                        span {
+                            color: #fff;
+                        }
+
+                        svg {
+                            fill: #fff;
+                        }
                     }
                 }
             }
-        }
 
+        }
     }
 }

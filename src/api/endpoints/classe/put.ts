@@ -3,27 +3,28 @@ import { URLAPI } from '../index';
 import { validateClasse } from './validate';
 
 interface DTOTurma {
+    id?: number;
     nome: string;
     ano: number;
     curso_id: number;
 }
 
-export async function postClasse(turmaData: DTOTurma) {
+export async function putClasse(classeData: DTOTurma) {
 
     const responseValidateClasse = await validateClasse({
-        nome: turmaData.nome,
-        ano: turmaData.ano,
-        cursoId: turmaData.curso_id
+        nome: classeData.nome,
+        ano: classeData.ano,
+        cursoId: classeData.curso_id
     });
     
     if (!responseValidateClasse)
         return;
-    
+
     try {
-        const response = await axios.post(`${URLAPI}turmas`, turmaData);
+        const response = await axios.put(`${URLAPI}turmas/${classeData.id}`, classeData);
         return response.data;
     } catch (error) {
-        console.error('Error creating turma:', error);
+        alert('Houve um erro ao atualizar a turma:');
         throw error;
     }
 }

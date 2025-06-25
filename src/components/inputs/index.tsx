@@ -1,6 +1,6 @@
 import React from 'react'
 import stl from './inputs.module.css'
-import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFillBookmarkFill, BsFolder, BsPerson } from 'react-icons/bs'
+import { BsAward, BsEnvelope, BsEye, BsEyeSlash, BsFillBookmarkFill, BsFolder, BsPerson, BsSignpost, BsSignpost2 } from 'react-icons/bs'
 import { getCursos, getDiscipline, getTeacher } from '../../api/endpoints';
 
 
@@ -35,7 +35,7 @@ export function SelectCursos({ value, onChange }: ISelectCursosProps) {
     }, []);
 
     return (
-        <div className={stl.card_input_label_icon}>
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Seleciona Um Curso</label>
                 <select
@@ -294,7 +294,7 @@ export function InputEmail({value, onChange}: IInputProps) {
 export function InputClasseName({value, onChange}: IInputProps) {
 
     return (
-        <div className={stl.card_input_label_icon}>
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Nome da Turma</label>
                 <input 
@@ -308,6 +308,89 @@ export function InputClasseName({value, onChange}: IInputProps) {
     )
 }
 
+
+export function InputNumberTrimestre({value, onChange}: IInputProps) {
+
+    return (
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>
+                    Nº do Trimestre
+                </label>
+                <input 
+                    type="number" 
+                    value={value}
+                    placeholder="0"
+                    onChange={onChange}
+                />
+            </div>
+            <BsAward />
+        </div>
+    )
+}
+
+export function InputYearTrimestre({value, onChange}: IInputProps) {
+
+    return (
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>
+                    Ano letivo
+                </label>
+                <input 
+                    type="text" 
+                    value={value}
+                    placeholder="202x/202x"
+                    onChange={onChange}
+                />
+            </div>
+            <BsSignpost />
+        </div>
+    )
+}
+
+export function InputYearInitTrimestre({value, onChange}: IInputProps) {
+
+    return (
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>
+                    Ano de Início do Trimestre
+                </label>
+                <input 
+                    type="date" 
+                    value={value}
+                    placeholder="xx/xx/202x"
+                    onChange={onChange}
+                />
+            </div>
+            {/* <BsSignpost /> */}
+        </div>
+    )
+}
+
+export function InputYearEndTrimestre({value, onChange}: IInputProps) {
+
+    return (
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>
+                    Ano de Fim do Trimestre
+                </label>
+                <input 
+                    type="date" 
+                    value={value}
+                    placeholder="xx/xx/202x"
+                    onChange={onChange}
+                />
+            </div>
+            {/* <BsSignpost2 /> */}
+        </div>
+    )
+}
+
+
+
 interface IInputClassYearProps {
 
     value: string;
@@ -318,7 +401,7 @@ interface IInputClassYearProps {
 export function InputClasseYear({value, onChange}: IInputClassYearProps) {
 
     return (
-        <div className={stl.card_input_label_icon}>
+        <div className={`${stl.card_input_label_icon} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Ano letivo</label>
                 <input 
@@ -352,6 +435,45 @@ export function InputPassword({value, onChange}: IInputProps) {
                 />
             </div>
             {typeInput ? <BsEyeSlash onClick={handClick}/> : <BsEye onClick={handClick}/>}
+        </div>
+    )
+}
+
+
+
+
+
+// interface IInputNoteProps {
+interface IInputNoteProps {
+    placeholder: string;
+    value?: string | number;
+    max?: number;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+}
+
+export function InputNote({placeholder, value, onChange, onBlur, max, disabled}: IInputNoteProps) {
+
+    return (
+        <div className={`${stl.card_input_label_note} anime-bottom`}>
+            <div className={stl.card_input_label}>
+                <label>
+                    {placeholder}
+                </label>
+                <input 
+                    type="number" 
+                    min={0}
+                    max={max}
+                    step={0.1}
+                    value={value}
+                    placeholder="0"
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    disabled={disabled}
+                />
+            </div>
+            <BsAward />
         </div>
     )
 }

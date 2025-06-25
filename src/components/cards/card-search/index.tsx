@@ -1,8 +1,7 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import stl from './card-search.module.css'
 import { BsPlus, BsSearch } from 'react-icons/bs'
-import { ModalDiscipline, ModalAddStudent, ModalTeacher, ModalClass, ModalCreateBlog, ModalCurso } from '../../modals';
+import { ModalDiscipline, ModalAddStudent, ModalTeacher, ModalClass, ModalCreateBlog, ModalCurso, ModalTrimestre } from '../../modals';
 import { UserContext } from '../../../context';
 import { useContext } from 'react';
 
@@ -14,6 +13,8 @@ interface ICardSearchProps {
     btnAddClassT?: boolean;
     btnAddDiscipline?: boolean;
     btnCreateBlog?: boolean;
+    btnCurso?: boolean;
+    btnTrimestre?: boolean;
 
     bntFilterAllStudent?: () => void;
     bntFilterAllTeacher?: () => void;
@@ -30,6 +31,8 @@ export function CardSearch({
     btnAddClassT = false, 
     btnCreateBlog = false, 
     btnAddDiscipline = false,
+    btnCurso,
+    btnTrimestre = false,
     bntFilterAllStudent,
     bntFilterAllTeacher
 
@@ -41,6 +44,7 @@ export function CardSearch({
     const [showModalCreateBlog, setShowModalCreateBlog] = React.useState(false);
     const [showModalAddDiscipline, setShowModalAddDiscipline] = React.useState(false);
     const [showModalCurso, setShowModalCurso] = React.useState(false);
+    const [showModalTrimestre, setShowModalTrimestre] = React.useState(false);
 
     const { user } = useContext(UserContext); 
     
@@ -158,7 +162,7 @@ export function CardSearch({
                 }
 
                 {
-                    user.role === 'admin' && btnAddDiscipline && (
+                    (user.role === 'admin' && btnAddDiscipline) && (
                         <>
                             <button 
                                 onClick={() => setShowModalAddDiscipline(true)}
@@ -176,18 +180,47 @@ export function CardSearch({
                     )
                 }
 
-                <button 
-                    onClick={() => setShowModalCurso(true)}
-                    className='anime-bottom'
-                >
-                    <BsPlus />
-                    <span>Registrar Cursos</span>
-                </button>
+                {
+                    (user.role === 'admin' && btnCurso) && (
+                        <>
 
-                <ModalCurso 
-                    show={showModalCurso}
-                    onHide={() => setShowModalCurso(false)}
-                />
+                            <button 
+                                onClick={() => setShowModalCurso(true)}
+                                className='anime-bottom'
+                            >
+                                <BsPlus />
+                                <span>Registrar Cursos</span>
+                            </button>
+            
+                            <ModalCurso 
+                                show={showModalCurso}
+                                onHide={() => setShowModalCurso(false)}
+                            />
+
+                        </>
+                    )
+                }
+
+                {
+                    (user.role === 'admin' && btnTrimestre) && (
+                        <>
+                            <button 
+                                onClick={() => setShowModalTrimestre(true)}
+                                className='anime-bottom'
+                            >
+                                <BsPlus />
+                                <span>Abrir um novo Trimestre</span>
+                            </button>
+                        
+                            <ModalTrimestre
+                                show={showModalTrimestre}
+                                onHide={() => setShowModalTrimestre(false)}
+                            />
+                        </>
+                    )
+                }
+
+
 
             </nav>
             

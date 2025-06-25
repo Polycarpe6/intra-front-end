@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
+import { validateDiscipline } from './validate';
 
 interface DTODisciplina {
     nome: string;
@@ -7,9 +8,10 @@ interface DTODisciplina {
 
 export async function postDisciplinas(disciplinaData: DTODisciplina) {
 
-    if (!disciplinaData || !disciplinaData.nome) {
-        throw new Error('Dados da disciplina inválidos: nome é obrigatório');
-    }
+    const responseValidation = await validateDiscipline(disciplinaData);
+
+    if (!responseValidation)
+        return;
 
     try {
         const response = await axios.post(`${URLAPI}disciplinas`, disciplinaData);

@@ -36,11 +36,14 @@ export function ModalCurso(props: any) {
         } else {
 
             const response = await postCurso({nome: curso.nome})
+
+            console.log(`response`, response)
     
             if (response) {
                 props.onHide();
                 return alert("Curso registrado com sucesso!!!")
             }
+            
         }
 
     }

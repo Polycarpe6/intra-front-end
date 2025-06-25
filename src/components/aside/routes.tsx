@@ -1,4 +1,5 @@
 import { 
+    BsAward,
     BsBarChart, BsBell, BsBookHalf, 
     BsBookmark, 
     BsHouse, BsMortarboard, BsPeople, BsSearch 
@@ -15,7 +16,7 @@ export const adminRoutes: IRoutes[] = [
     { path: "/search", icon: <BsSearch />, label: "Explore" }, 
     { path: "/people", icon: <BsPeople />, label: "Membros" },
     { path: "/classe", icon: <BsMortarboard />, label: "Turmas" },
-    { path: "/notification", icon: <BsBell />, label: "Novidades" },
+    { path: "/trimestre", icon: <BsAward />, label: "Trimestre" },
     { path: "/discipline", icon: <BsBookHalf />, label: "Disciplinas" },
     // { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" },
     { path: "/cursos", icon: <BsBookmark />, label: "Cursos" }

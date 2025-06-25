@@ -5,7 +5,7 @@ import stl from './modalAddDiscipline.module.css';
 import { TitleAndDescription } from '../../titles';
 import { BsCheck2All, BsXLg } from 'react-icons/bs';
 import { postDisciplinas, putDisciplinas } from '../../../api/endpoints';
-import { WarningAlert } from '../../overview';
+
 
 export function ModalDiscipline(props: any) {
 
@@ -30,6 +30,10 @@ export function ModalDiscipline(props: any) {
 
         } else {
             response = await postDisciplinas({nome: discipline.nome});
+            
+            if (response ) 
+                alert("Disciplina registrada com sucesso!");
+            
         }
 
         if (response) {

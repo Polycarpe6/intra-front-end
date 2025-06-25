@@ -1,8 +1,9 @@
 import React from 'react'
+import { Suspense } from 'react'
 import stl from './discipline.module.css'
 import { getDiscipline } from '../../api/endpoints'
 import { ModalDiscipline } from '../../components/modals/modalDiscipline'
-import { CardDiscipline, CardProfile, CardSearch, Col_Xl_9, TitleDescLink } from '../../components'
+import { CardDiscipline, CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleNotFound } from '../../components'
 
 export function Discipline() {
 
@@ -36,15 +37,25 @@ export function Discipline() {
 
                 <div className={stl.list_discipline}>
 
+                    <Suspense fallback={<div>Loading...</div>}>
+                        {
+                            listDiscipline.map((disciplina, index) => (
+                                <CardDiscipline
+                                    id={disciplina.id}
+                                    counter={`0${index + 1}`}
+                                    name={disciplina.nome}
+                                />
+                            ))
+                        }
+                    </Suspense>
 
                     {
-                        listDiscipline.map((disciplina, key) => (
-                            <CardDiscipline
-                                id={disciplina.id}
-                                counter={`0${key + 1}`}
-                                name={disciplina.nome}
+                        (listDiscipline.length === 0) && (
+                            <TitleNotFound
+                                title={"Nenhuma disciplina encontrada"}
+                                desc={"Você ainda não possui nenhuma disciplina cadastrada."}
                             />
-                        ))
+                        )
                     }
                     
 

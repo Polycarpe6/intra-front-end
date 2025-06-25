@@ -53,10 +53,9 @@ export function People() {
 
                     <CardSearch
                         placeholder={"Busca usuarios"}
+                        btnAddTeacher={true}
                         bntFilterAllStudent={handleFilterAllStudent}
                         bntFilterAllTeacher={handleFilterTeacher}
-                        btnAddStudent={true}
-                        btnAddTeacher={true}
                     />
 
                     <div

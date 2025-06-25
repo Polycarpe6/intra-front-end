@@ -11,6 +11,7 @@ export * from "./search"
 export * from "./notification"
 export * from "./discipline"
 export * from "./cursos"
+export * from "./trimestre"
 
 export * from "./classe"
 export * from "./classe/[ID]"

@@ -8,11 +8,11 @@ import { ModalCurso } from '../../modals';
 
 interface ICurso {
     id: number | string;
-    key: number;
+    index: number | string;
     nome: string;
 }
 
-export function CardCurso({id, key, nome}:ICurso) {
+export function CardCurso({id, index, nome}:ICurso) {
 
     const { user } = React.useContext(UserContext);
 
@@ -45,7 +45,7 @@ export function CardCurso({id, key, nome}:ICurso) {
 
                 <div className={`${stl.id_counter} anime-bottom`}>
                     <BsBookmark />
-                    <span>{key}</span>
+                    <span>{index}</span>
                     <small>|</small>
                 </div>
 
@@ -68,13 +68,6 @@ export function CardCurso({id, key, nome}:ICurso) {
                             <BsPencil />
                             <span>Editar</span>
                         </button>
-
-                        {/* <ModalCurso
-                                show={showModal}
-                                onHide={() => setShowModal(false)}
-                                disciplineToEdit={{ id, nome: nome }}
-                                onDisciplineRegistered={() => setShowModal(false)}
-                        /> */}
 
                         <ModalCurso
                             show={showModal}

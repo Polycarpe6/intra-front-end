@@ -72,6 +72,8 @@
                 color: #fff;
                 font-size: var(--h1-font-size);
                 font-weight: var(--font-bold);
+                text-transform: uppercase;
+                text-align: center;
             }
         }
     }
@@ -130,6 +132,8 @@
         flex-direction: column;
         gap: 1.3rem;
 
+        
+
         li {
             display: flex;
             flex-direction: column;
@@ -162,6 +166,13 @@
 
             > span {
                 margin-left: 2rem;
+            }
+
+            &:last-child {
+
+                > span {
+                    text-transform: uppercase;
+                }
             }
         }
     }
@@ -297,7 +308,9 @@
     }
 
     .body {
-        
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
 }
 

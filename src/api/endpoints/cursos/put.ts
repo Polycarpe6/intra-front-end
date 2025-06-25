@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
+import { validateCursoData } from './validate';
 
 interface DTOCurso {
     id: number;
@@ -7,6 +8,11 @@ interface DTOCurso {
 }
 
 export async function putCurso(cursoData: DTOCurso) {
+
+    const responseValidateCurso = await validateCursoData(cursoData);
+    
+    if (!responseValidateCurso)
+        return;
 
     try {
         const response = await axios.put(`${URLAPI}cursos/${cursoData.id}`, cursoData);

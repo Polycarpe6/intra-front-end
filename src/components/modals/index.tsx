@@ -2,6 +2,7 @@ export * from './modalBlog';
 export * from './modalClass';
 export * from './modalCurso';
 export * from './modalTeacher';
+export * from './modalTrimestre'
 export * from './modalAddStudent'
 export * from './modalDiscipline'
 export * from './modalCreateBlog'

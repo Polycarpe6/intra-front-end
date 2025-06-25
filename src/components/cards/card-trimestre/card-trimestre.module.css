@@ -1,6 +1,6 @@
-.card_classe {
+.card_trimestre {
     margin-bottom: 1.8rem;
-    width: min(100%, 280px);
+    width: min(100%, 295px);
     display: flex;
     flex-direction: column;
     gap: .75rem;
@@ -20,7 +20,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.2rem 1.5rem .15rem 1.5rem;
+        padding: 1.8rem 1.5rem .75rem 1.5rem;
         background-color: var(--body-color-light);
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
@@ -29,6 +29,11 @@
             display: flex;
             align-items: center;
             gap:.25rem;
+
+            svg {
+                /* fill: #b62a2a; */
+                fill: var(--first-color);
+            }
     
             span {
                 font-size: var(--small-font-size);
@@ -47,25 +52,24 @@
         padding: 0 1.7rem;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: .25rem;
         
+        svg {
+            width: 5.5rem;
+            height: 5.5rem;
+        }
 
-        a {
+        > div {
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            gap: .25rem;
 
-            svg {
-                width: 6rem;
-                height: 6rem;
-            }
-    
             strong {
-                font-size: var(--biggest-font-size);
                 text-transform: uppercase;
             }
-
         }
+    
+
 
     }
 

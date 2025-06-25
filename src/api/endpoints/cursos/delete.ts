@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
 
-export async function deleteCurso(id: string) {
+export async function deleteCurso(id: number) {
     try {
         const response = await axios.delete(`${URLAPI}cursos/${id}`);
         return response.data;

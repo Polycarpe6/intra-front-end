@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { URLAPI } from '../index';
+import { validateCursoData } from './validate';
+
 
 interface DTOCurso {
     nome: string;
@@ -7,9 +9,10 @@ interface DTOCurso {
 
 export async function postCurso(cursoData: DTOCurso) {
 
-    if (!cursoData.nome.trim()) {
-        throw new Error('Dados do curso inválido: nome é obrigatório');
-    }
+    const responseValidateCurso = await validateCursoData(cursoData);
+
+    if (!responseValidateCurso)
+        return;
 
     try {
         const response = await axios.post(`${URLAPI}cursos`, cursoData);

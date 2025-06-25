@@ -60,6 +60,69 @@
     }
 }
 
+.card_input_label_note {
+    width: 140px;
+    padding: .65rem 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    background-color: var(--body-color-light);
+    border: 3px solid transparent;
+    transition: border-color 0.2s ease;
+    margin-bottom: .75rem;
+
+    &:is(:hover, :focus) {
+        border-color: var(--first-color);
+
+        > div {
+
+            label {
+                color: var(--first-color);
+            }
+        }
+
+        svg {
+            fill: var(--first-color);
+        }
+    }
+
+    svg {
+        transition: .3s;
+        fill: var(--text-color-light);
+        width: var(--small-font-size);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        flex: 1;
+
+        label {
+            font-size: var(--small-font-size);
+            font-weight: var(--font-semibold);
+            color: var(--text-color-light);
+            transition: .3s;
+        }
+
+        input, select {
+            width: 100%;
+            background-color: transparent;
+            font-size: var(--small-font-size);
+            font-weight: var(--font-semibold);
+            transform: translateY(-4px);
+        }
+    }
+}
+
+
 .codProcess {
     width: 220px !important;
 }

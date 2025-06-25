@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import stl from './classeID.module.css'
 import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_coord from '../../../assets/img/default.jpg'
 import { BsAward, BsBook, BsBookmark, BsMortarboard, BsPlus } from 'react-icons/bs'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, CardDisciplineTeacher, ModalDisciplineTeacher, CardPeople } from '../../../components'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, CardDisciplineTeacher, ModalDisciplineTeacher, CardPeople, CardNoteStudent } from '../../../components'
 import { UserContext } from '../../../context'
-import { getStudent } from '../../../api/endpoints'
+import { getClasseById, getStudent } from '../../../api/endpoints'
+import { useParams } from 'react-router-dom'
 
 
 export function ClasseID() {
@@ -16,6 +17,28 @@ export function ClasseID() {
     const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
 
     const [listStudent, setListStudent] = React.useState([])
+
+    const [classe, setClasse] = React.useState<any>({});
+
+    // Função para buscar todos os alunos da turma
+    const { id } = useParams()
+
+    async function getClasse() {
+
+        const response = await getClasseById(Number(id));
+
+        if (response) {
+            setClasse(response);
+        } else {
+            console.error("Erro ao buscar a turma");
+        }
+
+    }
+
+    React.useEffect(() => {
+        getClasse();
+    }, [id]);
+    
 
     const getAllStudents = async () => {
     
@@ -27,253 +50,320 @@ export function ClasseID() {
             getAllStudents();
     }, []);
 
+    const cursoName = classe.curso ? classe.curso.nome : "Curso não definido";
+    const classeLeve = classe.nome ? classe.nome.slice(2, 4) : "Classe não definida";
+    const className = classe.nome ? classe.nome : "Nome da classe não definido";
 
 
     return (
-        <main className={`container ${stl.class_page}`}>
+        <Suspense fallback={"Carregando..."}>
+            <main className={`container ${stl.class_page}`}>
 
-            <Col_Xl_9 className={stl.section_content_class}>
+                <Col_Xl_9 className={stl.section_content_class}>
 
-                <div className={stl.card_info_class}>
-                    
-                    <div className={`${stl.card_info_class_left} anime-bottom`}>
-                        <div>
-                            <div className={stl.card_img_class}>
-                                <div>
-                                <BsMortarboard />
-                                <span>IG13A</span>
+                    <div className={stl.card_info_class}>
+                        
+                        <div className={`${stl.card_info_class_left} anime-bottom`}>
+                            <div>
+                                <div className={stl.card_img_class}>
+                                    <div>
+                                        <BsMortarboard />
+                                        <span>{classe.nome}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={stl.card_img_and_name_coord_class}>
-                                <div className={stl.card_img_coord}>
-                                <Link to={"/profile"}>
-                                    <img src={img_coord} alt="" />
-                                </Link>
-                                </div>
-                                <div className={stl.name_and_icon_coord_class}>
-                                <strong>
+                                <div className={stl.card_img_and_name_coord_class}>
+                                    <div className={stl.card_img_coord}>
                                     <Link to={"/profile"}>
-                                        <span>Lucas Pazito</span>
+                                        <img src={img_coord} alt="" />
                                     </Link>
-                                </strong>
-                                <small>
-                                    <BsAward />
-                                    <span>Coordenador da turma</span>
-                                </small>
+                                    </div>
+                                    <div className={stl.name_and_icon_coord_class}>
+                                    <strong>
+                                        <Link to={"/profile"}>
+                                            <span>Não definido</span>
+                                        </Link>
+                                    </strong>
+                                    <small>
+                                        <BsAward />
+                                        <span>Coordenador da turma</span>
+                                    </small>
+                                    </div>
                                 </div>
                             </div>
+
+                            <small className="anime-left">
+                                Turma da área de Informática, composta por alunos do curso {cursoName} na {classeLeve}ª classe ({className}). Oferece conteúdos práticos e teóricos, com foco em formação sólida e preparação para o mercado. Destaca-se pelo compromisso acadêmico, ambiente colaborativo e apoio de professores qualificados, sendo uma etapa importante no desenvolvimento dos alunos.
+                            </small>
+
                         </div>
 
-                        <small className="anime-left">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque nobis officiis molestiae eos eligendi explicabo repudiandae minus saepe aut enim totam, quos dolores id incidunt possimus, corporis alias modi sequi!
-                        </small>
+                        <div className={`${stl.card_info_class_right} anime-left`}>
+
+                            <ul>
+
+                                <li className="anime-bottom">
+                                    <strong>
+                                        <BsAward />
+                                        <span>Area de formação</span>
+                                    </strong>
+                                    <span>- Informática</span>
+                                </li> 
+
+                                <li className="anime-bottom">
+
+                                    <strong>
+                                        <BsMortarboard />
+                                        <span>Curso</span>
+                                    </strong>
+                                    <span>- {cursoName}</span>
+
+                                </li>
+
+                                <li className="anime-bottom">
+
+                                    <strong>
+                                        <BsBookmark />
+                                        <span>Classe</span>
+                                    </strong>
+                                    <span>- {classeLeve}ª</span>
+
+                                </li>
+
+                                <li className="anime-bottom">
+
+                                    <strong>
+                                        <BsBook />
+                                        <span>Turma</span>
+                                    </strong>
+                                    <span>- {className}</span>
+
+                                </li>
+                                                    
+                            </ul>
+
+                        </div>
 
                     </div>
 
-                    <div className={`${stl.card_info_class_right} anime-left`}>
+                    <div className={stl.containr_tab}>
 
-                        <ul>
-
-                            <li className="anime-bottom">
-                                <strong>
-                                    <BsAward />
-                                    <span>Area de formação</span>
-                                </strong>
-                                <span>- Informáticos</span>
-                            </li> 
-
-                            <li className="anime-bottom">
-
-                                <strong>
-                                    <BsMortarboard />
-                                    <span>Curso</span>
-                                </strong>
-                                <span>- Gestão de sistemas informáticos</span>
-
-                            </li>
-
-                            <li className="anime-bottom">
-
-                                <strong>
-                                    <BsBookmark />
-                                    <span>Classe</span>
-                                </strong>
-                                <span>- 13ª</span>
-
-                            </li>
-
-                            <li className="anime-bottom">
-
-                                <strong>
-                                    <BsBook />
-                                    <span>Turma</span>
-                                </strong>
-                                <span>- IG13A</span>
-
-                            </li>
-                                                 
-                        </ul>
-
-                    </div>
-
-                </div>
-
-                <div className={stl.containr_tab}>
-
-                    <Tabs
-                        defaultActiveKey="alunos"
-                        transition={true}
-                        id="noanim-tab-example"
-                        className={`${stl.nav_classe} anime-bottom`}
-                    >
-
-                     
-                        <Tab 
-                            eventKey="alunos" 
-                            title="Alunos" 
-                            className={`anime-bottom ${stl.tab_nav_student_class}`}
+                        <Tabs
+                            defaultActiveKey="alunos"
+                            transition={true}
+                            id="noanim-tab-example"
+                            className={`${stl.nav_classe} anime-bottom`}
                         >
 
-                            <div className={stl.head}>
-
-                                <TitleDescLink 
-                                    title={"Lista da Turma IG13A"}
-                                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
-                                    linkPath={""}
-                                />
-
-                                <CardSearch 
-                                    placeholder={"Busca alunos..."}
-                                    sugest1={"Todos"}
-                                    sugest2={"Com Melhor desempenho"}
-                                    sugest3={"Sem Melhor desempenho"}
-                                    btnAddStudent={true}
-                                />
-
-                            </div>
-
-                            <div className={stl.list_student_class}>
-                                
-                                {
-                                    listStudent.map((student) => (
-                                        <CardPeople 
-                                            key={student.id}
-                                            id={student.id}
-                                            n_process={"0000"}
-                                            name={student.nome}
-                                            email={student.email}
-                                            username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
-                                        />
-                                    ))
-                                }
-
-                            </div>
-                            
-                        </Tab>
-    
-                        <Tab 
-                            eventKey="Disciplinas" 
-                            title="Disciplinas e Professores" 
-                            className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
-                        >
-                            <div className={stl.head}>
-
-                                <TitleAndDescription
-                                    title={"Disciplinas & Professores"}
-                                    desc={"Nesta seção, você encontrará todas as disciplinas disponíveis, com detalhes sobre cada uma delas. Explore o conteúdo, acompanhe seu progresso e acesse materiais exclusivos para aprimorar seus estudos."}
-                                />
-
-                                {
-                                    user.role !== "student" && (
-                                        <>
-                                            <button
-                                                className={stl.btn_add_discipline_teacher}
-                                                onClick={() => setModalDisciplineTeacher(true)}
-                                            >
-                                                <BsPlus />
-                                                <span>
-                                                    Adicione Disciplina e seu Professor
-                                                </span>
-                                            </button>
-
-                                            <ModalDisciplineTeacher
-                                                show={modalDisciplineTeacher}
-                                                onHide={() => setModalDisciplineTeacher(false)}
-                                            />
-                                        </>
-                                    )
-                                }
-
-                            </div>
-
-                            <div
-                                className={`anime-bottom ${stl.list_discipline_teacher}`}
+                        
+                            <Tab 
+                                eventKey="alunos" 
+                                title="Alunos" 
+                                className={`anime-bottom ${stl.tab_nav_student_class}`}
                             >
 
-                                <CardDisciplineTeacher/>
+                                <div className={stl.head}>
 
-                                <CardDisciplineTeacher/>
+                                    <TitleDescLink 
+                                        title={"Lista da Turma IG13A"}
+                                        desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                        linkPath={""}
+                                    />
 
-                                <CardDisciplineTeacher/>
+                                    <CardSearch 
+                                        placeholder={"Busca alunos..."}
+                                        sugest1={"Todos"}
+                                        sugest2={"Com Melhor desempenho"}
+                                        sugest3={"Sem Melhor desempenho"}
+                                        btnAddStudent={true}
+                                    />
 
-                                <CardDisciplineTeacher/>
+                                </div>
 
-                                <CardDisciplineTeacher/>
+                                <div className={stl.list_student_class}>
+                                    
+                                    {
+                                        listStudent.map((student) => (
+                                            <CardPeople 
+                                                key={student.id}
+                                                id={student.id}
+                                                n_process={"0000"}
+                                                name={student.nome}
+                                                email={student.email}
+                                                username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
+                                            />
+                                        ))
+                                    }
 
-                                <CardDisciplineTeacher/>
+                                </div>
+                                
+                            </Tab>
+        
+                            <Tab 
+                                eventKey="Disciplinas" 
+                                title="Disciplinas e Professores" 
+                                className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
+                            >
+                                <div className={stl.head}>
 
-                                <CardDisciplineTeacher/>
+                                    <TitleAndDescription
+                                        title={"Disciplinas & Professores"}
+                                        desc={"Nesta seção, você encontrará todas as disciplinas disponíveis, com detalhes sobre cada uma delas. Explore o conteúdo, acompanhe seu progresso e acesse materiais exclusivos para aprimorar seus estudos."}
+                                    />
 
-                                <CardDisciplineTeacher/>
+                                    {
+                                        user.role === "admin" && (
+                                            <>
+                                                <button
+                                                    className={stl.btn_add_discipline_teacher}
+                                                    onClick={() => setModalDisciplineTeacher(true)}
+                                                >
+                                                    <BsPlus />
+                                                    <span>
+                                                        Adicione Disciplina e seu Professor
+                                                    </span>
+                                                </button>
 
-                            </div>
+                                                <ModalDisciplineTeacher
+                                                    show={modalDisciplineTeacher}
+                                                    onHide={() => setModalDisciplineTeacher(false)}
+                                                    turmaId={Number(id)}
+                                                />
+                                            </>
+                                        )
+                                    }
 
-                            
-                            
+                                </div>
 
-                        </Tab>
-
-                        {
-                            (user.role !== "student") && (
-
-                                <Tab 
-                                    eventKey="Mini-Pauta" 
-                                    title="Mini-Pauta" 
-                                    className={`anime-bottom ${stl.tab_nav_mini_note_class}`}
+                                <div
+                                    className={`anime-bottom ${stl.list_discipline_teacher}`}
                                 >
 
-                                    <div className={stl.head}>
+                                    <CardDisciplineTeacher/>
 
-                                        <TitleDescLink
-                                            title={"Mini Pauta"}
-                                            desc={"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus officia totam fugit maiores in doloremque sed odit nulla ex blanditiis excepturi sint, accusamus similique ratione labore. Nihil aut repudiandae in?"}
-                                            linkPath={""}
-                                        />
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                    <CardDisciplineTeacher/>
+
+                                </div>
+
+                                
+                                
+
+                            </Tab>
+
+                            {
+                                (user.role !== "student") && (
+
+                                    <Tab 
+                                        eventKey="Mini-Pauta" 
+                                        title="Mini-Pauta" 
+                                        className={`anime-bottom ${stl.tab_nav_mini_note_class}`}
+                                    >
+
+                                        <div className={stl.head}>
+
+                                            <TitleDescLink
+                                                title={"Mini Pauta"}
+                                                desc={"Nesta seção, você encontrará a mini pauta da turma, que inclui informações sobre as disciplinas, professores e desempenho dos alunos. Acompanhe o progresso acadêmico e obtenha uma visão geral do desempenho da turma."}
+                                                linkPath={""}
+                                            />
+                                            
+                                        </div>
                                         
-                                    </div>
+
+                                        <div className={stl.body}>
+
+                                            <CardNoteStudent />
+
+                                            <CardNoteStudent />
+
+                                            <CardNoteStudent />
+
+                                            <CardNoteStudent />
+                                            
+
+
+
+                                        </div>
+
+
+
+                                    </Tab>
+
+                                )
+                            }
+
+                            <Tab 
+                                eventKey="Pauta Geral" 
+                                title="Pauta Geral" 
+                                className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
+                            >
+                                <div className={stl.head}>
+
+                                    <TitleAndDescription
+                                        title={"Pauta Geral da Turma"}
+                                        desc={"Nesta seção, você encontrará a pauta geral da turma, que inclui informações sobre as disciplinas, professores e desempenho dos alunos. Acompanhe o progresso acadêmico e obtenha uma visão geral do desempenho da turma."}
+                                    />
+
+                                    {/* {
+                                        user.role === "admin" && (
+                                            <>
+                                                <button
+                                                    className={stl.btn_add_discipline_teacher}
+                                                    onClick={() => setModalDisciplineTeacher(true)}
+                                                >
+                                                    <BsPlus />
+                                                    <span>
+                                                        Adicione Disciplina e seu Professor
+                                                    </span>
+                                                </button>
+
+                                                <ModalDisciplineTeacher
+                                                    show={modalDisciplineTeacher}
+                                                    onHide={() => setModalDisciplineTeacher(false)}
+                                                    turmaId={Number(id)}
+                                                />
+                                            </>
+                                        )
+                                    } */}
+
+                                </div>
+
+                                <div
+                                    className={`anime-bottom ${stl.list_discipline_teacher}`}
+                                >
+
                                     
 
-                                    <div className={stl.card_pauta_classT}>
+                                </div>
 
-                                    </div>
+                                
+                                
 
-
-
-                                </Tab>
-
-                            )
-                        }
+                            </Tab>
 
 
 
-                    </Tabs>
+                        </Tabs>
 
-                </div>
+                    </div>
 
-            </Col_Xl_9>
+                </Col_Xl_9>
+                
             
-        
-            <CardProfile />
-        </main>
+                <CardProfile />
+
+            </main>
+        </Suspense>
     )
 }

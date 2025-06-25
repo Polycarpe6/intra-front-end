@@ -4,41 +4,84 @@ import { BsXLg } from "react-icons/bs";
 import { TitleAndDescription } from "../../titles";
 import { InputClasseName, InputClasseYear, SelectCursos } from "../../inputs";
 import React from "react";
-import { postTurma } from "../../../api/endpoints";
+import { postClasse, putClasse } from "../../../api/endpoints";
 
+type ModalClassProps = {
+  show: boolean;
+  onHide: () => void;
+  classToEdit?: {
+    id?: number;
+    nome: string;
+    ano: string | number;
+    curso_id: number;
+  };
+};
 
-
-export function ModalClass(props: any) {
+export function ModalClass(props: ModalClassProps) {
 
   const [dataClass, setDataClass] = React.useState({
+    id: props.classToEdit ? props.classToEdit.id : undefined,
     nome: "",
     ano: "",
     cursoId: 0,
   });
 
-  async function handleCreateClass() {
-    if (!dataClass.nome || !dataClass.ano || dataClass.cursoId === 0) 
+  // Preenche o formulário ao abrir para edição
+  React.useEffect(() => {
+    if (props.classToEdit) {
+      setDataClass({
+        id: props.classToEdit.id,
+        nome: props.classToEdit.nome,
+        ano: String(props.classToEdit.ano),
+        cursoId: props.classToEdit.curso_id,
+      });
+    } else {
+      setDataClass({ id: 0, nome: "", ano: "", cursoId: 0 });
+    }
+  }, [props.classToEdit, props.show]);
+
+  async function handleSubmit() {
+    if (!dataClass.nome || !dataClass.ano || dataClass.cursoId === 0)
       return alert("Preencha todos os campos corretamente!");
 
-    // Remove "/" e converte para inteiro
     const anoFormatado = parseInt(dataClass.ano.replace(/\D/g, ""), 10);
 
-    const dataToSend = {
-      nome: dataClass.nome,
-      cursoId: dataClass.cursoId,
-      ano: anoFormatado,
-    };
+    let dataToSend: any = {}
 
-    const response = await postTurma(dataToSend);
-    if (response) {
-      alert("Turma criada com sucesso!");
-      props.onHide();
-      setDataClass({ nome: "", ano: "", cursoId: 0 });
+    let response;
+
+    if (props.classToEdit) {
+      
+      dataToSend = {
+        id: dataClass.id,
+        nome: dataClass.nome,
+        curso_id: dataClass.cursoId,
+        ano: anoFormatado,
+      };
+
+      response = await putClasse(dataToSend);
+
     } else {
-      alert("Erro ao criar turma. Tente novamente.");
+
+      dataToSend = {
+        nome: dataClass.nome,
+        curso_id: dataClass.cursoId,
+        ano: anoFormatado,
+      };
+
+      response = await postClasse(dataToSend);
+
+    }
+
+    if (response) {
+      alert(props.classToEdit ? "Turma editada com sucesso!" : "Turma criada com sucesso!");
+      props.onHide();
+      setDataClass({ id: 0, nome: "", ano: "", cursoId: 0 });
+    } else {
+      alert("Erro ao salvar turma. Tente novamente.");
     }
   }
-    
+
   return (
     <Modal
       {...props}
@@ -47,24 +90,23 @@ export function ModalClass(props: any) {
       centered
       className={stl.modal_Container}
     >
-
       <div className={stl.head}>
         <TitleAndDescription
-          title={"Criar Turma"}
-          desc={"Preencha os campos abaixo para criar uma nova turma."}
+          title={props.classToEdit ? "Editar Turma" : "Criar Turma"}
+          desc={props.classToEdit
+            ? "Altere os campos abaixo para editar a turma."
+            : "Preencha os campos abaixo para criar uma nova turma."}
         />
-
         <button onClick={props.onHide}>
           <BsXLg />
         </button>
       </div>
 
-      <div className={stl.body}> 
-
+      <div className={stl.body}>
 
         <SelectCursos
-            value={dataClass.cursoId}
-            onChange={cursoId => setDataClass({ ...dataClass, cursoId: Number(cursoId) })}
+          value={dataClass.cursoId}
+          onChange={cursoId => setDataClass({ ...dataClass, cursoId: Number(cursoId) })}
         />
 
         <InputClasseName
@@ -77,20 +119,18 @@ export function ModalClass(props: any) {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataClass({ ...dataClass, ano: e.target.value })}
         />
 
-
       </div>
 
       <div className={stl.foot}>
 
-        <button 
+        <button
           className="anime-bottom"
-          onClick={handleCreateClass}
+          onClick={handleSubmit}
         >
-          Criar Turma
+          {props.classToEdit ? "Salvar Alterações" : "Criar Turma"}
         </button>
 
       </div>
-      
     </Modal>
   );
 }

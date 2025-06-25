@@ -33,3 +33,26 @@
         color: #1b2f45;
     }
 }
+
+.title_not_found {
+    width: 100%;
+    padding: 5rem .75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0rem;
+
+    p {
+        font-size: var(--biggest-font-size);
+        font-weight: var(--font-bold);
+        color: var(--text-color-light);
+    }
+
+    span {
+        font-size: var(--small-font-size);
+        /* font-weight: var(--font-bold); */
+        color: var(--first-color);
+    }
+}

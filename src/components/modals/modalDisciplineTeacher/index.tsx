@@ -14,11 +14,21 @@ export function ModalDisciplineTeacher(props: any) {
         "professorId": 0
     })
 
+    console.log(props);
+    
 
-    async function handleDisciplineTeacher() {
 
-        if ( disciplineTeacher.disciplinaId === 0 || disciplineTeacher.turmaId === 0 || disciplineTeacher.professorId === 0 )
-            return alert("Todos os campos sao obrigatorio!")
+    async function handleDisciplineTeacher(turmaId: number) {
+
+        disciplineTeacher.turmaId = turmaId;
+        if (disciplineTeacher.disciplinaId === 0 || disciplineTeacher.professorId === 0) {
+            alert("Selecione uma disciplina e um professor");
+            return;
+        }
+
+        
+
+        
 
         console.log(disciplineTeacher)
     }
@@ -61,7 +71,7 @@ export function ModalDisciplineTeacher(props: any) {
 
             <div className={`${stl.foot} anime-bottom`}>
                 <button
-                    onClick={handleDisciplineTeacher}
+                    onClick={() => handleDisciplineTeacher(props.turmaId)}
                 >
                     <BsCheck2All />
                     <span>Registrar</span>

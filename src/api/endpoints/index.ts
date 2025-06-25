@@ -23,11 +23,17 @@ export * from './cursos/post';
 export * from './cursos/put';
 
 
-
 export * from './classe/post';
-
-
+export * from './classe/get';
+export * from './classe/getById';
+export * from './classe/delete';
+export * from './classe/put';
 
 
 export * from './teacher/get'
 export * from './teacher/post'
+
+
+export * from './trimestre/get'
+export * from './trimestre/delete'
+export * from './trimestre/post'

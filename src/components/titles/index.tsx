@@ -37,3 +37,22 @@ export function TitleDescriptionLoginFrom({title, desc}:ITitleDescriptionLoginFr
         </div>
     )
 }
+
+interface ITitleNotFound {
+    title: string;
+    desc: string;
+}
+
+export function TitleNotFound({title, desc}:ITitleNotFound) {
+
+    return (
+        <div className={`${stl.title_not_found} anime-bottom`}>
+            <p>
+                {title}
+            </p>
+            <span>
+                {desc}
+            </span>
+        </div>
+    )
+}
