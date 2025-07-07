@@ -8,18 +8,26 @@ import { postTeacher } from "../../../api/endpoints";
 
 
 
+interface ITeacher {
+    biNumber: string;
+    email: string;
+    url: string;
+}
+
+
 export function ModalTeacher(props: any) {
 
-    const [dataTeacher, setDataTeacher] = React.useState({
-        nome: "",
-        email: ""
-
-        // n_BI: "",
-        // email: ""
+    const [dataTeacher, setDataTeacher] = React.useState<ITeacher>({
+        biNumber: "",
+        email: "",
+        url: ""    
     });
 
     async function handleTeacher() {
 
+        dataTeacher.url = "http://localhost:5173/signup/teacher"
+
+        console.log(dataTeacher)
 
         const response = await postTeacher(dataTeacher);
         if (response) {
@@ -55,8 +63,8 @@ export function ModalTeacher(props: any) {
             <div className={stl.body}>
 
                 <InputBI
-                    value={dataTeacher.nome}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataTeacher({ ...dataTeacher, nome: e.target.value })}
+                    value={dataTeacher.biNumber}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDataTeacher({ ...dataTeacher, biNumber: e.target.value })}
                 />
 
                 <InputEmail

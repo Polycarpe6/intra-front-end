@@ -282,7 +282,7 @@ export function Profile() {
                                 (user.role === "student") && (
                                     <Tab 
                                         eventKey="profile" 
-                                        title="Minhas Notas" 
+                                        title="Minhas Notas & Desempenho" 
                                         className={`anime-bottom ${stl.nav_profile_my_notes}`}
                                     >
                                         
@@ -304,7 +304,7 @@ export function Profile() {
                                                         </span>
                                                     </div>
                                                 </li>
-
+{/* 
                                                 <li>
                                                     <strong>Inglês</strong>
                                                     <div>
@@ -363,7 +363,7 @@ export function Profile() {
                                                             <small>16 Valores</small>
                                                         </span>
                                                     </div>
-                                                </li>
+                                                </li> */}
 
                                             </ul>
 

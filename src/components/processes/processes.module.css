@@ -25,3 +25,86 @@
         font-size: var(--tiny-font-size);
     }
 }
+
+
+.offcanvasNotasStudent {
+    padding: 2rem;
+    width: min(390px, 100%) !important;
+    display: flex;
+    flex-direction: column;
+
+
+    .head {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: .15rem;
+    }
+
+    .body {
+        border: 1px solid var(--body-color-light);
+        height: 100dvh;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+
+
+        > strong {
+            padding: .3rem 1rem;
+            position: absolute;
+            transform: translateY(-38px) !important;
+            background-color: #fff;
+            z-index: 10;
+        }
+    }
+
+}
+
+.card_note_home_page {
+    background-color: var(--body-color-light);
+    padding: .75rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
+    border: 3px solid transparent;
+    margin-bottom: 1.1rem;
+
+    &:hover {
+        border-color: var(--first-color);
+        box-shadow: var(--shadow-color);
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
+
+    strong {
+        font-size: var(--h3-font-size);
+        color: var(--text-color-dark);
+        text-transform: uppercase;
+    }
+
+    .card_note_home_page_content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        h2 {
+            font-size: var(--h1-font-size);
+            font-weight: 700;
+            padding: 0;
+            margin: 0;
+        }
+
+        small {
+            font-size: var(--small-font-size);
+            color: var(--text-color-light);
+
+        }
+    }
+
+}

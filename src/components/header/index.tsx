@@ -7,7 +7,7 @@ import { HookShowAside } from '../../hooks'
 
 export function Header() {
 
-    const { showAside, setshowAside } = HookShowAside()
+    // const { showAside, setshowAside } = HookShowAside()
 
     return (
         <header className={stl.header} id="header">
@@ -22,7 +22,7 @@ export function Header() {
                         </div>
                     </Link>
 
-                    <BsList 
+                    {/* <BsList 
                         id="showAside" 
                         className={stl.show_aside} 
                         onClick={() => {setshowAside(!showAside)}} 
@@ -30,7 +30,7 @@ export function Header() {
                             transform: showAside ? "rotateZ(-90deg)" : "rotateZ(0deg)",
                             transition: "transform 0.3s ease",
                         }}
-                    />
+                    /> */}
 
                     {/* {
                         showAside && <BsList id="showAside" className={stl.show_aside} onClick={handleShowAside} />
@@ -53,12 +53,12 @@ export function Header() {
 
                         <div className={stl.card_img_header} id="card-img-header">
                             <Link to={'/profile'}>
-                                <img 
-                                    src={img_profile} 
-                                    id="img-header"
-                                />
+                                <div>
+                                    <span>Op</span>
+                                </div>
                             </Link>
                         </div>
+                        
                         <div className={stl.name_and_icon} id="name-and-icon-header">
                             <strong>
                                 <Link to={'/profile'}>

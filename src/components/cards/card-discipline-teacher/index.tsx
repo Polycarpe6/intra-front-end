@@ -1,13 +1,21 @@
-import { BsBookmarks, BsPencil, BsTrash } from 'react-icons/bs'
-import stl from './card-discipline-teacher.module.css'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../../context';
 import imgUser from '../../../assets/img/default.jpg'
+import stl from './card-discipline-teacher.module.css'
+import { BsBookmarks, BsPencil, BsTrash } from 'react-icons/bs'
+import React from 'react';
+
 
 export function CardDisciplineTeacher() {
+
+    const { user } = React.useContext(UserContext);
 
     return (
         <article 
             className={`${stl.card_discipline_teacher} anime-bottom`}
+            style={{
+                paddingBottom: user.role !== 'admin' ? "1.8rem" : "0"
+            }}
         >
         
             <div className={`${stl.head} anime-bottom`}>
@@ -31,24 +39,31 @@ export function CardDisciplineTeacher() {
                 </div>
 
             </div>
+
+            {
+                (user.role === 'admin') && (
+
+                    <div className={stl.foot}>
+                        
+                        <button 
+                            className='anime-bottom'
+                        >
+                            <BsPencil />
+                            <span>Editar</span>
+                        </button>
+
+                        <button 
+                            className='anime-bottom'
+                        >
+                            <BsTrash />
+                            <span>Remover</span>
+                        </button>
+
+                    </div>
+                    
+                )
+            }
         
-            <div className={stl.foot}>
-                
-                <button 
-                    className='anime-bottom'
-                >
-                    <BsPencil />
-                    <span>Editar</span>
-                </button>
-
-                <button 
-                    className='anime-bottom'
-                >
-                    <BsTrash />
-                    <span>Remover</span>
-                </button>
-
-            </div>
         
         </article>
     )

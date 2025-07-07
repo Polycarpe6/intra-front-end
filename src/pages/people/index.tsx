@@ -67,10 +67,9 @@ export function People() {
                                 <CardPeople 
                                     key={student.id}
                                     id={student.id}
-                                    n_process={"0000"}
+                                    n_process={student.processNumber}
                                     name={student.nome}
                                     email={student.email}
-                                    username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
                                 />
                             ))
                         }

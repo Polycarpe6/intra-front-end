@@ -4,7 +4,7 @@ import stl from './card-people.module.css'
 import { UserContext } from '../../../context'
 import imgUser from '../../../assets/img/default.jpg'
 import { deleteStudent } from '../../../api/endpoints'
-import { BsAt, BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
+import { BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
 import { SuccessAlert } from '../../overview'
 
 
@@ -12,13 +12,12 @@ import { SuccessAlert } from '../../overview'
 interface ICardPeopleItem {
     id: number
     n_process?: string | number
-    name: string
+    name: string | null
     email: string
-    username: string
     discipline?: string
 }
 
-export function CardPeople({id, n_process, name, email, username, discipline}:ICardPeopleItem) {
+export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleItem) {
 
     const { user } = React.useContext(UserContext);
 
@@ -59,13 +58,20 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
                     </div>
 
                     <div className={stl.name_email}>
-                        <Link to={`/profile/${id}`} className={stl.name}>{name}</Link>
+                        <Link to={`/profile/${id}`} className={stl.name}>
+                            {
+                                name ? name : "Conta não ativada"
+                            }
+                        </Link>
+
                         <Link 
                             target='_blank' 
                             to={"https://mail.google.com/mail/u/0/"} 
                             className={stl.email}
                         >
-                            {email}
+                            {
+                                email ? email : "Indisponivel"
+                            }
                         </Link>
                     </div>
 
@@ -77,14 +83,6 @@ export function CardPeople({id, n_process, name, email, username, discipline}:IC
                     <BsFolder />
                     <strong>{n_process}</strong>
                 </div>
-
-                <Link 
-                    className={`${stl.usernameclass} anime-bottom`}
-                    to={`/profile/${id}`}
-                >
-                    <BsAt />
-                    <span>{username}</span>
-                </Link>
 
             </div>
             {

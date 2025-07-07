@@ -9,6 +9,7 @@ export const UserContext = React.createContext(
 
 export function UserStorage({ children }: any) {
 
+
     const [user, setUser] = React.useState(
         {
             name: "Lucas",

@@ -1,11 +1,14 @@
 import React from 'react'
 import stl from './home.module.css'
 import { HailySchedule } from '../../api/mock'
-import { CardBlog, CardProfile, CardSearch, Col_Xl_3, Schedules, TitleAndDescription, TitleDescLink } from '../../components'
+import { CardBlog, CardProfile, CardSearch, Col_Xl_3, Footer, Schedules, TitleAndDescription, TitleDescLink } from '../../components'
+import { UserContext } from '../../context';
 
 
 
 export function Home() {
+
+    const { user } = React.useContext(UserContext);
 
     const [blogs, setBlogs] = React.useState(
         [
@@ -97,19 +100,104 @@ export function Home() {
             
             <Col_Xl_3 className={stl.card_horary}>
 
-                    <TitleDescLink
-                        title={"Horário de Hoje"}
-                        desc={"Veja o horário da sua Turma quais disciplinas terás hoje!"}
-                        linkPath={"/class"}
-                    />
+                {
+                    (user.role === "student") && (
+                        <>
+                            <TitleDescLink
+                                title={"Minhas Notas"}
+                                desc={"Veja suas notas e aproveite para estudar mais!"}
+                                linkPath={"/profile"}
+                            />
 
-                    {
-                        
-                        <Schedules
-                            day={hailySchedule.day}
-                            times={hailySchedule.times}
-                        />
-                    }
+                            <div className={`${stl.card_note_home_page} anime-bottom`}>
+
+                                <strong>
+                                    Tic
+                                </strong>
+
+                                <div className={stl.card_note_home_page_content}>
+                                    <h2>8.5</h2>
+                                    <small>Nota Final</small>
+                                </div>
+
+                            </div>
+
+
+                            <div className={`${stl.card_note_home_page} anime-bottom`}>
+
+                                <strong>
+                                    Ogi
+                                </strong>
+
+                                <div className={stl.card_note_home_page_content}>
+                                    <h2>14.5</h2>
+                                    <small>Nota Final</small>
+                                </div>
+
+                            </div>
+
+                            <div className={`${stl.card_note_home_page} anime-bottom`}>
+
+                                <strong>
+                                    Dt
+                                </strong>
+
+                                <div className={stl.card_note_home_page_content}>
+                                    <h2>17</h2>
+                                    <small>Nota Final</small>
+                                </div>
+
+                            </div>
+
+                            <div className={`${stl.card_note_home_page} anime-bottom`}>
+
+                                <strong>
+                                    Seac
+                                </strong>
+
+                                <div className={stl.card_note_home_page_content}>
+                                    <h2>13</h2>
+                                    <small>Nota Final</small>
+                                </div>
+
+                            </div>
+
+                            <div className={`${stl.card_note_home_page} anime-bottom`}>
+
+                                <strong>
+                                    TRei
+                                </strong>
+
+                                <div className={stl.card_note_home_page_content}>
+                                    <h2>11</h2>
+                                    <small>Nota Final</small>
+                                </div>
+
+                            </div>
+
+                        </>
+                    )
+                }
+
+
+                {
+                    (user.role === "teacher") && (
+                        <>
+                            <TitleDescLink
+                                title={"Minhas Turmas"}
+                                desc={"Veja suas turmas e aproveite para acompanhar por mais perto!!"}
+                                linkPath={"/classe"}
+                            />
+
+                            
+                            
+                        </>
+                    )
+                }
+            
+                
+
+                    
 
             </Col_Xl_3>
 
@@ -145,6 +233,16 @@ export function Home() {
                         )
                     })
                }
+
+               {
+                    blogs.length === 0 && (
+                        <div className={stl.no_blogs}>
+                            <h2>Nenhum blog encontrado</h2>
+                            <p>Crie o primeiro blog!</p>
+                        </div>
+                    )
+               }
+
 
             </section>
 

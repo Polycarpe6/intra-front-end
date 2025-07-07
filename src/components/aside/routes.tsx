@@ -28,9 +28,9 @@ export const teacherRoutes: IRoutes[] = [
     { path: "/people", icon: <BsPeople />, label: "Membros" },
     { path: "/classe", icon: <BsMortarboard />, label: "Turmas" },
     { path: "/notification", icon: <BsBell />, label: "Novidades" },
-    { path: "/discipline", icon: <BsBookHalf />, label: "Disciplinas" },
+    // { path: "/discipline", icon: <BsBookHalf />, label: "Disciplinas" },
     // { path: "/chart", icon: <BsBarChart />, label: "Estatísticas" },
-    { path: "/cursos", icon: <BsBookmark />, label: "Cursos" }
+    // { path: "/cursos", icon: <BsBookmark />, label: "Cursos" }
 
 ];
 

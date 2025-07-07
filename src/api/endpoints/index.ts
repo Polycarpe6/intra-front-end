@@ -5,6 +5,7 @@ export * from './student/get';
 export * from './student/post';
 export * from './student/put';
 export * from './student/delete';
+export * from './student/completeProfile';
 
 
 export * from './auth/signupStudent';

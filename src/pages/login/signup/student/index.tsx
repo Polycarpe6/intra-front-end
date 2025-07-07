@@ -1,30 +1,46 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import stl from '../../login.module.css'
-import { signupStudent } from '../../../../api/endpoints'
+import { completeProfileStudent, signupStudent } from '../../../../api/endpoints'
 import { BtnLogin, InputBI, InputCodProcess, InputEmail, InputPassword, TitleDescriptionLoginFrom } from '../../../../components'
+
+interface IStudent {
+    email: string;
+    processNumber: number | string | undefined
+    biNumber: string;
+    password: string;
+}
 
 export function Student() {
 
 
-    const [student, setStudent] = React.useState({
+    const [student, setStudent] = React.useState<IStudent>({
         email: '',
         password: '',
-
-        // process: '',
-        // n_BI: '',
-        // email: '',
-        // password: ''
+        processNumber: '',
+        biNumber: '',
     })
+
 
     const handleSubmit = async () => {
 
         console.log(student)
         
         try {
-            const newStudent = await signupStudent(student);
-            console.log('Aluno registrado:', newStudent);
-            // Aqui você pode redirecionar ou mostrar uma mensagem de sucesso
+
+            const newStudentauth = await signupStudent({
+                email: student.email,
+                password: student.password,
+                role: "student"
+            });
+
+            const resStudentComplite = await completeProfileStudent({
+                biNumber: student.biNumber,
+                email: student.email,
+                processNumber: student.processNumber
+            })
+
+
         } catch (error) {
             console.error('Erro ao registrar aluno:', error);
             // Aqui você pode mostrar uma mensagem de erro para o usuário
@@ -44,8 +60,8 @@ export function Student() {
             </Link>
 
             <InputBI
-                value={student.n_BI}
-                onChange={(e) => setStudent({...student, n_BI: e.target.value })}
+                value={student.biNumber}
+                onChange={(e) => setStudent({...student, biNumber: e.target.value })}
             />
             
             <InputEmail 
@@ -56,8 +72,8 @@ export function Student() {
             <div className={stl.card_input_codProcess_password}>
 
                 <InputCodProcess 
-                    value={student.process}
-                    onChange={(e) => setStudent({...student, process: e.target.value })}
+                    value={student.processNumber}
+                    onChange={(e) => setStudent({...student, processNumber: Number(e.target.value) })}
                 />
 
                 <InputPassword 

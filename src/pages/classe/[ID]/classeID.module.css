@@ -12,6 +12,8 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
+    padding-bottom: 10rem;
+
 
     &::-webkit-scrollbar-thumb {
         background: transparent;
@@ -244,15 +246,20 @@
     }
 }
 
-
 .tab_nav_student_class {
 
     .head {
         display: flex;
         flex-direction: column;
     }
-}
 
+    .list_student_class {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+}
 
 .tab_nav_discipline_teacher {
     
@@ -304,13 +311,48 @@
 .tab_nav_mini_note_class {
 
     .head {
-        
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 1rem;
     }
 
     .body {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+    }
+
+    .btnDownloadMiniPauta {
+            background-color: var(--body-color-light);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            gap: .25rem;
+            margin-top: 2rem;
+            transition: .2s all;
+
+            span {
+                font-size: var(--small-font-size);
+                font-weight: var(--font-medium);
+            }
+
+
+            &:is(:hover, :focus) {
+                background-color: var(--first-color);
+                box-shadow: var(--box-shadow);
+
+                svg {
+                    fill: #fff;
+                }
+
+                span {
+                    color: #fff;
+                }
+            }
     }
 }
 

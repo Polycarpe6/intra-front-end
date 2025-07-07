@@ -1,12 +1,13 @@
-import { Modal } from 'react-bootstrap';
-import { TitleAndDescription } from '../../titles';
-import { BsHeart, BsMortarboard, BsQuote, BsSend, BsThreeDotsVertical, BsXLg } from 'react-icons/bs';
-import { PeopleGroup } from '../../people';
-import stl from './modalBlog.module.css'
-import img_use_post_blog from '../../../assets/img/default.jpg'
-import { Link } from 'react-router-dom';
+import { Modal } from "react-bootstrap";
+import stl from "./alert.module.css"
+import { BsHeart, BsMortarboard, BsQuote, BsSend, BsThreeDotsVertical } from "react-icons/bs";
 
-export function ModalToCommentBlog(props: any) {
+
+
+
+
+
+export function Alert(props: any) {
     
     return (
         <Modal
@@ -19,10 +20,10 @@ export function ModalToCommentBlog(props: any) {
             <div className={stl.head}>
                     <div className={stl.img_name_level}>
                         <div className={stl.cicle_img}>
-                            <img src={img_use_post_blog} alt="" />
+                            {/* <img src={img_use_post_blog} alt="" /> */}
                         </div>
                         <div className={stl.name_level}>
-                            <Link to={"profile/id"}>Lucas Pazito</Link>
+                            {/* <Link to={"profile/id"}>Lucas Pazito</Link> */}
                             <small>
                                 <BsMortarboard />
                                 <span>Coordenador do curo - há 20 min</span>
@@ -68,9 +69,7 @@ export function ModalToCommentBlog(props: any) {
                     <span>164 Comentarios</span>
                 </button>
     
-                <PeopleGroup
-                    desc={"+210 Vizualizações"}
-                />
+                
                 </div>
 
                  <div className={stl.card_input_btn_comments}>
@@ -86,3 +85,134 @@ export function ModalToCommentBlog(props: any) {
         </Modal>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import stl from './alert.module.css'
+// import { UncontrolledAlert } from 'reactstrap'
+
+// interface IAlert {
+//     color?: "success" | "warning" | "danger" | "" | undefined;
+//     message?: string;
+//     state: boolean;
+// }
+
+// export function useHookAlert() {
+//     const [alert, setAlert] = React.useState<IAlert>({
+//         color: "",
+//         message: "",
+//         state: true
+//     });
+
+//     function showAlert(message: string, color: "success" | "warning" | "danger" | "" = "success") {
+//         setAlert({
+//             color,
+//             message,
+//             state: true
+//         });
+//     }
+
+//     function hideAlert() {
+//         setAlert({
+//             color: "",
+//             message: "",
+//             state: false
+//         });
+//     }
+
+//     return {
+//         alert,
+//         setAlert,
+//         showAlert,
+//         hideAlert,
+//     };
+// }
+
+// // O componente Alert recebe o estado do alerta por props
+// export function Alert({ alert }: { alert: IAlert }) {
+//     return (
+//         <UncontrolledAlert
+//             color={alert.color}
+//             className={`${stl.alert} anime-top`}
+//             style={{
+//                 display: alert.state ? "flex" : "none"
+//             }}
+//         >
+//             {alert.message}
+//         </UncontrolledAlert>
+//     )
+// }

@@ -182,8 +182,7 @@ export function SelectDiscipline({ value, onChange }: ISelectCursosProps) {
 
 
 interface IInputProps {
-
-    value?: string | number;
+    value?: string | number | undefined;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
 }
@@ -260,11 +259,11 @@ export function InputCurso({value, onChange}: IInputProps) {
 export function InputCodProcess({value, onChange}: IInputProps) {
 
     return (
-        <div className={`${stl.card_input_label_icon} ${stl.codProcess}`}>
+        <div className={`${stl.card_input_label_icon} ${stl.codProcess} anime-bottom`}>
             <div className={stl.card_input_label}>
                 <label>Nº Proc</label>
                 <input 
-                    type="text" 
+                    type="number" 
                     value={value}
                     onChange={onChange}
                 />

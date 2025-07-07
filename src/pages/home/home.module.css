@@ -10,6 +10,53 @@
     padding-top: var(--padding-top-global);
 }
 
+.card_note_home_page {
+    background-color: var(--body-color-light);
+    padding: .75rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
+    border: 3px solid transparent;
+    margin-bottom: 1.1rem;
+
+    &:hover {
+        border-color: var(--first-color);
+        box-shadow: var(--shadow-color);
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
+
+    strong {
+        font-size: var(--h3-font-size);
+        color: var(--text-color-dark);
+        text-transform: uppercase;
+    }
+
+    .card_note_home_page_content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        /* gap: .5rem; */
+
+        h2 {
+            font-size: var(--h1-font-size);
+            font-weight: 700;
+            padding: 0;
+            margin: 0;
+        }
+
+        small {
+            font-size: var(--small-font-size);
+            color: var(--text-color-light);
+
+        }
+    }
+
+}
+
 .section_home_page {
     padding: var(--padding-top-global) .75rem 0 .75rem;
     flex: 1;
@@ -18,6 +65,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+
 
 
     &::-webkit-scrollbar-thumb {
@@ -32,48 +80,5 @@
 
 
 
-.ul_react {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
-    border: 1px solid red;
 
-    li {
-
-        a {
-            color: var(--text-color);
-            transition:.3s;
-            background-color: var(--body-color-light);
-            padding: .7rem .8rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            transition: .3s;
-
-            span, i {
-                font-size: var(--small-font-size);
-                font-weight: var(--font-semibold);
-            }
-        }
-
-        &:nth-child(1) a {
-            background-color: #b62a2a10;
-            color: #b62a2a;
-
-            &:is(:hover, :focus) {
-                background-color: #b62a2a;
-                color: #fff;
-            }
-        }
-
-        &:nth-child(2) a {
-            background-color: #23238510;
-            color: #1d1d8f96;
-
-        }
-
-    }
-}
 

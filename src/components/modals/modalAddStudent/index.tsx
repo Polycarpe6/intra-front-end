@@ -7,27 +7,28 @@ import React from 'react';
 import { postStudent } from '../../../api/endpoints';
 
 
-
+interface IStudent {
+    processNumber: string | number,
+    email: string
+}
 
 export function ModalAddStudent(props: any) {
 
 
-    const [student, setStudent] = React.useState({
-        nome: "",
-        email: "",
-
-        // n_processo: "",
-        // email: ""
+    const [student, setStudent] = React.useState<IStudent>({
+        processNumber: "",
+        email: ""
     })
 
     const handleSubmit = async () => {
+
+        console.log(student)
 
         const response = await postStudent(student);
 
         if (response) {
             console.log("Student registered successfully:", response);
-            // Optionally, you can reset the form or close the modal here
-            setStudent({ nome: "", email: "" });
+            setStudent({ processNumber: 0, email: "" });
             props.onHide(); // Close the modal after submission
         } else {
             console.error("Failed to register student");
@@ -61,8 +62,8 @@ export function ModalAddStudent(props: any) {
             <div className={`${stl.body} anime-bottom`}>
 
                 <InputCodProcess 
-                    value={student.nome}
-                    onChange={(e) => setStudent({...student, nome: e.target.value })}
+                    value={student.processNumber}
+                    onChange={(e) => setStudent({...student, processNumber: Number(e.target.value) })}
                 />
                 
                 <InputEmail 

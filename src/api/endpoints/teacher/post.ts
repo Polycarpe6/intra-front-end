@@ -2,20 +2,19 @@ import axios from 'axios';
 import { URLAPI } from '../index';
 
 interface DTOProTeacher {
-    nome: string;
+    biNumber: string;
     email: string;
-
-    // n_BI: '',
-    // email: '',
+    url: string;
 }
 
 export async function postTeacher(teacherData: DTOProTeacher) {
-    if (!teacherData || !teacherData.nome || !teacherData.email) {
-        throw new Error('Dados do professor inválidos: nome e email são obrigatórios');
+    if (!teacherData || !teacherData.biNumber || !teacherData.email) {
+        throw new Error('Dados do professor inválidos: Numero do BI e email são obrigatórios');
     }   
 
     try {
         const response = await axios.post(`${URLAPI}professores`, teacherData);
+        
         if (!response.data) {
             throw new Error('Nenhum professor criado');
         }

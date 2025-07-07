@@ -4,6 +4,9 @@ export * from "./title-desc-link"
 
 export * from "./header"
 export * from "./aside"
+export * from "./footer"
+
+export * from "./alert"
 
 export * from "./schedules"
 export * from "./titles"

@@ -39,7 +39,6 @@ export function ClasseID() {
         getClasse();
     }, [id]);
     
-
     const getAllStudents = async () => {
     
             const students: any = await getStudent();
@@ -186,10 +185,9 @@ export function ClasseID() {
                                             <CardPeople 
                                                 key={student.id}
                                                 id={student.id}
-                                                n_process={"0000"}
+                                                n_process={student.processNumber}
                                                 name={student.nome}
                                                 email={student.email}
-                                                username={`${student.nome.toLowerCase().replace(/\s/g, '')}.intra@ipil`}
                                             />
                                         ))
                                     }
@@ -262,7 +260,7 @@ export function ClasseID() {
                             </Tab>
 
                             {
-                                (user.role !== "student") && (
+                                (user.role === "teacher") && (
 
                                     <Tab 
                                         eventKey="Mini-Pauta" 
@@ -277,6 +275,10 @@ export function ClasseID() {
                                                 desc={"Nesta seção, você encontrará a mini pauta da turma, que inclui informações sobre as disciplinas, professores e desempenho dos alunos. Acompanhe o progresso acadêmico e obtenha uma visão geral do desempenho da turma."}
                                                 linkPath={""}
                                             />
+
+                                            <button>
+                                                <Bs />
+                                            </button>
                                             
                                         </div>
                                         
@@ -303,54 +305,61 @@ export function ClasseID() {
                                 )
                             }
 
-                            <Tab 
-                                eventKey="Pauta Geral" 
-                                title="Pauta Geral" 
-                                className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
-                            >
-                                <div className={stl.head}>
+                            {
+                                (user.role === "admin") && (
 
-                                    <TitleAndDescription
-                                        title={"Pauta Geral da Turma"}
-                                        desc={"Nesta seção, você encontrará a pauta geral da turma, que inclui informações sobre as disciplinas, professores e desempenho dos alunos. Acompanhe o progresso acadêmico e obtenha uma visão geral do desempenho da turma."}
-                                    />
+                                    <Tab 
+                                        eventKey="Pauta Geral" 
+                                        title="Pauta Geral" 
+                                        className={`anime-bottom ${stl.tab_nav_discipline_teacher}`}
+                                    >
+                                        <div className={stl.head}>
 
-                                    {/* {
-                                        user.role === "admin" && (
-                                            <>
-                                                <button
-                                                    className={stl.btn_add_discipline_teacher}
-                                                    onClick={() => setModalDisciplineTeacher(true)}
-                                                >
-                                                    <BsPlus />
-                                                    <span>
-                                                        Adicione Disciplina e seu Professor
-                                                    </span>
-                                                </button>
+                                            <TitleAndDescription
+                                                title={"Pauta Geral da Turma"}
+                                                desc={"Nesta seção, você encontrará a pauta geral da turma, que inclui informações sobre as disciplinas, professores e desempenho dos alunos. Acompanhe o progresso acadêmico e obtenha uma visão geral do desempenho da turma."}
+                                            />
 
-                                                <ModalDisciplineTeacher
-                                                    show={modalDisciplineTeacher}
-                                                    onHide={() => setModalDisciplineTeacher(false)}
-                                                    turmaId={Number(id)}
-                                                />
-                                            </>
-                                        )
-                                    } */}
+                                            {/* {
+                                                user.role === "admin" && (
+                                                    <>
+                                                        <button
+                                                            className={stl.btn_add_discipline_teacher}
+                                                            onClick={() => setModalDisciplineTeacher(true)}
+                                                        >
+                                                            <BsPlus />
+                                                            <span>
+                                                                Adicione Disciplina e seu Professor
+                                                            </span>
+                                                        </button>
 
-                                </div>
+                                                        <ModalDisciplineTeacher
+                                                            show={modalDisciplineTeacher}
+                                                            onHide={() => setModalDisciplineTeacher(false)}
+                                                            turmaId={Number(id)}
+                                                        />
+                                                    </>
+                                                )
+                                            } */}
 
-                                <div
-                                    className={`anime-bottom ${stl.list_discipline_teacher}`}
-                                >
+                                        </div>
 
+                                        <div
+                                            className={`anime-bottom ${stl.list_discipline_teacher}`}
+                                        >
+
+                                            
+
+                                        </div>
+
+                                        
+                                        
+
+                                    </Tab>
                                     
+                                )
+                            }
 
-                                </div>
-
-                                
-                                
-
-                            </Tab>
 
 
 

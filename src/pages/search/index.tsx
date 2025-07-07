@@ -1,6 +1,6 @@
 import React from 'react'
 import stl from './search.module.css'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink } from '../../components'
+import { CardProfile, CardSearch, Col_Xl_9, Footer, TitleDescLink } from '../../components'
 
 export function Search() {
     
@@ -18,6 +18,10 @@ export function Search() {
                 <CardSearch
                     placeholder={"Faz uma busca geral"}
                 />
+
+                
+
+
 
             </Col_Xl_9>
 

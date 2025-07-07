@@ -5,11 +5,7 @@ import { URLAPI } from '../index';
 interface DTOStudentSignup {
     email: string;
     password: string;
-
-    // n_BI: string;
-    // emall: string;
-    // n_process: string;
-    // password: string;
+    role: string;
 }
 
 export async function signupStudent(alunoData: DTOStudentSignup) {
@@ -17,11 +13,11 @@ export async function signupStudent(alunoData: DTOStudentSignup) {
     try {
         const response = await axios.post(`${URLAPI}auth/register`, alunoData);
 
-        if (!response.data) {
+        if (!response.data) 
             throw new Error('Nenhum aluno registrado');
-        }
 
         return response.data;
+
     } catch (error) {
 
         console.error('Erro ao registrar aluno:', error);

@@ -1,0 +1,25 @@
+.footer {
+    margin-top: 1rem;
+    padding: 1.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: static;
+    bottom: 0 !important;
+    left: 0;
+    right: 0;
+    /* border-top: 1px solid var(--body-color-light); */
+
+    .line {
+        flex: 1;
+        border: 1px solid var(--body-color-light);
+    }
+
+    .content {
+
+        span {
+            font-size: var(--small-font-size);
+        }
+    }
+}
