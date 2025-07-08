@@ -277,7 +277,6 @@ export function ClasseID() {
                                             />
 
                                             <button>
-                                                <Bs />
                                             </button>
                                             
                                         </div>

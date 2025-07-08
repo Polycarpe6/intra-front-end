@@ -1,8 +1,6 @@
 import React from 'react'
 import { Col_Xl_3 } from '../../col'
-import { ChartMain } from '../../chart'
 import { Link } from 'react-router-dom'
-import { PeopleGroup } from '../../people'
 import stl from './card-profile.module.css'
 import { BsMortarboard } from 'react-icons/bs'
 import { UserContext } from '../../../context';
@@ -20,12 +18,16 @@ export function CardProfile() {
                 <div className={stl.img_name_level}>
                     <div className={stl.cicle_img}>
                         <div>
-                            <span>Op</span> 
+                            <span>
+                                {
+                                    user.name[0]
+                                }
+                            </span> 
                         </div>
                     </div>
                     <div className={stl.name_level}>
                         <Link to={"/profile"}>
-                            Osvaldo Pascual
+                            {user.name}
                         </Link>
                         <small>
                             <BsMortarboard />
@@ -50,38 +52,74 @@ export function CardProfile() {
                     </div>
                 </div>
 
-                {/* {
+                {
                     (user.role === "student") && (
-                        <PeopleGroup
-                            desc={"+35 colegas de turma"}
-                            // linkPath={"/people"}
-                        />
+                        <ul className={stl.list_class}>
+
+                            <li>
+                                <span>46382</span>
+                                <small>Nº Processo</small>
+                            </li>
+
+                            <li>
+                                <span>ii10a</span>
+                                <small>Minha Turma</small>
+                            </li>
+
+                            <li>
+                                <span>45</span>
+                                <small>Colegas</small>
+                            </li>
+
+                            
+                        </ul>
                     )
                 }
 
                 {
                     (user.role === "teacher") && (
-                        <PeopleGroup
-                            desc={"+103 para formar..."}
-                            linkPath={"/people"}
-                        />
+                        <ul 
+                            className={stl.list_class}
+
+                        >
+
+                            <li>
+                                <span>02</span>
+                                <small>Minhas Turmas</small>
+                            </li>
+
+                            <li>
+                                <span>103</span>
+                                <small>Total de Alunos</small>
+                            </li>
+                            
+                        </ul>
                     )
-                } */}
+                }
 
-                <ul className={stl.list_class}>
+                {
+                    (user.role === "admin") && (
+                        <ul 
+                            className={stl.list_class}
 
-                    <li>
-                        <span>00</span>
-                        <small>Alunos</small>
-                    </li>
+                        >
 
-                    <li>
-                        <span>00</span>
-                        <small>Turmas</small>
-                    </li>
+                            <li>
+                                <span>20</span>
+                                <small>Total de Professores</small>
+                            </li>
 
-                    
-                </ul>
+                            <li>
+                                <span>457</span>
+                                <small>Total de Alunos</small>
+                            </li>
+                            
+                        </ul>
+                    )
+                }
+                
+
+                
                 
 
 

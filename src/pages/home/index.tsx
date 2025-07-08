@@ -1,8 +1,9 @@
 import React from 'react'
 import stl from './home.module.css'
 import { HailySchedule } from '../../api/mock'
-import { CardBlog, CardProfile, CardSearch, Col_Xl_3, Footer, Schedules, TitleAndDescription, TitleDescLink } from '../../components'
+import { CardBlog, CardClasse, CardProfile, CardSearch, Col_Xl_3, Footer, Schedules, TitleAndDescription, TitleDescLink } from '../../components'
 import { UserContext } from '../../context';
+import { getClasses } from '../../api/endpoints';
 
 
 
@@ -93,7 +94,16 @@ export function Home() {
         ]
     )    
 
-    const { hailySchedule } = HailySchedule()
+    const [listClasse, setlistClasse] = React.useState([]);
+            
+    const getAllClasses = async () => {
+        const classes: any = await getClasses();
+        setlistClasse(classes);
+    }
+    
+    React.useEffect(() => {
+        getAllClasses();
+    }, [])
 
     return (
         <main className={`container ${stl.home_page}`}>
@@ -183,12 +193,22 @@ export function Home() {
                 {
                     (user.role === "teacher") && (
                         <>
+                        
                             <TitleDescLink
                                 title={"Minhas Turmas"}
                                 desc={"Veja suas turmas e aproveite para acompanhar por mais perto!!"}
                                 linkPath={"/classe"}
                             />
 
+
+                            {listClasse.map((classe: any) => (
+                                <CardClasse
+                                    key={classe.id}
+                                    id={classe.id}
+                                    name={classe.nome}
+                                    year={classe.ano}
+                                />
+                            ))}
                             
                             
                         </>

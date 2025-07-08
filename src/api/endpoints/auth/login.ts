@@ -7,12 +7,15 @@ interface Aluno {
     password: string;
 }
 
-export async function login(alunoData: Aluno) {
+export async function login(data: Aluno) {
+
     try {
-        const response = await axios.post(`${URLAPI}auth/login`, alunoData);
+        const response = await axios.post(`${URLAPI}auth/login`, data);
+
         if (!response.data) {
             throw new Error('Nenhum aluno encontrado');
         }
+        
         return response.data;
     } catch (error) {
         console.error('Erro ao fazer login:', error);

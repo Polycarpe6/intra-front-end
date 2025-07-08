@@ -1,4 +1,5 @@
 export const URLAPI = "https://school.baikasaude.click/";
+// export const URLAPI = "https://bhbzdtk5-3000.uks1.devtunnels.ms/"
 
 
 export * from './student/get';

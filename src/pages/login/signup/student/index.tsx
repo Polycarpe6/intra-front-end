@@ -24,7 +24,7 @@ export function Student() {
 
     const handleSubmit = async () => {
 
-        console.log(student)
+        // console.log(student)
         
         try {
 
@@ -39,6 +39,10 @@ export function Student() {
                 email: student.email,
                 processNumber: student.processNumber
             })
+
+            console.log(newStudentauth)
+            console.log("==========================================")
+            console.log(resStudentComplite)
 
 
         } catch (error) {

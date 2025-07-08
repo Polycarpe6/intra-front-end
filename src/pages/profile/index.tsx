@@ -33,6 +33,7 @@ export function Profile() {
 
                                 <div className={stl.card_title_list_content_profile_home}>
                                     <strong>Informações do Usuário</strong>
+
                                     <ul>
 
                                         <li>
@@ -260,21 +261,7 @@ export function Profile() {
                                     </ul>
                                 </div>
 
-                                <div className={stl.card_title_list_content_profile_home}>
-                                    <strong>Descrição</strong>
-                                    <ul>
-                                        <li className={stl.desc}>
-                                            <strong>Sorbe mim!</strong>
-                                            <div>
-                                                <span>
-                                                    <BsPerson />
-                                                    <small>Olá, seja bem-vindo no meu perfil!!</small>
-                                                </span>
-                                                <button><BsPencil /></button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                
 
                             </Tab>
 

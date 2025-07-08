@@ -1,5 +1,5 @@
-import React from 'react'
-import { UserStorage } from '../context'
+import React, { useContext } from 'react'
+import { UserContext, UserStorage } from '../context'
 import { Alert, Aside, Header, Processes } from '../components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profile, Search, PageNotFound, Cursos, Trimestre } from '../pages'
@@ -8,9 +8,10 @@ import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profil
 
 export function AppRoute() {
 
-    const [data, setData] = React.useState({
-        token: true,
-    })
+    const { data } = useContext(UserContext);
+
+    console.log(data);
+    
 
 
     if (!data.token)
@@ -43,9 +44,6 @@ export function AppRoute() {
                     <Route path="/trimestre" element={<Trimestre />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
-                
-                {/* <Alert /> */}
-
                 
 
                 <Processes />

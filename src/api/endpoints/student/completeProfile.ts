@@ -16,7 +16,7 @@ export async function completeProfileStudent(alunoData: DTOStudentComplete) {
 
     try {
 
-        const response = await axios.post(`${URLAPI}complete-profile`, alunoData);
+        const response = await axios.patch(`${URLAPI}alunos/complete-profile`, alunoData);
 
         if (!response.data) {
             throw new Error('Nenhum aluno criado');
