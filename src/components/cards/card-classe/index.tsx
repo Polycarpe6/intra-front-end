@@ -15,7 +15,9 @@ interface ICardClasseItem {
 
 export function CardClasse({ id, name, year, curso_id = 0 }: ICardClasseItem) {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data;
 
     const [showModal, setShowModal] = React.useState(false);
 
@@ -38,8 +40,12 @@ export function CardClasse({ id, name, year, curso_id = 0 }: ICardClasseItem) {
         try {
             const response = await deleteClasse(id);
 
-            if (response)
-                return alert("Turma removida com sucesso");
+            if (response) 
+                return alert("Erro ao remover turma!");
+
+            alert("Turma removida com sucesso");
+            return window.location.reload();
+            
 
         } catch (error) {
             alert('Erro ao remover Turma!!:');

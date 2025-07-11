@@ -42,6 +42,7 @@ export const UserContext = createContext<UserContextType>({
 
 // 5. Provider do contexto
 export function UserStorage({ children }: { children: React.ReactNode }) {
+
   const [data, setData] = useState<UserContextData>(() => {
     const saved = localStorage.getItem('INTRADB');
     return saved ? JSON.parse(saved) : INTRADB;

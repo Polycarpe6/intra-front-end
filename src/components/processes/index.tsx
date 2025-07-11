@@ -31,75 +31,89 @@ export function Processes() {
 
         <div className={stl.head}>
             
-            <TitleAndDescription 
-                title="Notas & Desempenho"
-                desc="Acompanhe de forma clara e detalhada todas as suas notas, médias e evolução ao longo do tempo. Visualize seu desempenho por disciplina, identifique pontos fortes e áreas que precisam de mais atenção."
-            />
+           <strong className="anime-left">
+             🎓 Bem-vindo ao INTRA – Sistema de Gestão Acadêmica do IPIL
+           </strong>
 
-            <OffcanvasHeader 
+            {/*<OffcanvasHeader 
                 toggle={toggleOffcanvas}
                 className="anime-left"
-            ></OffcanvasHeader>
+            ></OffcanvasHeader>*/}
 
         </div>
 
-        <div className={`${stl.body} `}>
+        <div className={stl.body}>
+
+          <p className={`${stl.about} anime-left`}>
+            O INTRA (Interface de Navegação e Tratamento de Registos Acadêmicos) é um sistema web desenvolvido com o objetivo de modernizar a gestão acadêmica do Instituto Politécnico Industrial de Luanda (IPIL). Através desta plataforma, professores, alunos e gestores têm acesso centralizado e seguro a todas as informações escolares essenciais, promovendo mais eficiência, transparência e organização.
+          </p>
+
+
+          <dl>
             
-            <strong className="anime-left">1º Trimestre</strong>
+            <dt className="anime-left">Principais Objetivos do Sistema</dt>
+            <dd className="anime-left">-- Automatizar o lançamento e consulta de notas;</dd>
+            <dd className="anime-left">-- Controlar presença e frequência dos alunos;</dd>
+            <dd className="anime-left">-- Gerar boletins, pautas e relatórios de forma rápida;</dd>
+            <dd className="anime-left">-- Facilitar a comunicação institucional;</dd>
+            <dd className="anime-left">-- Reduzir o uso de papel e processos manuais.</dd>
 
-            <div className={`${stl.card_note_home_page} anime-bottom`}>
+          </dl>
 
-              <strong>
-                  Tic
-              </strong>
+          <hr />
 
-              <div className={stl.card_note_home_page_content}>
-                  <h2>8.5</h2>
-                  <small>Nota Final</small>
-              </div>
+           <dl>
+            
+            <dt className="anime-left">Tecnologias Utilizadas</dt>
+            <small>O INTRA foi desenvolvido com tecnologias modernas e de código aberto:</small>
+            <dd className="anime-left">## Frontend: React.js + Bootstrap</dd>
+            <dd className="anime-left">## Backend: Node.js + TypeScript + Express</dd>
+            <dd className="anime-left">## Banco de dados: MySQL + Prisma ORM</dd>
+            <dd className="anime-left">## Outras ferramentas: GitHub, Postman, Swagger</dd>
 
-            </div>
+          </dl>
 
-            <div className={`${stl.card_note_home_page} anime-bottom`}>
+          <hr />
 
-              <strong>
-                  Tic
-              </strong>
+           <dl>
+            
+            <dt className="anime-left">Perfis de Usuário</dt>
+            
+            <dd className="anime-left"> -- Aluno: Consulta notas, frequência e boletins</dd>
+            <dd className="anime-left"> -- Professor: Lança notas, regista presenças, visualiza turmas</dd>
+            <dd className="anime-left"> -- Administrador: Gerencia usuários, cursos, turmas, disciplinas e relatórios</dd>
 
-              <div className={stl.card_note_home_page_content}>
-                  <h2>8.5</h2>
-                  <small>Nota Final</small>
-              </div>
+          </dl>
 
-            </div>
+          <hr />
 
-            <div className={`${stl.card_note_home_page} anime-bottom`}>
+           <dl>
+            
+            <dt className="anime-left">Benefícios para a Instituição</dt>
+            
+            <dd className="anime-left">## Melhoria na gestão dos dados escolares</dd>
+            <dd className="anime-left">## Redução de erros e perda de informações</dd>
+            <dd className="anime-left">## Acesso remoto às informações</dd>
+            <dd className="anime-left">## Otimização da rotina dos professores e da administração</dd>
+            <dd className="anime-left">## Preparação da escola para o futuro digital</dd>
 
-              <strong>
-                  Tic
-              </strong>
+          </dl>
 
-              <div className={stl.card_note_home_page_content}>
-                  <h2>8.5</h2>
-                  <small>Nota Final</small>
-              </div>
+          <hr />
 
-            </div>
+           <dl>
+            
+            <dt className="anime-left">Desenvolvido por:</dt>
 
-            <div className={`${stl.card_note_home_page} anime-bottom`}>
+            <small>-- Leonardo Mbuxi</small>
+            <dd className="anime-left">ºº Estudante do curso Técnico de Informática – IPIL</dd>
+            
 
-              <strong>
-                  Tic
-              </strong>
-
-              <div className={stl.card_note_home_page_content}>
-                  <h2>8.5</h2>
-                  <small>Nota Final</small>
-              </div>
-
-            </div>
-
+          </dl>
+          
         </div>
+
+        
 
       </Offcanvas>
     </>

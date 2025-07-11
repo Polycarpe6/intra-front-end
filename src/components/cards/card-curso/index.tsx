@@ -14,7 +14,9 @@ interface ICurso {
 
 export function CardCurso({id, index, nome}:ICurso) {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data;
 
     const [showModal, setShowModal] = React.useState(false)
 

@@ -8,11 +8,8 @@ import { ClasseID, Classe, Discipline, Home, Login, Notification, People, Profil
 
 export function AppRoute() {
 
-    const { data } = useContext(UserContext);
-
-    console.log(data);
-    
-
+    const storedData = localStorage.getItem("INTRADB");
+    const data: any = storedData ? JSON.parse(storedData) : {};
 
     if (!data.token)
         return (

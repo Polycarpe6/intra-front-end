@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { tokenHeaders, URLAPI } from '../index';
 
 interface DTOProTeacher {
     biNumber: string;
@@ -12,8 +12,20 @@ export async function postTeacher(teacherData: DTOProTeacher) {
         throw new Error('Dados do professor inválidos: Numero do BI e email são obrigatórios');
     }   
 
+    const data = tokenHeaders();
+            
+    const { token } = data;
+
     try {
-        const response = await axios.post(`${URLAPI}professores`, teacherData);
+        const response = await axios.post(
+                                        `${URLAPI}professores`, 
+                                        teacherData,
+                                        {
+                                            headers: {
+                                                Authorization: `Bearer ${token}`,
+                                            },
+                                        }
+                                    );
         
         if (!response.data) {
             throw new Error('Nenhum professor criado');

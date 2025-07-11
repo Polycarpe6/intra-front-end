@@ -41,10 +41,19 @@
                 align-items: center;
                 justify-content: center;
             
-                img {
+                > div {
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
+                    background-color: var(--text-color);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    span {
+                        font-size: var(--h2-font-size);
+                        color: var(--body-color-light);
+                    }
                 }
             }
 

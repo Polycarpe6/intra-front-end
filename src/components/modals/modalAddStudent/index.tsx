@@ -4,7 +4,7 @@ import { TitleAndDescription } from '../../titles';
 import { InputCodProcess, InputEmail } from '../../inputs';
 import { BsCheck2All, BsCloudArrowUp, BsXLg } from 'react-icons/bs';
 import React from 'react';
-import { postStudent } from '../../../api/endpoints';
+import { postMatricula, postStudent } from '../../../api/endpoints';
 
 
 interface IStudent {
@@ -20,21 +20,30 @@ export function ModalAddStudent(props: any) {
         email: ""
     })
 
-    const handleSubmit = async () => {
 
-        console.log(student)
+    const handleSubmit = async () => {
 
         const response = await postStudent(student);
 
         if (response) {
-            console.log("Student registered successfully:", response);
+
+            const respMatricula = await postMatricula(
+                
+                {
+                    alunoId: Number(response.id),
+                    turmaId: Number(props.classId)
+                }
+            )
+
+            alert("Aluno Registrado com Sucesso");
             setStudent({ processNumber: 0, email: "" });
-            props.onHide(); // Close the modal after submission
+            props.onHide();
+            window.location.reload()
+            
         } else {
             console.error("Failed to register student");
         }
 
-        console.log("Student data submitted:", student);
     };
 
     

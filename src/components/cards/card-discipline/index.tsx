@@ -16,20 +16,30 @@ interface DIODiscipline {
 
 export function CardDiscipline({ id, counter, name }: DIODiscipline) {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data;
 
     const [showModal, setShowModal] = React.useState(false);
 
     
 
     async function handelClickDelete(id: number) {
+
+        const confirm = window.confirm("Deseja realmente remover a disciplina?");
+
+        if (!confirm) return;
        
         try {
             const response = await deleteDiscipline(id);
-            <SuccessAlert 
-                message='Disciplina removida com sucesso'
-            />
-            // Atualize a interface aqui se necessário
+            
+            if (!response) {
+                return alert("Disciplina removida com sucesso! kkk!");
+                return window.location.reload();
+            }
+            
+            return alert("Disciplina removida com erro!")
+
         } catch (error) {
             console.error('Erro ao remover disciplina:', error);
         }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import stl from '../../login.module.css'
 import { completeProfileStudent, signupStudent } from '../../../../api/endpoints'
 import { BtnLogin, InputBI, InputCodProcess, InputEmail, InputPassword, TitleDescriptionLoginFrom } from '../../../../components'
@@ -21,10 +21,13 @@ export function Student() {
         biNumber: '',
     })
 
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
 
-        // console.log(student)
+        if (!student.biNumber || !student.email || !student.password || !student.processNumber ) 
+            return alert("Preencha todos os campos!!")
+
         
         try {
 
@@ -40,15 +43,16 @@ export function Student() {
                 processNumber: student.processNumber
             })
 
-            console.log(newStudentauth)
-            console.log("==========================================")
-            console.log(resStudentComplite)
+            if (!newStudentauth || !resStudentComplite) 
+                return alert("Houve um erro ao criar sua conta!!")
 
+            alert("Conta criada com sucesso, agora pode fazer o login!!")
+            navigate("/")
 
         } catch (error) {
-            console.error('Erro ao registrar aluno:', error);
-            // Aqui você pode mostrar uma mensagem de erro para o usuário
+            alert('Erro ao registrar aluno:', error);
         }
+
     }
     
     return (

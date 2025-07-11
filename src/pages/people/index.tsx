@@ -1,7 +1,7 @@
 import React from 'react'
 import stl from './people.module.css'
 import { getStudent, getTeacher } from '../../api/endpoints'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, CardPeople } from '../../components'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, CardPeople, TitleNotFound } from '../../components'
 
 export function People() {
 
@@ -70,8 +70,18 @@ export function People() {
                                     n_process={student.processNumber}
                                     name={student.nome}
                                     email={student.email}
+                                    role={student.role} 
                                 />
                             ))
+                        }
+
+                        {
+                            (allStudent.length === 0) && (
+                                <TitleNotFound
+                                    title={"Nenhum usuário encontrado!"}
+                                    desc={"Parece que não há usuários registrados na plataforma."}
+                                />
+                            )
                         }
 
                     </div>

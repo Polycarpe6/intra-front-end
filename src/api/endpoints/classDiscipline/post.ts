@@ -1,35 +1,32 @@
 import axios from 'axios';
 import { URLAPI, tokenHeaders } from '../index';
-import { validateCursoData } from './validate';
 
-interface DTOCurso {
-    nome: string;
+interface DTOClassDiscipline {
+    turma_id: number,
+    disciplina_id: number,
+    professor_id: number
 }
 
-export async function postCurso(cursoData: DTOCurso) {
-    const responseValidateCurso = await validateCursoData(cursoData);
-
-    if (!responseValidateCurso)
-        return;
+export async function postClassDiscipline(classDisciplineData: DTOClassDiscipline) {
 
     const data = tokenHeaders();
 
     const { token } = data;
 
-
     try {
         const response = await axios.post(
-            `${URLAPI}cursos`,
-            cursoData,
+            `${URLAPI}turma-disciplinas`,
+            classDisciplineData,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             }
         );
+        
         return response.data;
     } catch (error) {
-        console.error('Erro ao registrar curso:', error);
+        console.error('Erro ao registrar turma-disciplina:', error);
         throw error;
     }
 }

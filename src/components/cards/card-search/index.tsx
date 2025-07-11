@@ -9,6 +9,7 @@ import { useContext } from 'react';
 interface ICardSearchProps {
     placeholder: string;
     btnAddStudent?: boolean;
+    classId?: string | number;
     btnAddTeacher?: boolean;
     btnAddClassT?: boolean;
     btnAddDiscipline?: boolean;
@@ -27,6 +28,10 @@ interface ICardSearchProps {
 export function CardSearch({
     placeholder,
     btnAddStudent = false, 
+    classId,
+
+
+
     btnAddTeacher = false, 
     btnAddClassT = false, 
     btnCreateBlog = false, 
@@ -46,7 +51,9 @@ export function CardSearch({
     const [showModalCurso, setShowModalCurso] = React.useState(false);
     const [showModalTrimestre, setShowModalTrimestre] = React.useState(false);
 
-    const { user } = useContext(UserContext); 
+    const { data } = useContext(UserContext); 
+
+    const { user } = data;
     
     return (
         <article className={`${stl.card_search} anime-bottom`}>
@@ -99,6 +106,7 @@ export function CardSearch({
                             <ModalAddStudent
                                 show={showModalAddStudent}
                                 onHide={() => setShowModalAddStudent(false)}
+                                classId={classId}
                             />
                         </>
                     )

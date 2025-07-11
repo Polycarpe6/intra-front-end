@@ -8,8 +8,10 @@ import React from 'react';
 
 export function CardDisciplineTeacher() {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
 
+    const { user } = data;
+    
     return (
         <article 
             className={`${stl.card_discipline_teacher} anime-bottom`}

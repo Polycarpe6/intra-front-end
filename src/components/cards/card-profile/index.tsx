@@ -1,14 +1,85 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col_Xl_3 } from '../../col'
 import { Link } from 'react-router-dom'
 import stl from './card-profile.module.css'
 import { BsMortarboard } from 'react-icons/bs'
 import { UserContext } from '../../../context';
+import { getClasses, getStudent, getTeacher, getStudentById } from '../../../api/endpoints'
 
 
 export function CardProfile() {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = useContext(UserContext); 
+    const { user } = data;
+
+
+    const [listClasses, setListClasses] = React.useState<any[]>([]);
+    const [listStudents, setListStudents] = React.useState<any[]>([]);
+    const [listTeachers, setListTeachers] = React.useState<any[]>([]);
+
+    const [dataStudent, setDataStudent] = React.useState<any>()
+
+
+    if ( user.role === "admin" ) {
+
+
+        async function countClass() {
+            const response = await getClasses()
+
+            if (!response) return;
+
+            setListClasses(response);
+        }
+        
+
+        async function countStudent() {
+            const response = await getStudent()
+
+            if (!response) return;
+
+            setListStudents(response);
+        }
+
+        async function countTeacher() {
+            const response = await getTeacher()
+
+            if (!response) return;
+
+            setListTeachers(response);
+        }
+
+        React.useEffect(() => {
+            countClass();
+            countStudent();
+            countTeacher();
+        }, []);
+
+
+    }
+    
+
+    if ( user.role === "student" ) {
+
+        async function getDataStudent() {
+
+            const response = await getStudentById(user.id)
+
+            if (!response) return;
+
+            setDataStudent(response);
+        }
+
+
+
+
+        React.useEffect(() => {
+            getDataStudent();
+        }, []);
+    }
+
+    console.log(dataStudent)
+    // const { matriculas, aluno } = dataStudent
+
 
     return (
         <Col_Xl_3 className={`${stl.card_profile}`}>
@@ -20,21 +91,21 @@ export function CardProfile() {
                         <div>
                             <span>
                                 {
-                                    user.name[0]
+                                    user.nome[0]
                                 }
                             </span> 
                         </div>
                     </div>
                     <div className={stl.name_level}>
                         <Link to={"/profile"}>
-                            {user.name}
+                            {user.nome}
                         </Link>
                         <small>
                             <BsMortarboard />
                             <span className="phone-user-online">
                                 {
                                     (user.role === "student") && (
-                                        <>II10A - Nº Proc 34524</>
+                                        <>II10A - Nº Proc aluno</>
                                     )
                                 }
                                 {
@@ -44,7 +115,7 @@ export function CardProfile() {
                                 }
                                 {
                                     (user.role === "admin") && (
-                                        <>emailadmim@gmail.com</>
+                                        <>{user.email}</>
                                     )
                                 }
                             </span>
@@ -105,13 +176,30 @@ export function CardProfile() {
                         >
 
                             <li>
-                                <span>20</span>
-                                <small>Total de Professores</small>
+                                <span>
+                                    {
+                                        listTeachers.length < 10 ? `0${listTeachers.length}` : listTeachers.length
+                                    }
+                                </span>
+                                <small>Professores</small>
                             </li>
 
                             <li>
-                                <span>457</span>
-                                <small>Total de Alunos</small>
+                                <span>
+                                    {
+                                        listStudents.length < 10 ? `0${listStudents.length}` : listStudents.length
+                                    }
+                                </span>
+                                <small>Alunos</small>
+                            </li>
+
+                            <li>
+                                <span>
+                                    {
+                                        listClasses.length < 10 ? `0${listClasses.length}` : listClasses.length
+                                    }
+                                </span>
+                                <small>Turmas</small>
                             </li>
                             
                         </ul>
@@ -131,7 +219,7 @@ export function CardProfile() {
                             <strong>Bem-vindo(a) ao INTRA!</strong>
                             <p>
                                 <span>
-                                    Olá, aluno(a) {user.name}!
+                                    Olá, aluno(a) {user.nome}!
                                 </span>
 
                                 <span>
@@ -154,7 +242,7 @@ export function CardProfile() {
                             <strong>Bem-vindo(a) ao INTRA – Área do Professor!</strong>
                             <p>
                                 <span>
-                                    Olá, professor(a) {user.name}!
+                                    Olá, professor(a) {user.nome}!
                                 </span>
 
                                 <span>
@@ -177,7 +265,7 @@ export function CardProfile() {
                             <strong>Bem-vindo(a) ao INTRA – Painel Administrativo!</strong>
                             <p>
                                 <span>
-                                    Olá, administrador(a) {user.name}!
+                                    Olá, administrador(a) {user.nome}!
                                 </span>
 
                                 <span>

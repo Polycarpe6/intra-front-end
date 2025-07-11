@@ -1,9 +1,21 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { URLAPI, tokenHeaders } from '../index';
 
 export async function getStudent() {
+
+    const data = tokenHeaders();
+
+    const { token } = data
+
     try {
-        const response = await axios.get(`${URLAPI}alunos`);
+        const response = await axios.get(
+                                            `${URLAPI}alunos`,
+                                            {
+                                                headers: {
+                                                    Authorization: `Bearer ${token}`,
+                                                },
+                                            }
+                                        );
         if (!response.data) {
             throw new Error('Nenhum aluno encontrado');
         }

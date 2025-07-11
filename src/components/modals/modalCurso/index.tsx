@@ -29,7 +29,8 @@ export function ModalCurso(props: any) {
 
             if (response) {
                 props.onHide();
-                return alert("Curso Atualizado com sucesso!!!")
+                alert("Curso Atualizado com sucesso!!!")
+                return window.location.reload();
             }
 
 
@@ -41,7 +42,9 @@ export function ModalCurso(props: any) {
     
             if (response) {
                 props.onHide();
-                return alert("Curso registrado com sucesso!!!")
+                alert("Curso registrado com sucesso!!!")
+                return window.location.reload();
+
             }
             
         }

@@ -4,8 +4,8 @@ import stl from './card-people.module.css'
 import { UserContext } from '../../../context'
 import imgUser from '../../../assets/img/default.jpg'
 import { deleteStudent } from '../../../api/endpoints'
-import { BsFolder, BsPencil, BsTrash } from 'react-icons/bs'
-import { SuccessAlert } from '../../overview'
+import { BsFolder, BsPencil, BsPerson, BsTrash } from 'react-icons/bs'
+import { ModalUserProfile } from '../../modals/modalUserProfile'
 
 
 
@@ -14,12 +14,16 @@ interface ICardPeopleItem {
     n_process?: string | number
     name: string | null
     email: string
-    discipline?: string
+    role?: string
 }
 
-export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleItem) {
+export function CardPeople({id, n_process, name, email, role}:ICardPeopleItem) {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+    
+    const { user } = data;
+    
+    const [modalUserProfile, setModalUserProfile] = React.useState(false)
 
     async function handleDelete(id: number) {
 
@@ -29,13 +33,10 @@ export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleI
         const response = await deleteStudent(id);
 
         if (!response) {
-            <SuccessAlert 
-                message='Usuário deletado com sucesso'
-            />
-            console.log("");
-            
+            alert("Usuário deletado com sucesso")  
+            window.location.reload()          
         } else {
-            console.error("Erro ao deletar usuário");
+            alert("Erro ao deletar usuário");
         }
     }
 
@@ -43,7 +44,7 @@ export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleI
         <article 
             className={`${stl.card_people} anime-bottom`}
             style={{
-                paddingBottom: user.role !== "admin" ? "1.8rem" : "0"
+                paddingBottom: user.role !== "admin" ? "1.8rem" : "0",
             }}
         >
 
@@ -52,17 +53,29 @@ export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleI
                 <div className={`${stl.img_and_name} anime-bottom`}>
 
                     <div className={stl.img}>
-                        <Link to={`/profile/${id}`}>
-                            <img src={imgUser} alt="" />
-                        </Link>
+                        <div>
+                            <span>
+                                {name ? name[0] : "C"}
+                            </span>
+                        </div>
                     </div>
 
                     <div className={stl.name_email}>
-                        <Link to={`/profile/${id}`} className={stl.name}>
+                        <Link 
+                            to={`#`} 
+                            className={stl.name}
+                            onClick={() => setModalUserProfile(true)}
+                        >
                             {
                                 name ? name : "Conta não ativada"
                             }
                         </Link>
+
+                        <ModalUserProfile
+                            show={modalUserProfile}
+                            onHide={() => setModalUserProfile(false)}
+                            userId={id}
+                        />
 
                         <Link 
                             target='_blank' 
@@ -80,13 +93,33 @@ export function CardPeople({id, n_process, name, email, discipline}:ICardPeopleI
                 <div 
                     className={`${stl.n_process_or_discipline} anime-bottom`}
                 >
-                    <BsFolder />
-                    <strong>{n_process}</strong>
+                    <BsPerson />
+                    <strong>
+                        { (
+                            (email === "lucaspazito@gmail.com") ? "Administrador" : ((role === "student") ? "Aluno" : (
+                                    (role === "teacher") ? "Professor" : "Indisponivel"
+                                )
+                            )
+                        )}
+                    </strong>
                 </div>
+
+
+                {
+                    n_process && (
+
+                    <div 
+                        className={`${stl.n_process_or_discipline} anime-bottom`}
+                    >
+                        <BsFolder />
+                        <strong>{n_process}</strong>
+                    </div>
+                    )
+                }
 
             </div>
             {
-                (user.role === "admin") && (
+                (user.email === "lucaspazito@gmail.com") && (
                     <div className={stl.foot}>
 
                         <button

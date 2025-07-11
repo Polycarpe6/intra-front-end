@@ -7,7 +7,9 @@ import { UserContext } from '../../context';
 
 export function Header() {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data
 
     return (
         <header className={stl.header} id="header">
@@ -32,7 +34,7 @@ export function Header() {
                             <Link to={'/profile'}>
                                 <div>
                                     <span>
-                                        {user.name[0]}
+                                        {user.nome[0]}
                                     </span>
                                 </div>
                             </Link>
@@ -43,7 +45,7 @@ export function Header() {
                                 <Link to={'/profile'}>
                                     <span id="name-header">
                                         {
-                                            user.name
+                                            user.nome.split(" ")[0]
                                         }
                                     </span>
                                     <BsCaretDownFill />
@@ -53,19 +55,19 @@ export function Header() {
                                 <BsMortarboard />
                                 {
                                     (user.role === "student") && (
-                                        <span>II10A - Nº Proc 34524</span>
+                                        <span>Aluno</span>
                                     )
                                 }
 
                                 {
                                     (user.role === "teacher") && (
-                                        <span>emailprofessor@gmail.com</span>
+                                        <span>Professor</span>
                                     )
                                 }
 
                                 {
                                     (user.role === "admin") && (
-                                        <span>emailadmin@gmail.com</span>
+                                        <span>Administrador</span>
                                     )
                                 }
                             </small>

@@ -4,14 +4,15 @@ import Modal from 'react-bootstrap/Modal';
 import { TitleAndDescription } from '../../titles';
 import stl from './modalDisciplineTeacher.module.css';
 import { SelectDiscipline, SelectTeacher } from '../../inputs';
+import { postClassDiscipline } from '../../../api/endpoints';
 
 
 export function ModalDisciplineTeacher(props: any) {
 
     const [disciplineTeacher, setDisciplineTeacher] = React.useState({
-        "turmaId": 0,
-        "disciplinaId": 0,
-        "professorId": 0
+        "turma_id": 0,
+        "disciplina_id": 0,
+        "professor_id": 0
     })
 
     console.log(props);
@@ -20,17 +21,19 @@ export function ModalDisciplineTeacher(props: any) {
 
     async function handleDisciplineTeacher(turmaId: number) {
 
-        disciplineTeacher.turmaId = turmaId;
-        if (disciplineTeacher.disciplinaId === 0 || disciplineTeacher.professorId === 0) {
-            alert("Selecione uma disciplina e um professor");
-            return;
-        }
+        disciplineTeacher.turma_id = turmaId;
+        if (disciplineTeacher.disciplina_id === 0 || disciplineTeacher.professor_id === 0) 
+            return alert("Selecione uma disciplina e um professor");
 
+        const response = await postClassDiscipline(disciplineTeacher);
+
+        if (!response)
+            return alert("Erro ao registrar turma-disciplina");
+
+        alert("Turma-disciplina registrada com sucesso");
+        props.onHide();
+        window.location.reload();
         
-
-        
-
-        console.log(disciplineTeacher)
     }
 
 
@@ -58,13 +61,13 @@ export function ModalDisciplineTeacher(props: any) {
             <div className={`${stl.body} anime-bottom`}>
                 
                 <SelectTeacher
-                    value={disciplineTeacher.professorId}
-                    onChange={professorId => setDisciplineTeacher({ ...disciplineTeacher, professorId: Number(professorId) })}
+                    value={disciplineTeacher.professor_id}
+                    onChange={professorId => setDisciplineTeacher({ ...disciplineTeacher, professor_id: Number(professorId) })}
                 />
 
                 <SelectDiscipline
-                    value={disciplineTeacher.disciplinaId}
-                    onChange={disciplinaId => setDisciplineTeacher({ ...disciplineTeacher, disciplinaId: Number(disciplinaId) })}
+                    value={disciplineTeacher.disciplina_id}
+                    onChange={disciplinaId => setDisciplineTeacher({ ...disciplineTeacher, disciplina_id: Number(disciplinaId) })}
                 />
 
             </div>

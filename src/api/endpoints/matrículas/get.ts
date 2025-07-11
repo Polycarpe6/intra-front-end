@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { URLAPI, tokenHeaders } from '../index';
+import { tokenHeaders, URLAPI } from '../index';
 
-export async function getTrimestres() {
-
+export async function getMatriculas() {
+    
     const data = tokenHeaders();
 
     const { token } = data
 
     try {
-        const response = await axios.get(`${URLAPI}trimestres`, {
+        const response = await axios.get(`${URLAPI}matriculas`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
         });
         return response.data;
     } catch (error) {
-        console.error('Houve um erro ao buscar os trimestres:', error);
+        console.error('Error fetching matriculas:', error);
         throw error;
     }
 }

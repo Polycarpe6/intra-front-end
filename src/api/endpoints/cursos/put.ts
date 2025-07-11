@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { URLAPI, tokenHeaders } from '../index';
 import { validateCursoData } from './validate';
 
 interface DTOCurso {
@@ -8,17 +8,23 @@ interface DTOCurso {
 }
 
 export async function putCurso(cursoData: DTOCurso) {
-
     const responseValidateCurso = await validateCursoData(cursoData);
-    
-    if (!responseValidateCurso)
-        return;
+
+    if (!responseValidateCurso) return;
+
+    const data = tokenHeaders();
+
+    const { token } = data;
 
     try {
-        const response = await axios.put(`${URLAPI}cursos/${cursoData.id}`, cursoData);
+        const response = await axios.put(`${URLAPI}cursos/${cursoData.id}`, cursoData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
-        alert('Houve um erro ao atualizar o curso:');
+        alert('Houve um erro ao atualizar o curso.');
         throw error;
     }
 }

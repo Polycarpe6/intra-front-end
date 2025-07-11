@@ -25,7 +25,7 @@ export function ModalTeacher(props: any) {
 
     async function handleTeacher() {
 
-        dataTeacher.url = "http://localhost:5173/signup/teacher"
+        dataTeacher.url = "http://localhost:5173/signup/teacher/"
 
         console.log(dataTeacher)
 

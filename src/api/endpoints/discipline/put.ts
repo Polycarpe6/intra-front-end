@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { tokenHeaders, URLAPI } from '../index';
 import { validateDiscipline } from './validate';
 
 interface DTODisciplina {
@@ -14,8 +14,21 @@ export async function putDisciplinas(disciplinaData: DTODisciplina) {
     if (!responseValidation)
         return;
 
+    const data = tokenHeaders();
+
+    const { token } = data;
+
     try {
-        const response = await axios.put(`${URLAPI}disciplinas/${disciplinaData.id}`, disciplinaData);
+        const response = await axios.put(
+                                            `${URLAPI}disciplinas/${disciplinaData.id}`, 
+                                            disciplinaData,
+                                            {
+                                                headers: {
+                                                    Authorization: `Bearer ${token}`,
+                                                },
+                                            }
+                                        
+                                        );
         return response.data;
     } catch (error) {
         console.error('Error updating discipline:', error);

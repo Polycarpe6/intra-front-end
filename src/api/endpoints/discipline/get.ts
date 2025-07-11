@@ -1,22 +1,24 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
-
+import { URLAPI, tokenHeaders } from '../index';
 
 export async function getDiscipline() {
+
+    const data = tokenHeaders();
+
+    const { token } = data
+
     try {
-        const response = await axios.get(`${URLAPI}disciplinas`);
-        if (!response.data) {
-            throw new Error('Nenhuma disciplina encontrada');
-        }
-        if (!Array.isArray(response.data)) {
-            throw new Error('Resposta inválida: esperado um array de disciplinas');
-        }
-        if (response.data.length === 0) {
-            throw new Error('Nenhuma disciplina encontrada');
-        }
-        return response.data;
+        const response = await axios.get(`${URLAPI}disciplinas`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (response)
+            return response.data;
+
     } catch (error) {
-        console.error('Erro ao buscar disciplinas:', error);
+        // console.error('Erro ao buscar disciplinas:', error);
         throw error;
     }
 }

@@ -1,5 +1,15 @@
 # React + TypeScript + Vite
 
+<!-- 
+  {
+  "tipo": "professor",
+  "peso": 14,
+  "turma_disciplina_id": 1,
+  "trimestre_id": 1,
+  "alunoId": 2
+}
+ -->
+
 <!-- 'https://school.baikasaude.click/' -->
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

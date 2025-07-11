@@ -4,19 +4,22 @@ import { Link } from 'react-router-dom'
 import { Tab, Tabs } from 'react-bootstrap'
 import img_coord from '../../../assets/img/default.jpg'
 import { BsAward, BsBook, BsBookmark, BsMortarboard, BsPlus } from 'react-icons/bs'
-import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, CardDisciplineTeacher, ModalDisciplineTeacher, CardPeople, CardNoteStudent } from '../../../components'
+import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, CardDisciplineTeacher, ModalDisciplineTeacher, CardPeople, CardNoteStudent, TitleNotFound } from '../../../components'
 import { UserContext } from '../../../context'
-import { getClasseById, getStudent } from '../../../api/endpoints'
+import { getClasseById, getStudent, getStudentByLevel } from '../../../api/endpoints'
 import { useParams } from 'react-router-dom'
 
 
 export function ClasseID() {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data;
   
     const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
 
     const [listStudent, setListStudent] = React.useState([])
+
 
     const [classe, setClasse] = React.useState<any>({});
 
@@ -33,20 +36,25 @@ export function ClasseID() {
             console.error("Erro ao buscar a turma");
         }
 
+        console.log(classe)
+
     }
 
     React.useEffect(() => {
         getClasse();
     }, [id]);
+
+    const { turmaDisciplinas } = classe
+
     
-    const getAllStudents = async () => {
+    const getAllStudentByLevel = async () => {
     
-            const students: any = await getStudent();
+            const students: any = await getStudentByLevel(Number(id));
             setListStudent(students);
     }
 
     React.useEffect(() => {
-            getAllStudents();
+            getAllStudentByLevel();
     }, []);
 
     const cursoName = classe.curso ? classe.curso.nome : "Curso não definido";
@@ -163,17 +171,15 @@ export function ClasseID() {
                                 <div className={stl.head}>
 
                                     <TitleDescLink 
-                                        title={"Lista da Turma IG13A"}
-                                        desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni praesentium recusandae eveniet ut! Dolorum esse at excepturi repellendus sit beatae, laudantium aliquam reiciendis earum iure, incidunt officia, vel quibusdam consequatur!"}
+                                        title={`Alunos da turma ${className}`}
+                                        desc={"Aqui voce consegue ver todos os alunos dessa turma"}
                                         linkPath={""}
                                     />
 
                                     <CardSearch 
                                         placeholder={"Busca alunos..."}
-                                        sugest1={"Todos"}
-                                        sugest2={"Com Melhor desempenho"}
-                                        sugest3={"Sem Melhor desempenho"}
                                         btnAddStudent={true}
+                                        classId={id}
                                     />
 
                                 </div>
@@ -190,6 +196,16 @@ export function ClasseID() {
                                                 email={student.email}
                                             />
                                         ))
+                                    }
+
+
+                                    {
+                                        (listStudent.length === 0) && (
+                                            <TitleNotFound
+                                                title={"Nenhum aluno encontrado!"}
+                                                desc={"Parece que não há alunos registrados nessa turma."}
+                                            />
+                                        )
                                     }
 
                                 </div>
@@ -209,7 +225,7 @@ export function ClasseID() {
                                     />
 
                                     {
-                                        user.role === "admin" && (
+                                        (user.role === "admin") && (
                                             <>
                                                 <button
                                                     className={stl.btn_add_discipline_teacher}
@@ -236,21 +252,16 @@ export function ClasseID() {
                                     className={`anime-bottom ${stl.list_discipline_teacher}`}
                                 >
 
-                                    <CardDisciplineTeacher/>
+                                    {/*{
+                                        turmaDisciplinas.map((m) => {
+                                            return (
+                                                <CardDisciplineTeacher/>
+                                            )
+                                        })
+                                    }
+*/}
+                                    
 
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
-
-                                    <CardDisciplineTeacher/>
 
                                 </div>
 
@@ -260,7 +271,7 @@ export function ClasseID() {
                             </Tab>
 
                             {
-                                (user.role === "teacher") && (
+                                (user.role === "admin") && (
 
                                     <Tab 
                                         eventKey="Mini-Pauta" 

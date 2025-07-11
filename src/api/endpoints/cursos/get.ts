@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
-
-
+import { tokenHeaders, URLAPI } from '../index';
 
 export async function getCursos() {
+    
+    const data = tokenHeaders();
 
-    const token = localStorage.getItem('token');
+    const { token } = data
 
     try {
         const response = await axios.get(`${URLAPI}cursos`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`
             },
         });
         return response.data;

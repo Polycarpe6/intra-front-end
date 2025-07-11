@@ -13,7 +13,7 @@ type ModalClassProps = {
     id?: number;
     nome: string;
     ano: string | number;
-    curso_id: number;
+    cursoId: number;
   };
 };
 
@@ -33,7 +33,7 @@ export function ModalClass(props: ModalClassProps) {
         id: props.classToEdit.id,
         nome: props.classToEdit.nome,
         ano: String(props.classToEdit.ano),
-        cursoId: props.classToEdit.curso_id,
+        cursoId: props.classToEdit.cursoId,
       });
     } else {
       setDataClass({ id: 0, nome: "", ano: "", cursoId: 0 });
@@ -55,17 +55,23 @@ export function ModalClass(props: ModalClassProps) {
       dataToSend = {
         id: dataClass.id,
         nome: dataClass.nome,
-        curso_id: dataClass.cursoId,
+        cursoId: dataClass.cursoId,
         ano: anoFormatado,
       };
 
       response = await putClasse(dataToSend);
 
+      if (!response) 
+        return alert("Erro ao editar turma!");
+
+      alert("Turma editada com sucesso!");
+      return window.location.reload();
+
     } else {
 
       dataToSend = {
         nome: dataClass.nome,
-        curso_id: dataClass.cursoId,
+        cursoId: dataClass.cursoId,
         ano: anoFormatado,
       };
 
@@ -77,6 +83,7 @@ export function ModalClass(props: ModalClassProps) {
       alert(props.classToEdit ? "Turma editada com sucesso!" : "Turma criada com sucesso!");
       props.onHide();
       setDataClass({ id: 0, nome: "", ano: "", cursoId: 0 });
+      return window.location.reload();
     } else {
       alert("Erro ao salvar turma. Tente novamente.");
     }

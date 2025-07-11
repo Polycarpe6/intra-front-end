@@ -1,10 +1,22 @@
 export const URLAPI = "https://school.baikasaude.click/";
 // export const URLAPI = "https://bhbzdtk5-3000.uks1.devtunnels.ms/"
 
+export function tokenHeaders() {
+    
+    const storedData = localStorage.getItem("INTRADB");
+    const data: any = storedData ? JSON.parse(storedData) : {};
+
+    return data;
+}
+
+export * from './classDiscipline/post';
+
 
 export * from './student/get';
 export * from './student/post';
-export * from './student/put';
+export * from './student/post';
+export * from './student/getById';
+export * from './student/getByLevel';
 export * from './student/delete';
 export * from './student/completeProfile';
 
@@ -39,3 +51,7 @@ export * from './teacher/post'
 export * from './trimestre/get'
 export * from './trimestre/delete'
 export * from './trimestre/post'
+
+
+export * from './matrículas/get'
+export * from './matrículas/post'

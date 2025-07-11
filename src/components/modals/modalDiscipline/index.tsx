@@ -7,7 +7,7 @@ import { BsCheck2All, BsXLg } from 'react-icons/bs';
 import { postDisciplinas, putDisciplinas } from '../../../api/endpoints';
 
 export function ModalDiscipline(props: any) {
-    const { showAlert, hideAlert } = props;
+
 
     const [discipline, setDiscipline] = React.useState(
         props.disciplineToEdit || { id: "", nome: "" }
@@ -21,19 +21,24 @@ export function ModalDiscipline(props: any) {
         let response;
 
         if (!discipline.nome) 
-            return showAlert("Preencha o nome da disciplina!", "warning");
+            return alert("Preencha o nome da disciplina!");
 
         if (discipline.id) {
             response = await putDisciplinas({ id: discipline.id, nome: discipline.nome });
             if (!response) 
-                return showAlert("Não foi possível atualizar a disciplina!", "danger")
+                return alert("Não foi possível atualizar a disciplina!")
+
+            alert("Disciplina atualizada com sucesso!")
+            return window.location.reload();
             
         } else {
             response = await postDisciplinas({ nome: discipline.nome });
-            if (!response) {
-                alert("Erro ao registrar disciplina!");
-                return;
-            }
+            if (!response) 
+                return alert("Erro ao registrar disciplina!");
+
+            alert("Disciplina registrada com sucesso!")
+            return window.location.reload();
+            
         }
 
         setTimeout(() => {

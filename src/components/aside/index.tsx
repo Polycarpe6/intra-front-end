@@ -8,7 +8,8 @@ import { BsArrowBarRight } from 'react-icons/bs';
 import { adminRoutes, teacherRoutes, studentRoutes } from './routes';
 
 export function Aside() {
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext); 
+    const { user } = data;
     const [modalShow, setModalShow] = React.useState(false);
     const { showAside } = HookShowAside()
 

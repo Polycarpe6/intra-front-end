@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { URLAPI, tokenHeaders } from '../index';
 import { validateDiscipline } from './validate';
 
 interface DTODisciplina {
@@ -7,14 +7,24 @@ interface DTODisciplina {
 }
 
 export async function postDisciplinas(disciplinaData: DTODisciplina) {
-
+    
     const responseValidation = await validateDiscipline(disciplinaData);
 
-    if (!responseValidation)
-        return;
+    if (!responseValidation) return;
+
+    const data = tokenHeaders();
+
+    const { token } = data;
 
     try {
-        const response = await axios.post(`${URLAPI}disciplinas`, disciplinaData);
+        const response = await axios.post(`${URLAPI}disciplinas`, 
+            disciplinaData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
         return response.data;
     } catch (error) {
         console.error('Erro ao registrar disciplina:', error);

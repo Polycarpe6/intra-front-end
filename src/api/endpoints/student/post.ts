@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { URLAPI } from '../index';
+import { tokenHeaders, URLAPI } from '../index';
 
 interface DTOStudent {
-    processNumber: number,
+    processNumber: number | string,
     email: string
 }
 
@@ -12,8 +12,20 @@ export async function postStudent(alunoData: DTOStudent) {
         return alert('Dados do aluno inválidos: nome e email são obrigatórios');
     
 
+    const data = tokenHeaders();
+    
+    const { token } = data;
+
     try {
-        const response = await axios.post(`${URLAPI}alunos`, alunoData);
+        const response = await axios.post(
+                                            `${URLAPI}alunos`, 
+                                            alunoData,
+                                            {
+                                                headers: {
+                                                    Authorization: `Bearer ${token}`,
+                                                },
+                                            }
+                                        );
         if (!response.data) {
             throw new Error('Nenhum aluno criado');
         }

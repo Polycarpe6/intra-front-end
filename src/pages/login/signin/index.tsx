@@ -1,6 +1,6 @@
 import React from 'react';
 import stl from '../login.module.css';
-import { login } from '../../../api/endpoints';
+import { login, getMatriculas } from '../../../api/endpoints';
 import { Link, useNavigate } from 'react-router-dom';
 import { BtnLogin, InputEmail, InputPassword, TitleDescriptionLoginFrom } from '../../../components';
 import { UserContext } from '../../../context';
@@ -19,13 +19,10 @@ export function SignIn() {
     const handleSubmit = async () => {
 
         try {
+
             const response = await login(loginData);
 
-            console.log('Resposta do login:', response);
-
             if (response && response.token) {
-
-               
 
                 const INTRADB = {
 
@@ -40,17 +37,14 @@ export function SignIn() {
                     }
                 };
 
-
-
                 INTRADB.token = response.token
                 INTRADB.user.id = response.user.id
                 INTRADB.user.nome = response.user.nome
                 INTRADB.user.email = response.user.email
                 INTRADB.user.authId = response.user.authId  
                 INTRADB.user.createdAt = response.user.createdAt
-                INTRADB.user.role = response.user.email === "lucaspazito@gmail.com" ? "admin" : "student"
+                INTRADB.user.role = response.user.role
 
-                
                 setData(
                     {
                         token: INTRADB.token,
@@ -70,6 +64,7 @@ export function SignIn() {
             } else {
                 alert('Login inválido.');
             }
+            
         } catch (error) {
             console.error('Erro no login:', error);
             alert('Erro ao tentar fazer login.');

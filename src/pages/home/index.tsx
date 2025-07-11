@@ -1,15 +1,16 @@
 import React from 'react'
 import stl from './home.module.css'
-import { HailySchedule } from '../../api/mock'
-import { CardBlog, CardClasse, CardProfile, CardSearch, Col_Xl_3, Footer, Schedules, TitleAndDescription, TitleDescLink } from '../../components'
+import { CardBlog, CardClasse, CardPeople, CardProfile, CardSearch, Col_Xl_3, TitleAndDescription, TitleDescLink, TitleNotFound } from '../../components'
 import { UserContext } from '../../context';
-import { getClasses } from '../../api/endpoints';
+import { getTeacher } from '../../api/endpoints';
 
 
 
 export function Home() {
 
-    const { user } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
+
+    const { user } = data
 
     const [blogs, setBlogs] = React.useState(
         [
@@ -94,11 +95,11 @@ export function Home() {
         ]
     )    
 
-    const [listClasse, setlistClasse] = React.useState([]);
+    const [listTeacher, setlistTeacher] = React.useState<any[]>([]);
             
     const getAllClasses = async () => {
-        const classes: any = await getClasses();
-        setlistClasse(classes);
+        const classes: any = await getTeacher();
+        setlistTeacher(classes);
     }
     
     React.useEffect(() => {
@@ -214,7 +215,59 @@ export function Home() {
                         </>
                     )
                 }
-            
+
+
+                {
+                    (user.role === "admin") && (
+                        <>
+                        
+                            <TitleDescLink
+                                title={"Professores"}
+                                desc={"Veja alguns professores que foram registrado no sistema!!"}
+                                linkPath={"/people"}
+                            />
+
+                            {
+                                listTeacher.map((teacher: any, index: number) => {
+
+
+                                    if (teacher.email !== "lucaspazito@gmail.com") {
+                                        return (
+                                            <CardPeople 
+                                                key={teacher.id}
+                                                id={teacher.id}
+                                                n_process={teacher.processNumber}
+                                                name={teacher.nome}
+                                                email={teacher.email}
+                                            />
+                                        )
+                                    }
+
+                                    
+                                })
+
+
+                                // listTeacher.map((teacher: any) => (
+                                //     
+                                // ))
+                            }
+
+                            {
+                                ( (listTeacher.length === 1) && (listTeacher[0].email === "lucaspazito@gmail.com") ) && (
+                                    <TitleNotFound
+                                        title={"Apenas o administrador está registrado!"}
+                                        desc={"Parece que não há professores registrados na plataforma."}
+                                    />
+                                )
+                            }
+
+                            
+                            
+                            
+                            
+                        </>
+                    )
+                }            
                 
 
                     
@@ -233,7 +286,7 @@ export function Home() {
                     btnCreateBlog={true}
                 />
 
-               {
+               {/* {
                     blogs.map((blog) => {
 
                         return (
@@ -261,7 +314,7 @@ export function Home() {
                             <p>Crie o primeiro blog!</p>
                         </div>
                     )
-               }
+               } */}
 
 
             </section>
