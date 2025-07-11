@@ -34,9 +34,9 @@ export const teacherRoutes: IRoutes[] = [
 
 ];
 
-export const studentRoutes: IRoutes[] = [
+export const studentRoutes: (id: number) => IRoutes[] = (id) => [
     { path: "/", icon: <BsHouse />, label: "Início" },
     { path: "/search", icon: <BsSearch />, label: "Explore" },
-    { path: "/classe/:id", icon: <BsMortarboard />, label: "Turma" },
+    { path: "/classe/"+id, icon: <BsMortarboard />, label: "Turma" },
     { path: "/notification", icon: <BsBell />, label: "Novidades" }
 ];

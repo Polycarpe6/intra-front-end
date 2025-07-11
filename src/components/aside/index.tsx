@@ -6,10 +6,10 @@ import { HookShowAside } from '../../hooks';
 import { ModalToEndSession } from '../modals';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { adminRoutes, teacherRoutes, studentRoutes } from './routes';
+import { useUser } from '../../hooks/useUser';
 
 export function Aside() {
-    const { data } = React.useContext(UserContext); 
-    const { user } = data;
+    const { data: { user }, dataStudent } = useUser();
     const [modalShow, setModalShow] = React.useState(false);
     const { showAside } = HookShowAside()
 
@@ -20,12 +20,11 @@ export function Aside() {
             case "teacher":
                 return teacherRoutes;
             case "student":
-                return studentRoutes;
+                return studentRoutes(dataStudent?.matricula[0].turma.id || 0);
             default:
                 return [];
         }
     };
-
 
     return (
         <aside 

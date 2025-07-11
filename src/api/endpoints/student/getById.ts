@@ -2,7 +2,7 @@ import axios from 'axios';
 import { URLAPI, tokenHeaders } from '../index';
 
 
-interface Tests {
+export interface Tests {
     id: number,
     tipo: string,
     data: string
