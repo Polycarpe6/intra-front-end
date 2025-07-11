@@ -3,11 +3,12 @@ import { BsCheck2All, BsCheckLg, BsPlus, BsXLg } from 'react-icons/bs';
 import Modal from 'react-bootstrap/Modal';
 import { TitleAndDescription } from '../../titles';
 import stl from './modalMiniPauta.module.css';
+import { InputNote } from '../../inputs';
 
 
 
 export function ModalMiniPauta(props: any) {
-    
+
 
     return (
         <Modal
@@ -22,18 +23,20 @@ export function ModalMiniPauta(props: any) {
                 <TitleAndDescription
                     title={"Mini pauta"}
                     desc={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime dolor dicta accusamus, officia consectetur rerum tempora earum. Iusto nostrum amet cupiditate excepturi est laborum quis velit a iste. Totam, quisquam."}
-                    
+
                 />
-                
+
                 <button onClick={props.onHide}>
                     <BsXLg />
                 </button>
             </div>
 
             <div className={`${stl.body} anime-bottom`}>
-                
-                
-
+                <InputNote
+                    placeholder="PP3"
+                    value={0}
+                    onChange={(e) =>  {}}
+                />
             </div>
 
             <div className={`${stl.foot} anime-bottom`}>
@@ -43,7 +46,6 @@ export function ModalMiniPauta(props: any) {
                     <span>Registrar</span>
                 </button>
             </div>
-
         </Modal>
     );
 }
