@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import { InputNote } from '../../inputs';
 import { AlunoComMatriculaETestes } from '../../../pages';
+import { ModalMiniPauta } from '../../modals';
 
 export function CardNoteStudent({ props, index, discipline }: { props: AlunoComMatriculaETestes, index: number, discipline: number | null }) {
     const [open, setOpen] = useState('');
@@ -75,6 +76,8 @@ export function CardNoteStudent({ props, index, discipline }: { props: AlunoComM
         setIsSaving(false);
     }
 
+    const [modalShowMinipauta, setModalShowMinipauta] = React.useState(false)
+
     return (
         <Accordion flush open={open} toggle={toggle} className={stl.card_note_students}>
             <AccordionItem className={stl.item} onMouseLeave={saveAllNotas}>
@@ -106,6 +109,17 @@ export function CardNoteStudent({ props, index, discipline }: { props: AlunoComM
                             disabled
                         />
                         {isSaving && <small className={stl.saving}>Salvando...</small>}
+
+                        <button
+                            onClick={() => setModalShowMinipauta(true)}
+                        >
+                            Editar
+                        </button>
+
+                        <ModalMiniPauta
+                            show={modalShowMinipauta}
+                            onHide={() => setModalShowMinipauta(false)}
+                        />
                     </div>
                 </AccordionBody>
             </AccordionItem>

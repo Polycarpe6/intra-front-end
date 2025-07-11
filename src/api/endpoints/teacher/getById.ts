@@ -44,7 +44,7 @@ export interface IProfessorById {
   authId: string
 }
 
- interface TurmaProfessor {
+interface TurmaProfessor {
   id: number
   turmaId: number
   disciplinaId: number
