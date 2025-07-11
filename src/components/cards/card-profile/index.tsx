@@ -4,19 +4,7 @@ import { Link } from 'react-router-dom'
 import stl from './card-profile.module.css'
 import { BsMortarboard } from 'react-icons/bs'
 import { UserContext } from '../../../context';
-import { getClasses, getStudent, getTeacher, getStudentById, getTeacherById } from '../../../api/endpoints'
-
-
-interface ITeacher {
-    id: number;
-    nome: string;
-    email: string;
-    createdAt: string;
-    authId: string;
-    turmaDisciplinas: [];
-    turmas:[],
-    alunos: []
-}
+import { getClasses, getStudent, getTeacher, getStudentById, getTeacherById, IProfessorById } from '../../../api/endpoints'
 
 export function CardProfile() {
 
@@ -29,7 +17,7 @@ export function CardProfile() {
     const [listTeachers, setListTeachers] = React.useState<any[]>([]);
 
     const [dataStudent, setDataStudent] = React.useState<any>()
-    const [dataTeacher, setDataTeacher] = React.useState<ITeacher | null>(null)
+    const [dataTeacher, setDataTeacher] = React.useState<IProfessorById | null>(null)
 
 
     useEffect(() => {
@@ -83,7 +71,7 @@ export function CardProfile() {
 
                 if (!result) return;
 
-                setDataTeacher(result as ITeacher)
+                setDataTeacher(result as IProfessorById)
             }
 
             getDataTeacher()
