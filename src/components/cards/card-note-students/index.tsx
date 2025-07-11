@@ -17,15 +17,14 @@ export function CardNoteStudent({
 }: {
     props: AlunoComMatriculaETestes;
     index: number;
-    discipline: number | null;
+    discipline: number  | null;
+
 }) {
     const [open, setOpen] = useState('');
     const toggle = (id: any) => setOpen(open === id ? '' : id);
 
     const [isSaving, setIsSaving] = useState(false);
     const [modalShowMinipauta, setModalShowMinipauta] = useState(false);
-
-    if (!discipline) return null;
 
     const [notes, setNotes] = useState({
         pp1: props.testes.find(t => t.tipo === 'pp1')?.peso || 0,
@@ -45,11 +44,11 @@ export function CardNoteStudent({
     };
 
     async function salvarNota(tipo: 'pp1' | 'pp2' | 'pp3', peso: number) {
-        if (!discipline || peso < 0 || peso > 20) return;
+        if (peso < 0 || peso > 20) return;
 
         const testeId = notes.ids[tipo];
         const body = {
-            turma_disciplina_id: 2,
+            turma_disciplina_id: discipline,
             trimestre_id: 1,
             tipo,
             peso,
@@ -57,7 +56,7 @@ export function CardNoteStudent({
         };
 
         console.log(body);
-        
+
 
         try {
             setIsSaving(true);
@@ -105,67 +104,69 @@ export function CardNoteStudent({
     }
 
     return (
-        <Accordion flush open={open} toggle={toggle} className={stl.card_note_students}>
-            <AccordionItem className={stl.item}>
-                <AccordionHeader targetId="1" className={stl.head}>
-                    <div className={stl.number}><strong>Nº</strong><span>{index}</span></div>
-                    <div className={stl.n_process}><strong>Nº Proces</strong><span>{props.processNumber}</span></div>
-                    <div className={stl.fullname}><strong>Nome completo</strong><span>{props.nome}</span></div>
-                </AccordionHeader>
-                <AccordionBody accordionId="1" className={stl.body}>
-                    <div className={stl.card_notes_header}>
-                        <span>Notas</span>
-                        <button
-                            className="btn btn-sm btn-primary"
-                            onClick={() => setModalShowMinipauta(true)}
-                        >
-                            Lançar Nota
-                        </button>
-                    </div>
-                    <div className={stl.card_notes_values}>
-                        <InputNote
-                            placeholder="PP1"
-                            value={notes.pp1}
-                            onChange={(e) =>
-                                setNotes(prev => ({ ...prev, pp1: validate(Number(e.target.value)) }))
-                            }
-                            onBlur={() => salvarNota('pp1', notes.pp1)}
-                        />
-                        <InputNote
-                            placeholder="PP2"
-                            value={notes.pp2}
-                            onChange={(e) =>
-                                setNotes(prev => ({ ...prev, pp2: validate(Number(e.target.value)) }))
-                            }
-                            onBlur={() => salvarNota('pp2', notes.pp2)}
-                        />
-                        <InputNote
-                            placeholder="PP3"
-                            value={notes.pp3}
-                            onChange={(e) =>
-                                setNotes(prev => ({ ...prev, pp3: validate(Number(e.target.value)) }))
-                            }
-                            onBlur={() => salvarNota('pp3', notes.pp3)}
-                        />
-                        <InputNote
-                            placeholder="MT1"
-                            value={mt1}
-                            disabled
-                        />
-                    </div>
+        <>
+            <Accordion flush open={open} toggle={toggle} className={stl.card_note_students}>
+                <AccordionItem className={stl.item}>
+                    <AccordionHeader targetId="1" className={stl.head}>
+                        <div className={stl.number}><strong>Nº</strong><span>{index}</span></div>
+                        <div className={stl.n_process}><strong>Nº Proces</strong><span>{props.processNumber}</span></div>
+                        <div className={stl.fullname}><strong>Nome completo</strong><span>{props.nome}</span></div>
+                    </AccordionHeader>
+                    <AccordionBody accordionId="1" className={stl.body}>
+                        <div className={stl.card_notes_header}>
+                            <span>Notas</span>
+                            <button
+                                className="btn btn-sm btn-primary"
+                                onClick={() => setModalShowMinipauta(true)}
+                            >
+                                Lançar Nota
+                            </button>
+                        </div>
+                        <div className={stl.card_notes_values}>
+                            <InputNote
+                                placeholder="PP1"
+                                value={notes.pp1}
+                                onChange={(e) =>
+                                    setNotes(prev => ({ ...prev, pp1: validate(Number(e.target.value)) }))
+                                }
+                                onBlur={() => salvarNota('pp1', notes.pp1)}
+                            />
+                            <InputNote
+                                placeholder="PP2"
+                                value={notes.pp2}
+                                onChange={(e) =>
+                                    setNotes(prev => ({ ...prev, pp2: validate(Number(e.target.value)) }))
+                                }
+                                onBlur={() => salvarNota('pp2', notes.pp2)}
+                            />
+                            <InputNote
+                                placeholder="PP3"
+                                value={notes.pp3}
+                                onChange={(e) =>
+                                    setNotes(prev => ({ ...prev, pp3: validate(Number(e.target.value)) }))
+                                }
+                                onBlur={() => salvarNota('pp3', notes.pp3)}
+                            />
+                            <InputNote
+                                placeholder="MT1"
+                                value={mt1}
+                                disabled
+                            />
+                        </div>
 
-                    {isSaving && <small className={stl.saving}>Salvando notas...</small>}
+                        {isSaving && <small className={stl.saving}>Salvando notas...</small>}
 
-                    {modalShowMinipauta && (
-                        <ModalMiniPauta
-                            show={modalShowMinipauta}
-                            onHide={() => setModalShowMinipauta(false)}
-                            alunoId={props.id}
-                            discipline={discipline}
-                        />
-                    )}
-                </AccordionBody>
-            </AccordionItem>
-        </Accordion>
+                        {modalShowMinipauta && (
+                            <ModalMiniPauta
+                                show={modalShowMinipauta}
+                                onHide={() => setModalShowMinipauta(false)}
+                                alunoId={props.id}
+                                discipline={discipline}
+                            />
+                        )}
+                    </AccordionBody>
+                </AccordionItem>
+            </Accordion>
+        </>
     );
 }

@@ -44,9 +44,13 @@ export interface AlunoComMatriculaETestes {
 
 export function ClasseID() {
 
+    const { id } = useParams();
+
+    if (!id) return null;
     const { data: { user }, dataStudent, studentClass, dataTeacher } = useUser()
 
-    const discipline = dataTeacher ? (dataTeacher.turmaDisciplinas.length > 0 ? dataTeacher?.turmaDisciplinas[0].disciplina.id : null):null;
+    const discipline = dataTeacher ? dataTeacher.turmaDisciplinas.filter(m => m.turmaId === Number(id) && m.professorId === dataTeacher.id)[0] : null
+    console.log("DISCIPLINE ", discipline)
   
     const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
 
@@ -54,7 +58,6 @@ export function ClasseID() {
     const [todosAlunos, setTodosAlunos] = React.useState<TurmaComAlunos | null>(null)
     const [classe, setClasse] = React.useState<TurmaDetalhada | null>(null)
 
-    const { id } = useParams();
 
     console.log(id);
     
@@ -121,7 +124,7 @@ export function ClasseID() {
                                     </strong>
                                     <small>
                                         <BsAward />
-                                        <span>Coordenador da turma</span>
+                                        <span>{discipline?.disciplina.nome}</span>
                                     </small>
                                     </div>
                                 </div>
@@ -311,7 +314,7 @@ export function ClasseID() {
                                         
 
                                         <div className={stl.body}>
-                                            {todosAlunos?.alunos.map((aluno, i) => <CardNoteStudent props={aluno} index={i + 1} discipline={discipline}/>)}
+                                            {todosAlunos?.alunos.map((aluno, i) => <CardNoteStudent props={aluno} index={i + 1} discipline={discipline?.id || null}/>)}
                                         </div>
                                     </Tab>
                                 )
