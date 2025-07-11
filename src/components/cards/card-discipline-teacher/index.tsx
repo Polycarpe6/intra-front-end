@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../../context';
+import { TurmaDisciplina } from '../../../context';
 import imgUser from '../../../assets/img/default.jpg'
 import stl from './card-discipline-teacher.module.css'
 import { BsBookmarks, BsPencil, BsTrash } from 'react-icons/bs'
-import React from 'react';
+import { useUser } from '../../../hooks/useUser';
 
 
-export function CardDisciplineTeacher() {
+export function CardDisciplineTeacher(props: TurmaDisciplina) {
 
-    const { data } = React.useContext(UserContext);
-
-    const { user } = data;
+    const { data: { user } } = useUser();
     
     return (
         <article 
@@ -19,12 +17,10 @@ export function CardDisciplineTeacher() {
                 paddingBottom: user.role !== 'admin' ? "1.8rem" : "0"
             }}
         >
-        
             <div className={`${stl.head} anime-bottom`}>
                 <BsBookmarks />
-                <span>-  MATEMATICA</span>
+                <span>-  {props.disciplina.nome}</span>
             </div>
-        
             <div className={`${stl.body} anime-bottom`}>
 
                 <div className={stl.img}>
@@ -32,41 +28,32 @@ export function CardDisciplineTeacher() {
                         <img src={imgUser} alt="" />
                     </Link>
                 </div>
-
                 <div className={stl.name_email}>
-                    <Link to={"/profile"} className={stl.name}>Maria da Silva</Link>
+                    <Link to={"/profile"} className={stl.name}>{props.professor.nome}</Link>
                     <Link target='_blank' to={"https://mail.google.com/mail/u/0/"} className={stl.email}>
-                        msilva@gmail.com
+                        {props.professor.email}
                     </Link>
                 </div>
 
             </div>
-
             {
                 (user.role === 'admin') && (
-
                     <div className={stl.foot}>
-                        
                         <button 
                             className='anime-bottom'
                         >
                             <BsPencil />
                             <span>Editar</span>
                         </button>
-
                         <button 
                             className='anime-bottom'
                         >
                             <BsTrash />
                             <span>Remover</span>
                         </button>
-
                     </div>
-                    
                 )
             }
-        
-        
         </article>
     )
 }

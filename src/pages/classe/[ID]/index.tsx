@@ -219,27 +219,18 @@ export function ClasseID() {
                                 <div
                                     className={`anime-bottom ${stl.list_discipline_teacher}`}
                                 >
-
-                                    {/*{
-                                        turmaDisciplinas.map((m) => {
+                                    {
+                                        studentClass?.turmaDisciplinas.map((props) => {
                                             return (
-                                                <CardDisciplineTeacher/>
+                                                <CardDisciplineTeacher {...props}/>
                                             )
                                         })
                                     }
-*/}
-                                    
-
-
                                 </div>
-
-                                
-                                
-
                             </Tab>
 
                             {
-                                (user.role === "admin") && (
+                                (user.role === "teacher") && (
 
                                     <Tab 
                                         eventKey="Mini-Pauta" 

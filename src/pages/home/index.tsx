@@ -9,7 +9,7 @@ import { useUser } from '../../hooks/useUser';
 
 export function Home() {
 
-    const { data: { user }, dataStudent } = useUser()
+    const { data: { user }, dataStudent, dataTeacher } = useUser()
 
     const [blogs, _] = React.useState(
         [
@@ -162,16 +162,14 @@ export function Home() {
                             />
 
 
-                            {listClasse.map((classe: any) => (
+                            {dataTeacher?.turmas.map((classe) => (
                                 <CardClasse
                                     key={classe.id}
                                     id={classe.id}
-                                    name={classe.nome}
-                                    year={classe.ano}
+                                    name={classe.turma.nome}
+                                    year={classe.turma.ano.toString()}
                                 />
                             ))}
-
-
                         </>
                     )
                 }
