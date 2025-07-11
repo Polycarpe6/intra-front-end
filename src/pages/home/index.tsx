@@ -2,7 +2,7 @@ import React from 'react'
 import stl from './home.module.css'
 import { CardBlog, CardClasse, CardPeople, CardProfile, CardSearch, Col_Xl_3, TitleAndDescription, TitleDescLink, TitleNotFound } from '../../components'
 import { UserContext } from '../../context';
-import { getTeacher } from '../../api/endpoints';
+import { getTeacher, getClasses } from '../../api/endpoints';
 
 
 
@@ -96,10 +96,16 @@ export function Home() {
     )    
 
     const [listTeacher, setlistTeacher] = React.useState<any[]>([]);
+    const [listClasse, setListClasse] = React.useState<any[]>([]);
             
     const getAllClasses = async () => {
-        const classes: any = await getTeacher();
-        setlistTeacher(classes);
+        const teachers: any = await getTeacher();
+        setlistTeacher(teachers);
+
+        if (user.role === "teacher") {
+            const classes: any = await getClasses(); 
+            setListClasse(classes);
+        }
     }
     
     React.useEffect(() => {
@@ -286,7 +292,7 @@ export function Home() {
                     btnCreateBlog={true}
                 />
 
-               {/* {
+               {
                     blogs.map((blog) => {
 
                         return (
@@ -314,7 +320,7 @@ export function Home() {
                             <p>Crie o primeiro blog!</p>
                         </div>
                     )
-               } */}
+               }
 
 
             </section>

@@ -1,15 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Col_Xl_3 } from '../../col'
 import { Link } from 'react-router-dom'
 import stl from './card-profile.module.css'
 import { BsMortarboard } from 'react-icons/bs'
 import { UserContext } from '../../../context';
-import { getClasses, getStudent, getTeacher, getStudentById } from '../../../api/endpoints'
+import { getClasses, getStudent, getTeacher, getStudentById, getTeacherById } from '../../../api/endpoints'
 
+
+interface ITeacher {
+    id: number;
+    nome: string;
+    email: string;
+    createdAt: string;
+    authId: string;
+    turmaDisciplinas: [];
+    turmas:[],
+    alunos: []
+}
 
 export function CardProfile() {
 
-    const { data } = useContext(UserContext); 
+    const { data } = useContext(UserContext);
     const { user } = data;
 
 
@@ -18,74 +29,80 @@ export function CardProfile() {
     const [listTeachers, setListTeachers] = React.useState<any[]>([]);
 
     const [dataStudent, setDataStudent] = React.useState<any>()
+    const [dataTeacher, setDataTeacher] = React.useState<ITeacher | null>(null)
 
 
-    if ( user.role === "admin" ) {
+    useEffect(() => {
+
+        if (user.role === "admin") {
+            async function countClass() {
+                const response = await getClasses()
+
+                if (!response) return;
+
+                setListClasses(response);
+            }
+            async function countStudent() {
+                const response = await getStudent()
+
+                if (!response) return;
+
+                setListStudents(response);
+            }
+            async function countTeacher() {
+                const response = await getTeacher()
+
+                if (!response) return;
+
+                setListTeachers(response);
+            }
+
+            React.useEffect(() => {
+                countClass();
+                countStudent();
+                countTeacher();
+            }, []);
 
 
-        async function countClass() {
-            const response = await getClasses()
-
-            if (!response) return;
-
-            setListClasses(response);
-        }
-        
-
-        async function countStudent() {
-            const response = await getStudent()
-
-            if (!response) return;
-
-            setListStudents(response);
-        }
-
-        async function countTeacher() {
-            const response = await getTeacher()
-
-            if (!response) return;
-
-            setListTeachers(response);
-        }
-
-        React.useEffect(() => {
-            countClass();
-            countStudent();
-            countTeacher();
-        }, []);
-
-
-    }
-    
-
-    if ( user.role === "student" ) {
-
-        async function getDataStudent() {
-
-            const response = await getStudentById(user.id)
-
-            if (!response) return;
-
-            setDataStudent(response);
         }
 
+        if (user.role === "student") {
+            async function getDataStudent() {
+                const response = await getStudentById(user.id)
+                if (!response) return;
+                setDataStudent(response);
+            }
+            React.useEffect(() => {
+                getDataStudent();
+            }, []);
+        }
 
+        if (user.role === "teacher") {
+            async function getDataTeacher() {
+                const result = await getTeacherById(user.id);
 
+                if (!result) return;
 
-        React.useEffect(() => {
-            getDataStudent();
-        }, []);
-    }
+                setDataTeacher(result as ITeacher)
+            }
 
-    console.log(dataStudent)
-    // const { matriculas, aluno } = dataStudent
+            getDataTeacher()
+        }
 
+        console.log(dataTeacher)
+        // const { matriculas, aluno } = dataStudent
+        return () => {
+            setListClasses([]);
+            setListStudents([]);
+            setListTeachers([]);
+        }
+    }, [])
 
     return (
         <Col_Xl_3 className={`${stl.card_profile}`}>
 
             <div className={stl.content}>
-                    
+
                 <div className={stl.img_name_level}>
                     <div className={stl.cicle_img}>
                         <div>
@@ -93,7 +110,7 @@ export function CardProfile() {
                                 {
                                     user.nome[0]
                                 }
-                            </span> 
+                            </span>
                         </div>
                     </div>
                     <div className={stl.name_level}>
@@ -110,7 +127,7 @@ export function CardProfile() {
                                 }
                                 {
                                     (user.role === "teacher") && (
-                                        <>emailprofessor@gmail.com</>
+                                        <>{dataTeacher?.email}</>
                                     )
                                 }
                                 {
@@ -142,35 +159,35 @@ export function CardProfile() {
                                 <small>Colegas</small>
                             </li>
 
-                            
+
                         </ul>
                     )
                 }
 
                 {
                     (user.role === "teacher") && (
-                        <ul 
+                        <ul
                             className={stl.list_class}
 
                         >
 
                             <li>
-                                <span>02</span>
+                                <span>{dataTeacher?.turmas.length}</span>
                                 <small>Minhas Turmas</small>
                             </li>
 
                             <li>
-                                <span>103</span>
+                                <span>{dataTeacher?.alunos.length}</span>
                                 <small>Total de Alunos</small>
                             </li>
-                            
+
                         </ul>
                     )
                 }
 
                 {
                     (user.role === "admin") && (
-                        <ul 
+                        <ul
                             className={stl.list_class}
 
                         >
@@ -201,14 +218,14 @@ export function CardProfile() {
                                 </span>
                                 <small>Turmas</small>
                             </li>
-                            
+
                         </ul>
                     )
                 }
-                
 
-                
-                
+
+
+
 
 
                 {/* boas vindas*/}
@@ -226,11 +243,11 @@ export function CardProfile() {
                                     Acompanhe aqui suas notas, presença, boletins e avisos importantes do IPIL.
                                     Esta plataforma foi feita para te ajudar a organizar melhor a tua vida académica.
                                 </span>
-                                
+
                                 <span>
                                     Bom estudo e boa navegação!
                                 </span>
-                                
+
                             </p>
                         </div>
                     )
@@ -249,11 +266,11 @@ export function CardProfile() {
                                     Aqui você poderá lançar notas, registar presenças, consultar turmas e enviar comunicados.
                                     O INTRA foi criado para tornar sua rotina mais prática, rápida e organizada.
                                 </span>
-                                
+
                                 <span>
                                     -- Bom trabalho e ótima navegação!
                                 </span>
-                                
+
                             </p>
                         </div>
                     )
@@ -272,11 +289,11 @@ export function CardProfile() {
                                     Gerencie usuários, turmas, disciplinas, trimestres e dados acadêmicos com total controle.
                                     O INTRA oferece as ferramentas necessárias para uma gestão eficiente e segura do IPIL.
                                 </span>
-                                
+
                                 <span>
                                     -- Boa gestão e excelente navegação!
                                 </span>
-                                
+
                             </p>
                         </div>
                     )
@@ -286,14 +303,14 @@ export function CardProfile() {
 
 
 
-                
+
 
                 {/* {
                     (user.role === "student") && (
                         <ChartMain />
                     )
                 } */}
-                
+
 
             </div>
 

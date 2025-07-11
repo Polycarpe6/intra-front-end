@@ -46,6 +46,7 @@ export * from './classe/put';
 
 export * from './teacher/get'
 export * from './teacher/post'
+export * from './teacher/getById'
 
 
 export * from './trimestre/get'
