@@ -8,46 +8,19 @@ import { CardProfile, CardSearch, Col_Xl_9, TitleDescLink, TitleAndDescription, 
 import { UserContext } from '../../../context'
 import { getClasseById, getStudent, getStudentByLevel } from '../../../api/endpoints'
 import { useParams } from 'react-router-dom'
+import { useUser } from '../../../hooks/useUser'
 
 
 export function ClasseID() {
 
-    const { data } = React.useContext(UserContext);
-
-    const { user } = data;
+    const { data: { user }, dataStudent, studentClass } = useUser()
   
     const [modalDisciplineTeacher, setModalDisciplineTeacher] = React.useState(false)
 
     const [listStudent, setListStudent] = React.useState([])
 
-
-    const [classe, setClasse] = React.useState<any>({});
-
-    // Função para buscar todos os alunos da turma
-    const { id } = useParams()
-
-    async function getClasse() {
-
-        const response = await getClasseById(Number(id));
-
-        if (response) {
-            setClasse(response);
-        } else {
-            console.error("Erro ao buscar a turma");
-        }
-
-        console.log(classe)
-
-    }
-
-    React.useEffect(() => {
-        getClasse();
-    }, [id]);
-
-    const { turmaDisciplinas } = classe
-
     
-    const getAllStudentByLevel = async () => {
+   /*  const getAllStudentByLevel = async () => {
     
             const students: any = await getStudentByLevel(Number(id));
             setListStudent(students);
@@ -55,12 +28,7 @@ export function ClasseID() {
 
     React.useEffect(() => {
             getAllStudentByLevel();
-    }, []);
-
-    const cursoName = classe.curso ? classe.curso.nome : "Curso não definido";
-    const classeLeve = classe.nome ? classe.nome.slice(2, 4) : "Classe não definida";
-    const className = classe.nome ? classe.nome : "Nome da classe não definido";
-
+    }, []); */
 
     return (
         <Suspense fallback={"Carregando..."}>
@@ -75,7 +43,7 @@ export function ClasseID() {
                                 <div className={stl.card_img_class}>
                                     <div>
                                         <BsMortarboard />
-                                        <span>{classe.nome}</span>
+                                        <span>{studentClass?.nome}</span>
                                     </div>
                                 </div>
                                 <div className={stl.card_img_and_name_coord_class}>
@@ -87,7 +55,7 @@ export function ClasseID() {
                                     <div className={stl.name_and_icon_coord_class}>
                                     <strong>
                                         <Link to={"/profile"}>
-                                            <span>Não definido</span>
+                                            <span>{studentClass?.nome}</span>
                                         </Link>
                                     </strong>
                                     <small>
@@ -99,7 +67,7 @@ export function ClasseID() {
                             </div>
 
                             <small className="anime-left">
-                                Turma da área de Informática, composta por alunos do curso {cursoName} na {classeLeve}ª classe ({className}). Oferece conteúdos práticos e teóricos, com foco em formação sólida e preparação para o mercado. Destaca-se pelo compromisso acadêmico, ambiente colaborativo e apoio de professores qualificados, sendo uma etapa importante no desenvolvimento dos alunos.
+                                Turma da área de Informática, composta por alunos do curso {studentClass?.curso.nome} na 10ª classe. Oferece conteúdos práticos e teóricos, com foco em formação sólida e preparação para o mercado. Destaca-se pelo compromisso acadêmico, ambiente colaborativo e apoio de professores qualificados, sendo uma etapa importante no desenvolvimento dos alunos.
                             </small>
 
                         </div>
@@ -122,7 +90,7 @@ export function ClasseID() {
                                         <BsMortarboard />
                                         <span>Curso</span>
                                     </strong>
-                                    <span>- {cursoName}</span>
+                                    <span>- {studentClass?.curso.nome}</span>
 
                                 </li>
 
@@ -132,7 +100,7 @@ export function ClasseID() {
                                         <BsBookmark />
                                         <span>Classe</span>
                                     </strong>
-                                    <span>- {classeLeve}ª</span>
+                                    <span>- 10ª</span>
 
                                 </li>
 
@@ -142,7 +110,7 @@ export function ClasseID() {
                                         <BsBook />
                                         <span>Turma</span>
                                     </strong>
-                                    <span>- {className}</span>
+                                    <span>- {studentClass?.nome}</span>
 
                                 </li>
                                                     
@@ -171,7 +139,7 @@ export function ClasseID() {
                                 <div className={stl.head}>
 
                                     <TitleDescLink 
-                                        title={`Alunos da turma ${className}`}
+                                        title={`Alunos da turma ${studentClass?.nome}`}
                                         desc={"Aqui voce consegue ver todos os alunos dessa turma"}
                                         linkPath={""}
                                     />
@@ -179,7 +147,7 @@ export function ClasseID() {
                                     <CardSearch 
                                         placeholder={"Busca alunos..."}
                                         btnAddStudent={true}
-                                        classId={id}
+                                        classId={studentClass?.id}
                                     />
 
                                 </div>
@@ -187,20 +155,20 @@ export function ClasseID() {
                                 <div className={stl.list_student_class}>
                                     
                                     {
-                                        listStudent.map((student) => (
+                                        studentClass?.matriculas.map((student) => (
                                             <CardPeople 
                                                 key={student.id}
                                                 id={student.id}
-                                                n_process={student.processNumber}
-                                                name={student.nome}
-                                                email={student.email}
+                                                n_process={student.aluno.processNumber}
+                                                name={student.aluno.nome}
+                                                email={student.aluno.email}
                                             />
                                         ))
                                     }
 
 
                                     {
-                                        (listStudent.length === 0) && (
+                                        (studentClass?.matriculas.length === 0) && (
                                             <TitleNotFound
                                                 title={"Nenhum aluno encontrado!"}
                                                 desc={"Parece que não há alunos registrados nessa turma."}
@@ -240,7 +208,7 @@ export function ClasseID() {
                                                 <ModalDisciplineTeacher
                                                     show={modalDisciplineTeacher}
                                                     onHide={() => setModalDisciplineTeacher(false)}
-                                                    turmaId={Number(id)}
+                                                    turmaId={Number(studentClass?.id)}
                                                 />
                                             </>
                                         )
@@ -302,16 +270,9 @@ export function ClasseID() {
                                             <CardNoteStudent />
 
                                             <CardNoteStudent />
-                                            
-
-
 
                                         </div>
-
-
-
                                     </Tab>
-
                                 )
                             }
 

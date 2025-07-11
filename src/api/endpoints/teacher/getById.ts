@@ -11,8 +11,7 @@ export interface IProfessorById {
   alunos: Aluno[]
   turmas: TurmaProfessor[]
 }
-
-export interface TurmaDisciplina {
+ interface TurmaDisciplina {
   id: number
   turmaId: number
   disciplinaId: number
@@ -21,7 +20,7 @@ export interface TurmaDisciplina {
   disciplina: Disciplina
 }
 
-export interface Turma {
+ interface Turma {
   id: number
   cursoId: number
   nome: string
@@ -29,12 +28,12 @@ export interface Turma {
   createdAt: string
 }
 
-export interface Disciplina {
+ interface Disciplina {
   id: number
   nome: string
 }
 
-export interface Aluno {
+ interface Aluno {
   id: number
   nome: string
   processNumber: number
@@ -45,7 +44,7 @@ export interface Aluno {
   authId: string
 }
 
-export interface TurmaProfessor {
+ interface TurmaProfessor {
   id: number
   turmaId: number
   disciplinaId: number

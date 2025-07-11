@@ -1,90 +1,12 @@
-import React, { useContext, useEffect } from 'react'
 import { Col_Xl_3 } from '../../col'
 import { Link } from 'react-router-dom'
 import stl from './card-profile.module.css'
 import { BsMortarboard } from 'react-icons/bs'
-import { UserContext } from '../../../context';
-import { getClasses, getStudent, getTeacher, getStudentById, getTeacherById, IProfessorById } from '../../../api/endpoints'
+import { useUser } from '../../../hooks/useUser'
 
 export function CardProfile() {
 
-    const { data } = useContext(UserContext);
-    const { user } = data;
-
-
-    const [listClasses, setListClasses] = React.useState<any[]>([]);
-    const [listStudents, setListStudents] = React.useState<any[]>([]);
-    const [listTeachers, setListTeachers] = React.useState<any[]>([]);
-
-    const [dataStudent, setDataStudent] = React.useState<any>()
-    const [dataTeacher, setDataTeacher] = React.useState<IProfessorById | null>(null)
-
-
-    useEffect(() => {
-
-        if (user.role === "admin") {
-            async function countClass() {
-                const response = await getClasses()
-
-                if (!response) return;
-
-                setListClasses(response);
-            }
-            async function countStudent() {
-                const response = await getStudent()
-
-                if (!response) return;
-
-                setListStudents(response);
-            }
-            async function countTeacher() {
-                const response = await getTeacher()
-
-                if (!response) return;
-
-                setListTeachers(response);
-            }
-
-            React.useEffect(() => {
-                countClass();
-                countStudent();
-                countTeacher();
-            }, []);
-
-
-        }
-
-        if (user.role === "student") {
-            async function getDataStudent() {
-                const response = await getStudentById(user.id)
-                if (!response) return;
-                setDataStudent(response);
-            }
-            React.useEffect(() => {
-                getDataStudent();
-            }, []);
-        }
-
-        if (user.role === "teacher") {
-            async function getDataTeacher() {
-                const result = await getTeacherById(user.id);
-
-                if (!result) return;
-
-                setDataTeacher(result as IProfessorById)
-            }
-
-            getDataTeacher()
-        }
-
-        console.log(dataTeacher)
-        // const { matriculas, aluno } = dataStudent
-        return () => {
-            setListClasses([]);
-            setListStudents([]);
-            setListTeachers([]);
-        }
-    }, [])
+    const { data, listClasses, listStudents, listTeachers, dataStudent, dataTeacher } = useUser();
 
     return (
         <Col_Xl_3 className={`${stl.card_profile}`}>
@@ -96,31 +18,31 @@ export function CardProfile() {
                         <div>
                             <span>
                                 {
-                                    user.nome[0]
+                                    data.user.nome[0]
                                 }
                             </span>
                         </div>
                     </div>
                     <div className={stl.name_level}>
                         <Link to={"/profile"}>
-                            {user.nome}
+                            {data.user.nome}
                         </Link>
                         <small>
                             <BsMortarboard />
                             <span className="phone-user-online">
                                 {
-                                    (user.role === "student") && (
+                                    (data.user.role === "student") && (
                                         <>II10A - Nº Proc aluno</>
                                     )
                                 }
                                 {
-                                    (user.role === "teacher") && (
+                                    (data.user.role === "teacher") && (
                                         <>{dataTeacher?.email}</>
                                     )
                                 }
                                 {
-                                    (user.role === "admin") && (
-                                        <>{user.email}</>
+                                    (data.user.role === "admin") && (
+                                        <>{data.user.email}</>
                                     )
                                 }
                             </span>
@@ -129,57 +51,49 @@ export function CardProfile() {
                 </div>
 
                 {
-                    (user.role === "student") && (
+                    (data.user.role === "student") && (
                         <ul className={stl.list_class}>
 
                             <li>
-                                <span>46382</span>
+                                <span>{dataStudent?.aluno.processNumber}</span>
                                 <small>Nº Processo</small>
                             </li>
 
                             <li>
-                                <span>ii10a</span>
+                                <span>{dataStudent?.matricula.map((matricula) => matricula.turma.nome)}</span>
                                 <small>Minha Turma</small>
                             </li>
 
                             <li>
-                                <span>45</span>
+                                <span>{dataStudent?.colegas}</span>
                                 <small>Colegas</small>
                             </li>
-
-
                         </ul>
                     )
                 }
 
                 {
-                    (user.role === "teacher") && (
+                    (data.user.role === "teacher") && (
                         <ul
                             className={stl.list_class}
-
                         >
-
                             <li>
                                 <span>{dataTeacher?.turmas.length}</span>
                                 <small>Minhas Turmas</small>
                             </li>
-
                             <li>
                                 <span>{dataTeacher?.alunos.length}</span>
                                 <small>Total de Alunos</small>
                             </li>
-
                         </ul>
                     )
                 }
 
                 {
-                    (user.role === "admin") && (
+                    (data.user.role === "admin") && (
                         <ul
                             className={stl.list_class}
-
                         >
-
                             <li>
                                 <span>
                                     {
@@ -219,12 +133,12 @@ export function CardProfile() {
                 {/* boas vindas*/}
 
                 {
-                    (user.role === "student") && (
+                    (data.user.role === "student") && (
                         <div className={stl.wellcome}>
                             <strong>Bem-vindo(a) ao INTRA!</strong>
                             <p>
                                 <span>
-                                    Olá, aluno(a) {user.nome}!
+                                    Olá, aluno(a) {data.user.nome}!
                                 </span>
 
                                 <span>
@@ -242,12 +156,12 @@ export function CardProfile() {
                 }
 
                 {
-                    (user.role === "teacher") && (
+                    (data.user.role === "teacher") && (
                         <div className={stl.wellcome}>
                             <strong>Bem-vindo(a) ao INTRA – Área do Professor!</strong>
                             <p>
                                 <span>
-                                    Olá, professor(a) {user.nome}!
+                                    Olá, professor(a) {data.user.nome}!
                                 </span>
 
                                 <span>
@@ -265,12 +179,12 @@ export function CardProfile() {
                 }
 
                 {
-                    (user.role === "admin") && (
+                    (data.user.role === "admin") && (
                         <div className={stl.wellcome}>
                             <strong>Bem-vindo(a) ao INTRA – Painel Administrativo!</strong>
                             <p>
                                 <span>
-                                    Olá, administrador(a) {user.nome}!
+                                    Olá, administrador(a) {data.user.nome}!
                                 </span>
 
                                 <span>
@@ -294,7 +208,7 @@ export function CardProfile() {
 
 
                 {/* {
-                    (user.role === "student") && (
+                    (data.user.role === "student") && (
                         <ChartMain />
                     )
                 } */}

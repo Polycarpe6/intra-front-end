@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { URLAPI, tokenHeaders } from '../index';
+import { TurmaDetalhada } from '../../../context';
+
+
 
 export async function getClasseById(id: number) {
 
@@ -8,14 +11,14 @@ export async function getClasseById(id: number) {
     const { token } = data;
 
     try {
-        const response = await axios.get(
-                                            `${URLAPI}turmas/${id}`,
-                                            {
-                                                headers: {
-                                                    Authorization: `Bearer ${token}`,
-                                                },
-                                            }
-                                        );
+        const response = await axios.get<TurmaDetalhada>(
+            `${URLAPI}turmas/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
         return response.data;
     } catch (error) {
         console.error('Houve um erro ao buscar turma:', error);
